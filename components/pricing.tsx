@@ -23,7 +23,7 @@ export const Pricing = () => {
   const [show, setShow] = useState(false);
   return (
     <Main>
-    <section className="bg-white dark:bg-gray-800">
+    <section className="bg-white">
       <div className="px-6 py-8 mx-auto">
         <div className="max-w-2xl p-1.5 mx-auto overflow-hidden rounded-lg ">
           <div className="grid gap-3 grid-cols-2">
