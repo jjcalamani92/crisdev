@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FC } from "react";
+import { Main } from "./component";
 import Footer from "./footer";
 import Header from "./header";
 
@@ -37,8 +38,12 @@ export const Layout: FC<Props> = ({
       <Header />
 			{/* <Header /> */}
 			{/* <Search01 /> */}
-			<main>{children}</main>
-			<Footer />
+			<main>
+				<Main>
+					{children}
+				<Footer />
+				</Main>
+			</main>
 			
 			</>
 	);

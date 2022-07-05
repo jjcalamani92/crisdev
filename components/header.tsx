@@ -16,9 +16,11 @@ import {
   XIcon,
   ChartBarIcon,
   DesktopComputerIcon,
+  CodeIcon,
 } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const solutions = [
   {
@@ -33,11 +35,12 @@ const solutions = [
     href: '#',
     icon: ChartBarIcon,
   },
-  { 
-    name: 'Alojamiento Web', 
-    description: "La solución completa de Web Hosting en Bolivia. Dominio, SSL y Hosting, todo incluído. ", 
-    href: '#', 
-    icon: ShieldCheckIcon },
+  {
+    name: 'Alojamiento Web',
+    description: "La solución completa de Web Hosting en Bolivia. Dominio, SSL y Hosting, todo incluído. ",
+    href: '#',
+    icon: ShieldCheckIcon
+  },
   {
     name: 'Publicidad Digital',
     description: "Trabajamos con tu marca, servicio o producto para que sea visible y genere rendimiento en internet.",
@@ -92,19 +95,18 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center border-b-2 border-gray-100 py-2 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
-              <span className="sr-only">Workflow</span>
-              <Image
-                className="h-8 w-auto sm:h-10"
-                src="https://res.cloudinary.com/dvcyhn0lj/image/upload/v1651984518/React-jj/00a653fdb015c16601ec01d1672e58c6_ircqd2.svg"
-                width={50}
-                height={50}
-                alt=""
-              />
-            </a>
+            <Link href="/">
+              <a>
+                {/* <span className="sr-only">Workflow</span> */}
+                <CodeIcon
+                  className="w-12 h-12 text-orange-500"
+                  aria-hidden="true"
+                />
+              </a>
+            </Link>
           </div>
           <div className="-mr-2 -my-2 md:hidden">
-            <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
               <span className="sr-only">Open menu</span>
               <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
@@ -116,7 +118,7 @@ export default function Header() {
                   <Popover.Button
                     className={classNames(
                       open ? 'text-gray-900' : 'text-gray-500',
-                      'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                      'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
                     )}
                   >
                     <span>Servicios</span>
@@ -147,7 +149,7 @@ export default function Header() {
                               href={item.href}
                               className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                             >
-                              <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
+                              <item.icon className="flex-shrink-0 h-6 w-6 text-orange-600" aria-hidden="true" />
                               <div className="ml-4">
                                 <p className="text-base font-medium text-gray-900">{item.name}</p>
                                 <p className="mt-1 text-sm text-gray-500">{item.description}</p>
@@ -175,12 +177,17 @@ export default function Header() {
               )}
             </Popover>
 
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Precios
-            </a>
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Blogs
-            </a>
+            <Link href="/prices">
+              <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Precios
+              </a>
+            </Link>
+            <Link href="#">
+              <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Blogs
+              </a>
+            </Link>
+
 
             <Popover className="relative">
               {({ open }) => (
@@ -188,7 +195,7 @@ export default function Header() {
                   <Popover.Button
                     className={classNames(
                       open ? 'text-gray-900' : 'text-gray-500',
-                      'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                      'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
                     )}
                   >
                     <span>Más</span>
@@ -219,7 +226,7 @@ export default function Header() {
                               href={item.href}
                               className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                             >
-                              <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
+                              <item.icon className="flex-shrink-0 h-6 w-6 text-orange-600" aria-hidden="true" />
                               <div className="ml-4">
                                 <p className="text-base font-medium text-gray-900">{item.name}</p>
                                 <p className="mt-1 text-sm text-gray-500">{item.description}</p>
@@ -241,7 +248,7 @@ export default function Header() {
                             </ul>
                           </div>
                           <div className="mt-5 text-sm">
-                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            <a href="#" className="font-medium text-orange-500 hover:text-orange-600">
                               {' '}
                               Ver todas las publicaciones <span aria-hidden="true">&rarr;</span>
                             </a>
@@ -260,7 +267,7 @@ export default function Header() {
             </a>
             <a
               href="#"
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-orange-500 hover:bg-orange-600"
             >
               Sign up
             </a>
@@ -281,17 +288,17 @@ export default function Header() {
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
             <div className="pt-5 pb-6 px-5">
               <div className="flex items-center justify-between">
-                <div>
-                  <Image
-                  className="h-8 w-auto sm:h-10"
-                  src="https://res.cloudinary.com/dvcyhn0lj/image/upload/v1651984518/React-jj/00a653fdb015c16601ec01d1672e58c6_ircqd2.svg"
-                  width={50}
-                  height={50}
-                  alt=""
-                />
-                </div>
+                <Link href="/">
+                  <a>
+                    {/* <span className="sr-only">Workflow</span> */}
+                    <CodeIcon
+                      className="w-12 h-12 text-orange-500"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </Link>
                 <div className="-mr-2">
-                  <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500">
                     <span className="sr-only">Close menu</span>
                     <XIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
@@ -305,7 +312,7 @@ export default function Header() {
                       href={item.href}
                       className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                     >
-                      <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
+                      <item.icon className="flex-shrink-0 h-6 w-6 text-orange-600" aria-hidden="true" />
                       <span className="ml-3 text-base font-medium text-gray-900">{item.name}</span>
                     </a>
                   ))}
@@ -314,13 +321,15 @@ export default function Header() {
             </div>
             <div className="py-6 px-5 space-y-6">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <a href="#" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                  Precios
-                </a>
+                <Link href="/prices">
+                  <a className="text-base font-medium text-gray-900 hover:text-gray-700">
+                    Precios
+                  </a>
+                </Link>
 
-                <a href="#" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                {/* <a href="#" className="text-base font-medium text-gray-900 hover:text-gray-700">
                   Docs
-                </a>
+                </a> */}
                 {resources.map((item) => (
                   <a
                     key={item.name}
@@ -334,13 +343,13 @@ export default function Header() {
               <div>
                 <a
                   href="#"
-                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-orange-500 hover:bg-orange-600"
                 >
                   Sign up
                 </a>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{' '}
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
+                  <a href="#" className="text-orange-600 hover:text-orange-500">
                     Sign in
                   </a>
                 </p>
