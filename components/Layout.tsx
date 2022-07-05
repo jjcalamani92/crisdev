@@ -39,11 +39,9 @@ export const Layout: FC<Props> = ({
 			{/* <Header /> */}
 			{/* <Search01 /> */}
 			<main>
-				<Main>
 					{children}
-				<Footer />
-				</Main>
 			</main>
+			<Footer />
 			
 			</>
 	);

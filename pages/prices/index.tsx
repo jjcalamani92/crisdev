@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
 import { Layout } from '../../components'
 import { HeadingPrimary } from '../../components/component'
-import Hero from '../../components/hero'
 import Newsletter from '../../components/newsletter'
-import Pricing from '../../components/pricing'
+import { Pricing } from '../../components'
 
 const Prices: NextPage = () => {
   return (

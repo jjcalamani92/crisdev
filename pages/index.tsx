@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
-import { Layout } from '../components'
-import Hero from '../components/hero'
+import { Hero, Layout } from '../components'
 import Newsletter from '../components/newsletter'
 
 const Home: NextPage = () => {

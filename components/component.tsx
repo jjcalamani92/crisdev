@@ -32,9 +32,10 @@ interface HeadingPrimary {
 }
 export const HeadingPrimary: FC<HeadingPrimary> = ({ title }) => {
   return (
-    <div className="max-w-xl mx-auto">
+    <Main>
+    <div className="max-w-3xl mx-auto">
       <h1 className="text-4xl lg:text-7xl text-center font-bold text-gray-800 leading-normal">{title}</h1>
     </div>
-
+    </Main>
   )
 }

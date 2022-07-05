@@ -17,6 +17,7 @@ import {
   ChartBarIcon,
   DesktopComputerIcon,
   CodeIcon,
+  QuestionMarkCircleIcon
 } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
@@ -71,12 +72,12 @@ const resources = [
     href: '#',
     icon: BookmarkAltIcon,
   },
-  // {
-  //   name: 'Events',
-  //   description: 'See what meet-ups and other events we might be planning near you.',
-  //   href: '#',
-  //   icon: CalendarIcon,
-  // },
+  {
+    name: 'FAQs',
+    description: 'Preguntas frecuentes.',
+    href: '/FAQs',
+    icon: QuestionMarkCircleIcon,
+  },
   // { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
 ]
 const recentPosts = [
@@ -220,10 +221,10 @@ export default function Header() {
                     <Popover.Panel className="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-md sm:px-0">
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                          {resources.map((item) => (
+                          {resources.map((item, i) => (
+                            <Link  key={i}
+                            href={item.href}>
                             <a
-                              key={item.name}
-                              href={item.href}
                               className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                             >
                               <item.icon className="flex-shrink-0 h-6 w-6 text-orange-600" aria-hidden="true" />
@@ -232,6 +233,7 @@ export default function Header() {
                                 <p className="mt-1 text-sm text-gray-500">{item.description}</p>
                               </div>
                             </a>
+                            </Link>
                           ))}
                         </div>
                         <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">

@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/solid";
 import React, { useState } from "react";
-import { Button } from "./component";
+import { Button, Main } from "./component";
 const prices = [
   {
     http: "HTTPS/SSL automático",
@@ -19,9 +19,10 @@ const prices = [
   },
 
 ]
-function Pricing() {
+export const Pricing = () => {
   const [show, setShow] = useState(false);
   return (
+    <Main>
     <section className="bg-white dark:bg-gray-800">
       <div className="px-6 py-8 mx-auto">
         <div className="max-w-2xl p-1.5 mx-auto overflow-hidden rounded-lg ">
@@ -170,8 +171,8 @@ function Pricing() {
         </div>
       </div>
     </section>
+    </Main>
   );
 }
 
-export default Pricing;
 
