@@ -27,7 +27,7 @@ export const Login = () =>  {
     <div className="h-screen w-screen grid content-center">
       <div className="flex justify-center">
         
-        <div className="bg-white shadow-lg rounded lg:w-1/4 w-1/2 p-10">
+        <div className="bg-white shadow-lg rounded lg:w-1/4 w-50 p-10">
           <p tabIndex={0} aria-label="Login to your account" className="text-2xl font-extrabold leading-6 text-gray-800">
             Login to your account
           </p>

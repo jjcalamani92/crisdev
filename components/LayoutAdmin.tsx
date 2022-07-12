@@ -28,7 +28,9 @@ function classNames(...classes:string[]) {
 }
 export const LayoutAdmin = () => {
   const { user, isLoggedIn, logout } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
+  // console.log(isLoggedIn);
+  
   return (
     <>
       {/*
