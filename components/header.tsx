@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
   BookmarkAltIcon,
@@ -22,6 +22,7 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
 import Link from 'next/link'
+import { AuthContext } from '../src/context'
 
 const solutions = [
   {
@@ -91,6 +92,8 @@ function classNames(...classes: string[]) {
 }
 
 export default function Header() {
+
+  
   return (
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
