@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Layout } from "../../components";
 import { HeadingPrimary } from "../../components/component";
-import { FAQsComponent } from "../../components/faqs";
+import { FAQComponent } from "../../components/faq";
 
 const FAQs = () => {
     return (
@@ -12,7 +12,7 @@ const FAQs = () => {
 		>
 			<HeadingPrimary title="Preguntas Frecuentes"/>
 			
-      <FAQsComponent />
+      <FAQComponent />
 		</Layout>
     );
 };

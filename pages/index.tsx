@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { Hero, Layout } from '../components'
+import { Featured } from '../components/feature'
 import Newsletter from '../components/newsletter'
 
 const Home: NextPage = () => {
@@ -11,6 +12,7 @@ const Home: NextPage = () => {
 		>
 			
 			<Hero />
+			{/* <Featured /> */}
 			{/* <Newsletter /> */}
 		</Layout>
   )
