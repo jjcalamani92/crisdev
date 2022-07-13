@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
 import { LayoutAdmin } from '../../components/LayoutAdmin'
 
-const Home: NextPage = () => {
+const Dashboard: NextPage = () => {
   return (
-    <LayoutAdmin />)
+    <LayoutAdmin title="Dashboard">
+      <h1>Productos</h1>
+    </LayoutAdmin>)
 }
 
-export default Home
+export default Dashboard
