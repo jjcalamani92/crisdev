@@ -1,27 +1,42 @@
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
 import { IResponsive } from "../src/interfacesV2/crisdev";
-import { CardSite } from "./card";
+import { Section0, Featured, Item } from '../src/interfacesV2/siteV2';
+import { CardSection, CardSite } from "./card";
 import { Main } from "./component";
 
 interface Grid {
-  data: any[]
   responsive: IResponsive
+  data: any[]
   // data: Category[] | Section[] | Featured[] | Item[] | IMark[];
 }
 export const Grid:FC<Grid> = ({data, responsive}) => {
-  const { pathname }  = useRouter();
-  // const { pathname } = router
-  console.log(pathname);
-  console.log(data);
-  
   const {sm, md, lg} = responsive
+  // console.log(responsive);
+  const { pathname }  = useRouter();
   return (
     <Main>
-      <div className={`grid grid-cols-${sm} md:grid-cols-${md} lg:grid-cols-${lg} col-span-5 gap-6`}>
+      <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 col-span-5 gap-6`}>
             {data.map((d, i) => (
               <CardSite url={pathname} data={d} key={i} />
-              // <h1 key={i}>{d.data.domain}</h1>
+            ))}
+          </div>
+    </Main>
+  )
+}
+
+interface GridSection {
+  responsive?: IResponsive
+  url: string
+  data: Section0[] | Featured[] | Item[] | undefined
+  // data: Category[] | Section[] | Featured[] | Item[] | IMark[];
+}
+export const GridSection:FC<GridSection> = ({data, responsive, url}) => {
+  return (
+    <Main>
+      <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 col-span-5 gap-6`}>
+            {data?.map((d, i) => (
+              <CardSection url={url} data={d} key={i} />
             ))}
           </div>
     </Main>

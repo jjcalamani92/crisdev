@@ -2,6 +2,7 @@ import { FC, Fragment, useState } from "react";
 
 import { Menu, Transition, Dialog, Disclosure } from '@headlessui/react';
 import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, XIcon } from "@heroicons/react/solid";
+import Router, { useRouter } from "next/router";
 
 interface Main {
   children: React.ReactNode;
@@ -99,15 +100,17 @@ const filters = [
 
 interface HeadingDashboard {
   title: string;
+  url: string
 }
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
-export const HeadingDashboard: FC<HeadingDashboard> = ({ title }) => {
+export const HeadingDashboard: FC<HeadingDashboard> = ({ title, url }) => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const orangeirect = () => {
-    console.log('nuevo');
-
+  const { push, pathname, query } = useRouter();
+  
+  const redirect = () => {
+    push(`/${url}/new`)
   }
   return (
     <>
@@ -270,11 +273,37 @@ export const HeadingDashboard: FC<HeadingDashboard> = ({ title }) => {
               {/* <span className="sr-only">Filters</span> */}
               <FilterIcon className="w-5 h-5" aria-hidden="true" />
             </button>
-            <Button content='nuevo' click={() => orangeirect()} />
+            <Button content='nuevo' click={() => redirect()} />
 
           </div>
         </div>
       </Main>
     </>
+  )
+}
+
+interface HeadingForm {
+  title: string;
+}
+
+export const HeadingForm:FC<HeadingForm> = ({title}) => {
+  const { pathname, query } = useRouter()
+  Object.keys(query)
+  
+  // query[Object.keys(query)[Object.keys(query).length - 1]]
+  const n =  query[Object.keys(query)[Object.keys(query).length - 1]]
+  // console.log(query[Object.keys(query)[Object.keys(query).length - 1]])
+  const orangeirect = () => {
+    console.log('hola');
+  }
+  return (
+    <Main>
+        <div className=" z-10 flex items-baseline justify-between pb-6 border-b border-gray-200">
+          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{n === 'new' ? `Crear ${title}` :  `Actualizar ${title}`}</h1>
+          {/* <div>
+            <Button  content='nuevo' click={() => orangeirect()} />
+          </div> */}
+        </div>
+      </Main>
   )
 }

@@ -3,8 +3,9 @@ import { GraphQLClient } from "graphql-request";
 export const graphQLClientS = new GraphQLClient(
   `${process.env.APIS_URL}/graphql`,
   {
-    credentials: "include",
-    mode: "cors",
+    headers: {
+      authorization: "Bearer MY_TOKEN",
+    },
   }
 );
 export const graphQLClientSS = new GraphQLClient(
