@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { HeadingDashboard, HeadingForm } from '../../../../../../../../../../components/component'
 import { FormSection } from '../../../../../../../../../../components/form/formSection'
-import { GridSection } from '../../../../../../../../../../components/grid'
+import { GridFeatured, GridItem, GridSection } from '../../../../../../../../../../components/grid'
 import { LayoutAdmin } from '../../../../../../../../../../components/LayoutAdmin'
 import { SITE, SITES } from '../../../../../../../../../../src/graphql/site.query'
 import { ISite, Section0, Section5 } from '../../../../../../../../../../src/interfacesV2/siteV2'
@@ -48,7 +48,7 @@ const Section5: FC<Props> = ({ section }) => {
                 ?
                   <>
                     <HeadingDashboard title='Items' url={`${url}`} />
-                    <GridSection data={section.items} url={`${url}`}/>
+                    <GridItem data={section.items} url={`${url}`}/>
                   </>
                 :
                 null
@@ -58,7 +58,7 @@ const Section5: FC<Props> = ({ section }) => {
                 ?
                   <>
                     <HeadingDashboard title='Promociones' url={`${url}`} />
-                    <GridSection data={section.featured} url={`${url}`}/>
+                    <GridFeatured data={section.featured} url={`${url}`}/>
                   </>
                 :
                 null

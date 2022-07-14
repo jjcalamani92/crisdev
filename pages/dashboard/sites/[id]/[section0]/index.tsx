@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { HeadingDashboard, HeadingForm } from '../../../../../components/component'
 import { FormSite } from '../../../../../components/form'
 import { FormSection } from '../../../../../components/form/formSection'
-import { GridSection } from '../../../../../components/grid'
+import { GridFeatured, GridItem, GridSection } from '../../../../../components/grid'
 import { LayoutAdmin } from '../../../../../components/LayoutAdmin'
 import { SITE, SITES } from '../../../../../src/graphql/site.query'
 import { ISite, Section0 } from '../../../../../src/interfacesV2/siteV2'
@@ -47,14 +47,14 @@ const Section0: FC<Props> = ({ section }) => {
                 </>
             }
             {
-              section.items.length === 0
+              section.items
                 ?
-                null
-                :
                 <>
-                  <HeadingDashboard title='Items' url={`${url}`} />
-                  <GridSection data={section.items}  url={`${url}`}/>
+                  <HeadingDashboard title='Items' url={`${url}/i`} />
+                  <GridItem data={section.items}  url={`${url}`}/>
                 </>
+                :
+                null
             }
             {
               section.featured.length === 0
@@ -63,7 +63,7 @@ const Section0: FC<Props> = ({ section }) => {
                 :
                 <>
                   <HeadingDashboard title='Promociones' url={`${url}`} />
-                  <GridSection data={section.featured}  url={`${url}`}/>
+                  <GridFeatured data={section.featured}  url={`${url}`}/>
                 </>
             }
             
@@ -71,7 +71,8 @@ const Section0: FC<Props> = ({ section }) => {
       }
       <HeadingForm title="Sección" />
       <FormSection section={section} url={urlu}/>
-    </LayoutAdmin>)
+    </LayoutAdmin>
+  )
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { section0 = '', id = '' } = query
