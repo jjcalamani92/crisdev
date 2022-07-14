@@ -99,7 +99,7 @@ export const Pricing = () => {
               </div>
             </div>
 
-            <Button name="Elige Básico" />
+            {/* <Button content="Elige Básico" /> */}
           </div>
           <div className="w-full transition-colors duration-200 rounded-lg md:mx-5 lg:w-96 bg-gray-50   shadow-lg">
             {/* <p className="py-2 text-sm text-center text-white uppercase bg-orange-500">Recomendado por expertos</p> */}
@@ -164,7 +164,7 @@ export const Pricing = () => {
                   <span className="mx-4 text-gray-700  ">Carrito de compras</span>
                 </div>
               </div>
-              <Button name="Elige Profesional" />
+              {/* <Button name="Elige Profesional" /> */}
 
             </div>
           </div>
@@ -231,7 +231,7 @@ export const Pricing = () => {
                   <span className="mx-4 text-gray-700  ">Carrito de compras</span>
                 </div>
               </div>
-              <Button name="Elige Profesional" />
+              {/* <Button name="Elige Profesional" /> */}
 
             </div>
           </div>
