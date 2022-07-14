@@ -39,6 +39,18 @@ export interface Section0 extends Section {
 export interface Section1 extends Section0 {
   section_level_2: any
 }
+export interface Section2 extends Section1 {
+  section_level_3: any
+}
+export interface Section3 extends Section2 {
+  section_level_4: any
+}
+export interface Section4 extends Section3 {
+  section_level_5: any
+}
+export interface Section5 extends Section4 {
+  section_level_6: any
+}
 export interface Featured {
   id: string;
   name: string;

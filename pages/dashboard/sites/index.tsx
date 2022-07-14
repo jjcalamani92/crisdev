@@ -3,14 +3,12 @@ import { FC } from 'react'
 import { HeadingDashboard } from '../../../components/component'
 import { Grid } from '../../../components/grid'
 import { LayoutAdmin } from '../../../components/LayoutAdmin'
-import { S } from '../../../src/gql'
 import { SITES } from '../../../src/graphql/site.query'
 import { Site } from '../../../src/interfaces'
 import { ISite } from '../../../src/interfacesV2/siteV2'
-import { graphQLClientS, graphQLClientSS } from '../../../src/swr/graphQLClient'
+import { graphQLClientS } from '../../../src/swr/graphQLClient'
 import { request, RequestDocument } from 'graphql-request'
 import useSWR from 'swr';
-import { ImageOptimizerCache } from 'next/dist/server/image-optimizer'
 import { useRouter } from 'next/router'
 
 interface Props {

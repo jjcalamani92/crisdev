@@ -15,14 +15,13 @@ interface Props {
 }
 
 const Section0: FC<Props> = ({ section }) => {
+  console.log('hola', section);
+  
   const { query, pathname } = useRouter()
   let p = pathname.substring(1).split('/')
   p.length = p.length - 2
   p.push(`${query.id}`, `${query.section0}`)
   let url = p.join('/')
-
-  console.log('URL', url);
-  
 
   let u = pathname.substring(1).split('/')
   u.length = u.length - 2

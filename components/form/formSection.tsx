@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { ChangeEvent, FC } from 'react';
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { CREATE_SITE, UPDATE_SITE, ADD_SECTION_0, UPDATE_SECTION_0 } from '../../src/graphql/mutation/site.mutation';
+import { CREATE_SITE, UPDATE_SITE, ADD_SECTION_0, UPDATE_SECTION_0, UPDATE_SECTION_1, ADD_SECTION_1, UPDATE_SECTION_2, ADD_SECTION_2, UPDATE_SECTION_3, ADD_SECTION_3, UPDATE_SECTION_4, ADD_SECTION_4, UPDATE_SECTION_5, ADD_SECTION_5 } from '../../src/graphql/mutation/site.mutation';
 import { ISite, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
 
@@ -27,8 +27,9 @@ interface Props {
 
 export const FormSection: FC<Props> = ({ section, url }) => {
   const { replace, pathname, query } = useRouter()
-  console.log(query);
-
+  // console.log('query',query);
+  // console.log(section);
+  
   // let p = pathname.substring(1).split('/')
   // p.splice(-1, 1)
   // let url = p.join('/')
@@ -39,63 +40,299 @@ export const FormSection: FC<Props> = ({ section, url }) => {
   })
 
   const onSubmit = async (form: FormData) => {
-    // const { id, href, section_level_1, featured, items, ...data } = form
-    // console.log("form", form);
-    // let data = {}
-    // if (query.section0) {
-    //   let { id, href, section_level_1, featured, items, ...data } = form
-    //   return data
-    // }
-    // if (query.section1) {
-    //   let { id, href, section_level_1, featured, items, ...data } = form
-    //   return data
-    // }
-    if (section.id) {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Sitio Actualizado',
-        showConfirmButton: false,
-        timer: 1500
-      })
-
-      {
+    let data: Section0 | null | any
+    {query.section5 && section.id
+      ?
+      (     
+        data = {
+          name: form.name,
+          description: form.description,
+          imageSrc: form.imageSrc,
+          imageAlt: form.imageAlt,
+          section_level_0: query.section0,
+          section_level_1: query.section1,
+          section_level_2: query.section2,
+          section_level_3: query.section3,
+          section_level_4: query.section4,
+          section_level_5: query.section5,
+        },
+        // console.log(data)
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Section Update',
+          showConfirmButton: false,
+          timer: 1500
+        }),
+        await graphQLClientS.request(UPDATE_SECTION_5, { _id: query.id, input: data }),
+        replace(`/${url}`)
+      )
+      :
+      query.section5
+      ?
+      (     
+        data = {
+          name: form.name,
+          description: form.description,
+          imageSrc: form.imageSrc,
+          imageAlt: form.imageAlt,
+          section_level_0: query.section0,
+          section_level_1: query.section1,
+          section_level_2: query.section2,
+          section_level_3: query.section3,
+          section_level_4: query.section4,
+        },
+        // console.log(data)
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Section Update',
+          showConfirmButton: false,
+          timer: 1500
+        }),
+        await graphQLClientS.request(ADD_SECTION_5, { _id: query.id, input: data }),
+        replace(`/${url}`)
+      )
+      :
+      query.section4 && section.id
+        ?
+        (     
+          data = {
+            name: form.name,
+            description: form.description,
+            imageSrc: form.imageSrc,
+            imageAlt: form.imageAlt,
+            section_level_0: query.section0,
+            section_level_1: query.section1,
+            section_level_2: query.section2,
+            section_level_3: query.section3,
+            section_level_4: query.section4,
+          },
+          // console.log(data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Section Update',
+            showConfirmButton: false,
+            timer: 1500
+          }),
+          await graphQLClientS.request(UPDATE_SECTION_4, { _id: query.id, input: data }),
+          replace(`/${url}`)
+        )
+        :
+        query.section4
+        ?
+        (     
+          data = {
+            name: form.name,
+            description: form.description,
+            imageSrc: form.imageSrc,
+            imageAlt: form.imageAlt,
+            section_level_0: query.section0,
+            section_level_1: query.section1,
+            section_level_2: query.section2,
+            section_level_3: query.section3,
+          },
+          // console.log(data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Section Update',
+            showConfirmButton: false,
+            timer: 1500
+          }),
+          await graphQLClientS.request(ADD_SECTION_4, { _id: query.id, input: data }),
+          replace(`/${url}`)
+        )
+        :
+      query.section3 && section.id
+        ?
+        (     
+          data = {
+            name: form.name,
+            description: form.description,
+            imageSrc: form.imageSrc,
+            imageAlt: form.imageAlt,
+            section_level_0: query.section0,
+            section_level_1: query.section1,
+            section_level_2: query.section2,
+            section_level_3: query.section3,
+          },
+          // console.log(data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Section Update',
+            showConfirmButton: false,
+            timer: 1500
+          }),
+          await graphQLClientS.request(UPDATE_SECTION_3, { _id: query.id, input: data }),
+          replace(`/${url}`)
+        )
+        :
+        query.section3
+        ?
+        (     
+          data = {
+            name: form.name,
+            description: form.description,
+            imageSrc: form.imageSrc,
+            imageAlt: form.imageAlt,
+            section_level_0: query.section0,
+            section_level_1: query.section1,
+            section_level_2: query.section2,
+          },
+          // console.log(data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Section Update',
+            showConfirmButton: false,
+            timer: 1500
+          }),
+          await graphQLClientS.request(ADD_SECTION_3, { _id: query.id, input: data }),
+          replace(`/${url}`)
+        )
+        :
+      query.section2 && section.id
+        ?
+        (     
+          data = {
+            name: form.name,
+            description: form.description,
+            imageSrc: form.imageSrc,
+            imageAlt: form.imageAlt,
+            section_level_0: query.section0,
+            section_level_1: query.section1,
+            section_level_2: query.section2,
+          },
+          // console.log(data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Section Update',
+            showConfirmButton: false,
+            timer: 1500
+          }),
+          await graphQLClientS.request(UPDATE_SECTION_2, { _id: query.id, input: data }),
+          replace(`/${url}`)
+        )
+        :
+        query.section2
+        ?
+        (     
+          data = {
+            name: form.name,
+            description: form.description,
+            imageSrc: form.imageSrc,
+            imageAlt: form.imageAlt,
+            section_level_0: query.section0,
+            section_level_1: query.section1,
+          },
+          // console.log(data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Section Update',
+            showConfirmButton: false,
+            timer: 1500
+          }),
+          await graphQLClientS.request(ADD_SECTION_2, { _id: query.id, input: data }),
+          replace(`/${url}`)
+        )
+        :
+      query.section1 && section.id
+        ?
+        (     
+          data = {
+            name: form.name,
+            description: form.description,
+            imageSrc: form.imageSrc,
+            imageAlt: form.imageAlt,
+            section_level_0: query.section0,
+            section_level_1: query.section1,
+          },
+          // console.log(data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Section Update',
+            showConfirmButton: false,
+            timer: 1500
+          }),
+          await graphQLClientS.request(UPDATE_SECTION_1, { _id: query.id, input: data }),
+          replace(`/${url}`)
+        )
+        :
         query.section1
+        ?
+        (     
+          data = {
+            name: form.name,
+            description: form.description,
+            imageSrc: form.imageSrc,
+            imageAlt: form.imageAlt,
+            section_level_0: query.section0,
+          },
+          // console.log(data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Section Update',
+            showConfirmButton: false,
+            timer: 1500
+          }),
+          await graphQLClientS.request(ADD_SECTION_1, { _id: query.id, input: data }),
+          replace(`/${url}`)
+        )
+        :
+        query.section0 && section.id
           ?
-          console.log('section1')
+          (
+            data = {
+              name: form.name,
+              description: form.description,
+              imageSrc: form.imageSrc,
+              imageAlt: form.imageAlt,
+              section_level_0: section.id,
+            },
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Section Update',
+              showConfirmButton: false,
+              timer: 1500
+            }),
+            await graphQLClientS.request(UPDATE_SECTION_0, { _id: query.id, input: data }),
+            replace(`/${url}`)
+          )
           :
           query.section0
             ?
-            // await graphQLClientS.request(UPDATE_SECTION_0, {_id: query.id, input: {...data, section_level_0: section.id} })
-
-
-            console.log('data')
-            // { id, href, section_level_1, featured, items, ...data } = form
-
-
+            (
+              data = {
+                name: form.name,
+                description: form.description,
+                imageSrc: form.imageSrc,
+                imageAlt: form.imageAlt,
+              },
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Section Created',
+                showConfirmButton: false,
+                timer: 1500
+              }),
+              await graphQLClientS.request(ADD_SECTION_0, { _id: query.id, input: data }),
+              replace(`/${url}`)
+            )
             :
-            console.log('section')
-      }
-      replace(`/${url}`)
-
-    } else {
-      Swal.fire({
-
-        position: 'center',
-        icon: 'success',
-        title: 'Section created',
-        showConfirmButton: false,
-        timer: 1500
-      })
-
-      // await graphQLClientS.request(ADD_SECTION_0, {_id: query.id, input: form })
-      replace(`/${url}`)
-
+            null
     }
   }
 
   const onFileSelected = async ({ target }: ChangeEvent<HTMLInputElement>) => {
-    console.log('hola');
+    // console.log('hola');
 
     // if (!target.files || target.files.length === 0) {
     //   return;
@@ -109,7 +346,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
     //   }
     // } catch (error) {
     //   console.log({ error })
-    // }
+    // } 
   }
 
   return (
@@ -178,11 +415,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
                           {errors.imageAlt && <span className="text-xs md:text-sm text-orange-500">{errors.imageAlt.message}</span>}
                         </div>
                       </div>
-
-
-
                     </div>
-
                     <div className="col-span-1">
                       <label className="block text-xs md:text-sm font-medium text-gray-700 mb-2">Imagen</label>
                       <div className="grid grid-cols-2 gap-3">
