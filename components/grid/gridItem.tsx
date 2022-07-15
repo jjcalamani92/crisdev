@@ -15,7 +15,7 @@ interface GridItem {
 export const GridItem: FC<GridItem> = ({ data, responsive, url }) => {
   return (
     <Main>
-      <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 col-span-5 gap-6`}>
+      <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 col-span-5 gap-3 md:gap-6`}>
         {data?.map((d, i) => (
           <CardItem url={url} data={d} key={i} />
         ))}

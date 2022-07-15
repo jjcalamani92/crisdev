@@ -24,12 +24,10 @@ const Sites: FC<Props> = ({ site, sitesAll }) => {
     console.log('cargando');
   }
   const { query, pathname } = useRouter()
-  console.log('pathname', pathname);
   let p = pathname.substring(1).split('/')
   p.length = p.length-1
   p.push(`${query.id}`, `${query.section0}` )
   let url = p.join('/')
-  console.log('url', p);
   
   const responsive = {
     sm: "2",

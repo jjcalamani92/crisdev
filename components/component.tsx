@@ -3,6 +3,8 @@ import { FC, Fragment, useState } from "react";
 import { Menu, Transition, Dialog, Disclosure } from '@headlessui/react';
 import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, XIcon } from "@heroicons/react/solid";
 import Router, { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 interface Main {
   children: React.ReactNode;
@@ -22,10 +24,14 @@ export const Main: FC<Main> = ({ children }) => {
 interface Button {
   content: string;
   click: () => void
+  bg?: string
 }
-export const Button: FC<Button> = ({ content, click }) => {
+export const Button: FC<Button> = ({ content, click, bg }) => {
+
   return (
-    <button className="w-full px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:bg-orange-600" onClick={() => click()}>
+    <button className={`w-full px-4 py-2 font-medium tracking-wide  text-xs md:text-sm capitalize transition-colors duration-200 transform  rounded-md  focus:outline-none  
+    ${bg === "none" ? 'border-2 border-orange-500 focus:bg-orange-500 hover:bg-orange-500 bg-white    text-orange-600 hover:text-white' : 'focus:bg-orange-600 hover:bg-orange-600 bg-orange-500 text-white'}
+    `} onClick={() => click()}>
       {content}
     </button>
 
@@ -38,9 +44,9 @@ interface HeadingPrimary {
 export const HeadingPrimary: FC<HeadingPrimary> = ({ title }) => {
   return (
     <Main>
-    <div className="max-w-3xl mx-auto">
-      <h1 className="text-4xl lg:text-7xl text-center font-bold text-gray-800 leading-normal">{title}</h1>
-    </div>
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl lg:text-7xl text-center font-bold text-gray-800 leading-normal">{title}</h1>
+      </div>
     </Main>
   )
 }
@@ -108,7 +114,7 @@ function classNames(...classes: string[]) {
 export const HeadingDashboard: FC<HeadingDashboard> = ({ title, url }) => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const { push, pathname, query } = useRouter();
-  
+
   const redirect = () => {
     push(`/${url}/new`)
   }
@@ -217,8 +223,8 @@ export const HeadingDashboard: FC<HeadingDashboard> = ({ title, url }) => {
         <div className="relative z-10 flex items-baseline justify-between pb-6 border-b border-gray-200">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{title}</h1>
 
-          <div className="grid grid-cols-3 lg:grid-cols-2 gap-1 items-center">
-            <Menu as="div" className="relative inline-block text-left">
+          <div className="grid grid-cols-1">
+            {/* <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                   Sort
@@ -259,21 +265,33 @@ export const HeadingDashboard: FC<HeadingDashboard> = ({ title, url }) => {
                   </div>
                 </Menu.Items>
               </Transition>
-            </Menu>
+            </Menu> */}
 
             {/* <button type="button" className="p-2 text-gray-400 hover:text-gray-500">
                 <span className="sr-only">View grid</span>
                 <ViewGridIcon className="w-5 h-5" aria-hidden="true" />
               </button> */}
-            <button
+            {/* <button
               type="button"
               className="p-2 text-gray-400 hover:text-gray-500 lg:hidden"
               onClick={() => setMobileFiltersOpen(true)}
             >
-              {/* <span className="sr-only">Filters</span> */}
+              {/* <span className="sr-only">Filters</span> 
               <FilterIcon className="w-5 h-5" aria-hidden="true" />
+            </button> */}
+            <button className="transition duration-150 ease-in-out hover:bg-orange-600 focus:outline-none border bg-orange-500 rounded text-white px-8 
+            py-2 text-md sm:text-sm"
+            onClick={() => redirect()}
+            >
+              <div className="hidden sm:flex">
+                Crear
+              </div>
+              <FontAwesomeIcon
+                className="sm:hidden"
+                icon={faCirclePlus}
+              />
             </button>
-            <Button content='nuevo' click={() => redirect()} />
+            {/* <Button content='nuevo' click={() => redirect()} /> */}
 
           </div>
         </div>
@@ -286,24 +304,24 @@ interface HeadingForm {
   title: string;
 }
 
-export const HeadingForm:FC<HeadingForm> = ({title}) => {
+export const HeadingForm: FC<HeadingForm> = ({ title }) => {
   const { pathname, query } = useRouter()
   Object.keys(query)
-  
+
   // query[Object.keys(query)[Object.keys(query).length - 1]]
-  const n =  query[Object.keys(query)[Object.keys(query).length - 1]]
+  const n = query[Object.keys(query)[Object.keys(query).length - 1]]
   // console.log(query[Object.keys(query)[Object.keys(query).length - 1]])
   const orangeirect = () => {
     // console.log('hola');
   }
   return (
     <Main>
-        <div className=" z-10 flex items-baseline justify-between pb-6 border-b border-gray-200">
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{n === 'new' ? `Crear ${title}` :  `Actualizar ${title}`}</h1>
-          {/* <div>
+      <div className=" z-10 flex items-baseline justify-between pb-6 border-b border-gray-200">
+        <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{n === 'new' ? `Crear ${title}` : `Actualizar ${title}`}</h1>
+        {/* <div>
             <Button  content='nuevo' click={() => orangeirect()} />
           </div> */}
-        </div>
-      </Main>
+      </div>
+    </Main>
   )
 }

@@ -44,7 +44,7 @@ export const CardSite: FC<CardSite> = ({ data, url }) => {
           </div>
         </a>
       </Link>
-      <Button content='eliminar' click={() => onDelete(_id)} />
+      <Button bg="none" content='eliminar' click={() => onDelete(_id)} />
     </div>
   )
 }
