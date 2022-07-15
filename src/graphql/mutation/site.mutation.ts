@@ -339,3 +339,143 @@ export const DELETE_ITEM_5 = gql`
     }
   }
 `;
+
+export const ADD_FEATURED_1 = gql`
+mutation AddFeatured1($_id:ID!, $input: AddSectionInput1!) {
+  addFeatured1(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+export const ADD_FEATURED_2 = gql`
+mutation AddFeatured2($_id:ID!, $input: AddSectionInput2!) {
+  addFeatured2(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+export const ADD_FEATURED_3 = gql`
+mutation AddFeatured3($_id:ID!, $input: AddSectionInput3!) {
+  addFeatured3(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+export const ADD_FEATURED_4 = gql`
+mutation AddFeatured4($_id:ID!, $input: AddSectionInput4!) {
+  addFeatured4(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+export const ADD_FEATURED_5 = gql`
+mutation AddFeatured5($_id:ID!, $input: AddSectionInput5!) {
+  addFeatured5(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+
+export const UPDATE_FEATURED_1 = gql`
+mutation UpdateFeatured1($_id:ID!, $input: UpdateSectionInput1!) {
+  updateFeatured1(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+
+export const UPDATE_FEATURED_2 = gql`
+mutation UpdateFeatured2($_id:ID!, $input: UpdateSectionInput2!) {
+  updateFeatured2(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+
+export const UPDATE_FEATURED_3 = gql`
+mutation UpdateFeatured3($_id:ID!, $input: UpdateSectionInput3!) {
+  updateFeatured3(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+export const UPDATE_FEATURED_4 = gql`
+mutation UpdateFeatured4($_id:ID!, $input: UpdateSectionInput4!) {
+  updateFeatured4(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+export const UPDATE_FEATURED_5 = gql`
+mutation UpdateFeatured5($_id:ID!, $input: UpdateSectionInput5!) {
+  updateFeatured5(_id:$_id, input: $input) {
+    data{
+    title
+    }
+  }
+}
+`;
+
+export const DELETE_FEATURED_1 = gql`
+  mutation DeleteFeatured1($_id: ID!, $input: DeleteSectionInput1!) {
+    deleteFeatured1(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_FEATURED_2 = gql`
+  mutation DeleteFeatured2($_id: ID!, $input: DeleteSectionInput2!) {
+    deleteFeatured2(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_FEATURED_3 = gql`
+  mutation DeleteFeatured3($_id: ID!, $input: DeleteSectionInput3!) {
+    deleteFeatured3(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_FEATURED_4 = gql`
+  mutation DeleteFeatured4($_id: ID!, $input: DeleteSectionInput4!) {
+    deleteFeatured4(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_FEATURED_5 = gql`
+  mutation DeleteFeatured5($_id: ID!, $input: DeleteSectionInput5!) {
+    deleteFeatured5(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;

@@ -28,7 +28,8 @@ interface Props {
 }
 
 export const FormSite: FC<Props> = ({ site }) => {
-
+  // console.log(site);
+  
   const {replace, pathname} = useRouter()
   let p = pathname.substring(1).split('/')
   p.splice(-1,1)

@@ -34,6 +34,7 @@ export const SITES = gql`
 export const SITE = gql`
   query Site($_id: ID!) {
     site(_id: $_id) {
+      _id
       client
       type
       data {

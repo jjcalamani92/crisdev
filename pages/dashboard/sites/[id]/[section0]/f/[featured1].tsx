@@ -15,24 +15,20 @@ interface Props {
   featured: Section0
 }
 
-const Featured1: FC<Props> = ({ featured }) => {
+const Item1: FC<Props> = ({ featured }) => {
   const { query, pathname } = useRouter()
-  let p = pathname.substring(1).split('/')
-  p.length = p.length - 3
-  p.push(`${query.id}`, `${query.section0}`,`${query.section1}`)
-  let url = p.join('/')
 
   let u = pathname.substring(1).split('/')
   u.length = u.length - 4
   u.push(`${query.id}`, `${query.section0}`)
-  let urlu = u.join('/')
+  let urlForm = u.join('/')
 
-  // console.log('item 1', item);
   
   return (
     <LayoutAdmin title="Sites">
-      <HeadingForm title="Promoción" />
-      <FormFeatured section={featured} url={urlu}/>
+      
+      <HeadingForm title="Featured" />
+      <FormFeatured section={featured} url={urlForm}/>
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
@@ -47,8 +43,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     }
   } else {
     const data = await graphQLClientS.request(SITE, { _id: id })
-    const item00 = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${section0}`)
-    featured = item00.featured.find((data: { href: string; }) => data.href === `${featured1}`)
+    const section00 = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${section0}`)
+    featured = section00.featured.find((data: { href: string; }) => data.href === `${featured1}`)
     // item = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${item1}`)
     
 
@@ -59,4 +55,4 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     },
   };
 }
-export default Featured1
+export default Item1

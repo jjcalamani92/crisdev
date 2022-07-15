@@ -15,16 +15,12 @@ interface Props {
 
 const Section4: FC<Props> = ({ section }) => {
   const { query, pathname } = useRouter()
-  let p = pathname.substring(1).split('/')
-  p.length = p.length - 6
-  p.push(`${query.id}`, `${query.section0}`,`${query.section1}`,`${query.section2}`,`${query.section3}`,`${query.section4}`)
-  let url = p.join('/')
-
-  let u = pathname.substring(1).split('/')
-  u.length = u.length - 6
-  u.push(`${query.id}`, `${query.section0}`,`${query.section1}`,`${query.section2}`,`${query.section3}`)
-  let urlu = u.join('/')
-  console.log(section)
+  let pp = pathname.substring(1).split('/')
+  pp.length = pp.length - 6
+  pp.push(`${query.id}`, `${query.section0}`,`${query.section1}`,`${query.section2}`,`${query.section3}`)
+  let urlForm = pp.join('/')
+  pp.push(`${query.section4}`)
+  let urlData = pp.join('/')
   return (
     <LayoutAdmin title="Sites">
       {
@@ -37,8 +33,8 @@ const Section4: FC<Props> = ({ section }) => {
               section.section_level_5 
                 ?
                 <>
-                  <HeadingDashboard title='Sections' url={`${url}`} />
-                  <GridSection data={section.section_level_5} url={`${url}`}/>
+                  <HeadingDashboard title='Sections' url={`${urlData}`} />
+                  <GridSection data={section.section_level_5} url={`${urlData}`}/>
                 </>
                 :
                 null
@@ -47,8 +43,8 @@ const Section4: FC<Props> = ({ section }) => {
               section.items 
                 ?
                   <>
-                    <HeadingDashboard title='Items' url={`${url}/i`} />
-                    <GridItem data={section.items} url={`${url}`}/>
+                    <HeadingDashboard title='Items' url={`${urlData}/i`} />
+                    <GridItem data={section.items} url={`${urlData}`}/>
                   </>
                 :
                 null
@@ -57,8 +53,8 @@ const Section4: FC<Props> = ({ section }) => {
               section.featured 
                 ?
                   <>
-                    <HeadingDashboard title='Promociones' url={`${url}`} />
-                    <GridFeatured data={section.featured} url={`${url}`}/>
+                    <HeadingDashboard title='Promociones' url={`${urlData}/f`} />
+                    <GridFeatured data={section.featured} url={`${urlData}`}/>
                   </>
                 :
                 null
@@ -71,7 +67,7 @@ const Section4: FC<Props> = ({ section }) => {
           </>
       }
       <HeadingForm title="Section" />
-      <FormSection section={section} url={urlu}/>
+      <FormSection section={section} url={urlForm}/>
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {

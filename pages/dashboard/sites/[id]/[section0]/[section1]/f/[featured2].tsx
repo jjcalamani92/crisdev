@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { HeadingDashboard, HeadingForm } from '../../../../../../../components/component'
+import { FormFeatured } from '../../../../../../../components/form'
 import { FormItem } from '../../../../../../../components/form/formItem'
 import { FormSection } from '../../../../../../../components/form/formSection'
 import { GridFeatured, GridItem, GridSection } from '../../../../../../../components/grid'
@@ -11,10 +12,10 @@ import { ISite, Section0, Item } from '../../../../../../../src/interfacesV2/sit
 import { graphQLClientS, graphQLClientSS } from '../../../../../../../src/swr/graphQLClient'
 
 interface Props {
-  item: Section0
+  featured: Section0
 }
 
-const Item2: FC<Props> = ({ item }) => {
+const Featured2: FC<Props> = ({ featured }) => {
   const { query, pathname } = useRouter()
   let p = pathname.substring(1).split('/')
   p.length = p.length - 5
@@ -23,15 +24,15 @@ const Item2: FC<Props> = ({ item }) => {
 
   return (
     <LayoutAdmin title="Sites">
-      <HeadingForm title="Item" />
-      <FormItem section={item} url={urlForm}/>
+      <HeadingForm title="Featured" />
+      <FormFeatured section={featured} url={urlForm}/>
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { item2 = '', section1 = '', section0 = '', id = '' } = query
-  let item: Section0 | null | any
-  if (item2 === 'new') {
-    item = {
+  const { featured2 = '', section1 = '', section0 = '', id = '' } = query
+  let featured: Section0 | null | any
+  if (featured2 === 'new') {
+    featured = {
       name: "",
       description: "",
       imageSrc: "https://res.cloudinary.com/dvcyhn0lj/image/upload/v1655217461/14.1_no-image.jpg_gkwtld.jpg",
@@ -41,12 +42,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const data = await graphQLClientS.request(SITE, { _id: id })
     const section00 = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${section0}`)
     const section11 = section00.section_level_1.find((data: { href: string; }) => data.href === `${section1}`)
-    item = section11.items.find((data: { href: string; }) => data.href === `${item2}`)
+    featured = section11.featured.find((data: { href: string; }) => data.href === `${featured2}`)
   }
   return {
     props: {
-      item
+      featured
     },
   };
 }
-export default Item2
+export default Featured2

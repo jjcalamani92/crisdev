@@ -15,38 +15,38 @@ interface CardSection {
 
 export const CardSection: FC<CardSection> = ({ data, url }) => {
   const {replace, pathname, query, push} = useRouter()
-  const onDelete = async (href: string) => {
+  const onDelete = async (id: string) => {
     {
       query.section4
       ?
-      await graphQLClientS.request(DELETE_SECTION_5, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': query.section3, 'section_level_4': query.section4, 'section_level_5': href}})
+      await graphQLClientS.request(DELETE_SECTION_5, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': query.section3, 'section_level_4': query.section4, 'section_level_5': id}})
       :
       query.section3
       ?
-      await graphQLClientS.request(DELETE_SECTION_4, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': query.section3, 'section_level_4': href}})
+      await graphQLClientS.request(DELETE_SECTION_4, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': query.section3, 'section_level_4': id}})
       :
       query.section2
       ?
-      await graphQLClientS.request(DELETE_SECTION_3, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': href}})
+      await graphQLClientS.request(DELETE_SECTION_3, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': id}})
       :
       query.section1
       ?
-      await graphQLClientS.request(DELETE_SECTION_2, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': href}})
+      await graphQLClientS.request(DELETE_SECTION_2, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': id}})
       :
       query.section0
       ?
-      await graphQLClientS.request(DELETE_SECTION_1, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': href}})
+      await graphQLClientS.request(DELETE_SECTION_1, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': id}})
       :
       query.id
       ?
-      await graphQLClientS.request(DELETE_SECTION_0, { _id: query.id, input: {'section_level_0': href}})
+      await graphQLClientS.request(DELETE_SECTION_0, { _id: query.id, input: {'section_level_0': id}})
       :
       null
     }
     push(`/${url}`)
   }
 
-  const {name, href, imageSrc, imageAlt} = data
+  const {name, href, imageSrc, imageAlt, id} = data
   return (
     <div className="shadow-lg p-2 ">
       <Link href={`/${url}/${href}`}>
@@ -68,7 +68,7 @@ export const CardSection: FC<CardSection> = ({ data, url }) => {
           </div>
         </a>
       </Link>
-      <Button content='eliminar' click={() => onDelete(href)} />
+      <Button content='eliminar' click={() => onDelete(id)} />
     </div>
   )
 }

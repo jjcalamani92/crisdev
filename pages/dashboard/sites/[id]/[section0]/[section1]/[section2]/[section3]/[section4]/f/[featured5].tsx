@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { HeadingDashboard, HeadingForm } from '../../../../../../../../../../components/component'
+import { FormFeatured } from '../../../../../../../../../../components/form'
 import { FormItem } from '../../../../../../../../../../components/form/formItem'
 import { FormSection } from '../../../../../../../../../../components/form/formSection'
 import { GridFeatured, GridItem, GridSection } from '../../../../../../../../../../components/grid'
@@ -11,10 +12,10 @@ import { ISite, Section0, Item } from '../../../../../../../../../../src/interfa
 import { graphQLClientS, graphQLClientSS } from '../../../../../../../../../../src/swr/graphQLClient'
 
 interface Props {
-  item: Section0
+  featured: Section0
 }
 
-const Item5: FC<Props> = ({ item }) => {
+const Featured5: FC<Props> = ({ featured }) => {
   const { query, pathname } = useRouter()
   let p = pathname.substring(1).split('/')
   p.length = p.length - 8
@@ -23,15 +24,15 @@ const Item5: FC<Props> = ({ item }) => {
 
   return (
     <LayoutAdmin title="Sites">
-      <HeadingForm title="Item" />
-      <FormItem section={item} url={urlForm}/>
+      <HeadingForm title="Featured" />
+      <FormFeatured section={featured} url={urlForm}/>
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { item5 = '',section4 = '',section3 = '',section2 = '', section1 = '', section0 = '', id = '' } = query
-  let item: Section0 | null | any
-  if (item5 === 'new') {
-    item = {
+  const { featured5 = '',section4 = '',section3 = '',section2 = '', section1 = '', section0 = '', id = '' } = query
+  let featured: Section0 | null | any
+  if (featured5 === 'new') {
+    featured = {
       name: "",
       description: "",
       imageSrc: "https://res.cloudinary.com/dvcyhn0lj/image/upload/v1655217461/14.1_no-image.jpg_gkwtld.jpg",
@@ -44,15 +45,15 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const section22 = section11.section_level_2.find((data: { href: string; }) => data.href === `${section2}`)
     const section33 = section22.section_level_3.find((data: { href: string; }) => data.href === `${section3}`)
     const section44 = section33.section_level_4.find((data: { href: string; }) => data.href === `${section4}`)
-    item = section44.items.find((data: { href: string; }) => data.href === `${item5}`)
-    // item = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${item1}`)
+    featured = section44.featured.find((data: { href: string; }) => data.href === `${featured5}`)
+    // featured = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${featured1}`)
     
 
   }
   return {
     props: {
-      item
+      featured
     },
   };
 }
-export default Item5
+export default Featured5

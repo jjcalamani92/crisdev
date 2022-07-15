@@ -32,7 +32,7 @@ export const FormCategory: FC<Props> = ({ category }) => {
     defaultValues: category,
   })
   const onSubmit = async (form: FormData) => {
-    console.log('hola')
+    // console.log('hola')
     // let { featured, sections, _id, href, category, ...data } = form
     // const dat = { ...data, name: form.name.trim(), category: form._id }
 

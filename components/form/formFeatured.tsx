@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import { ChangeEvent, FC } from 'react';
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { CREATE_SITE, UPDATE_SITE, ADD_SECTION_0, UPDATE_SECTION_0, UPDATE_SECTION_1, ADD_SECTION_1, UPDATE_SECTION_2, ADD_SECTION_2, UPDATE_SECTION_3, ADD_SECTION_3, UPDATE_SECTION_4, ADD_SECTION_4, UPDATE_SECTION_5, ADD_SECTION_5, ADD_ITEM_1, UPDATE_ITEM_1, UPDATE_ITEM_2, ADD_ITEM_2, UPDATE_ITEM_3, ADD_ITEM_3, ADD_ITEM_4, UPDATE_ITEM_4, UPDATE_ITEM_5, ADD_ITEM_5 } from '../../src/graphql/mutation/site.mutation';
-import { ISite, Section0 } from "../../src/interfacesV2/siteV2";
+import { ADD_FEATURED_1, UPDATE_FEATURED_1, UPDATE_FEATURED_2, ADD_FEATURED_2, UPDATE_FEATURED_3, ADD_FEATURED_3, ADD_FEATURED_4, UPDATE_FEATURED_4, UPDATE_FEATURED_5, ADD_FEATURED_5 } from '../../src/graphql/mutation/site.mutation';
+import { Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
 
 interface FormData {
@@ -28,13 +28,13 @@ interface Props {
 export const FormFeatured: FC<Props> = ({ section, url }) => {
   const { replace, pathname, query } = useRouter()
   // console.log('query',query);
-  console.log(section);
+  // console.log(section);
   
   // let p = pathname.substring(1).split('/')
   // p.splice(-1, 1)
   // let url = p.join('/')
-  console.log(query);
-  console.log(url);
+  // console.log(query);
+  // console.log(url);
 
   const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<FormData>({
     defaultValues: { ...section }
@@ -42,7 +42,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
 
   const onSubmit = async (form: FormData) => {
     let data: Section0 | null | any
-    {query.item5 && section.id
+    {query.featured5 && section.id
       ?
       (     
         data = {
@@ -55,21 +55,21 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           section_level_2: query.section2,
           section_level_3: query.section3,
           section_level_4: query.section4,
-          section_level_5: query.item5,
+          section_level_5: query.featured5,
         },
         // console.log(data)
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Section Update',
+          title: 'Featured Update',
           showConfirmButton: false,
           timer: 1500
         }),
-        await graphQLClientS.request(UPDATE_ITEM_5, { _id: query.id, input: data }),
+        await graphQLClientS.request(UPDATE_FEATURED_5, { _id: query.id, input: data }),
         replace(`/${url}`)
       )
       :
-      query.item5
+      query.featured5
       ?
       (     
         data = {
@@ -87,15 +87,15 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Section Update',
+          title: 'Featured Created',
           showConfirmButton: false,
           timer: 1500
         }),
-        await graphQLClientS.request(ADD_ITEM_5, { _id: query.id, input: data }),
+        await graphQLClientS.request(ADD_FEATURED_5, { _id: query.id, input: data }),
         replace(`/${url}`)
       )
       :
-      query.item4 && section.id
+      query.featured4 && section.id
         ?
         (     
           data = {
@@ -107,21 +107,21 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             section_level_1: query.section1,
             section_level_2: query.section2,
             section_level_3: query.section3,
-            section_level_4: query.item4,
+            section_level_4: query.featured4,
           },
           // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Featured Update',
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(UPDATE_ITEM_4, { _id: query.id, input: data }),
+          await graphQLClientS.request(UPDATE_FEATURED_4, { _id: query.id, input: data }),
           replace(`/${url}`)
         )
         :
-        query.item4
+        query.featured4
         ?
         (     
           data = {
@@ -138,15 +138,15 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Featured Created',
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(ADD_ITEM_4, { _id: query.id, input: data }),
+          await graphQLClientS.request(ADD_FEATURED_4, { _id: query.id, input: data }),
           replace(`/${url}`)
         )
         :
-      query.item3 && section.id
+      query.featured3 && section.id
         ?
         (     
           data = {
@@ -157,21 +157,21 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             section_level_0: query.section0,
             section_level_1: query.section1,
             section_level_2: query.section2,
-            section_level_3: query.item3,
+            section_level_3: query.featured3,
           },
           // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Featured Update',
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(UPDATE_ITEM_3, { _id: query.id, input: data }),
+          await graphQLClientS.request(UPDATE_FEATURED_3, { _id: query.id, input: data }),
           replace(`/${url}`)
         )
         :
-        query.item3
+        query.featured3
         ?
         (     
           data = {
@@ -187,15 +187,15 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Featured Created',
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(ADD_ITEM_3, { _id: query.id, input: data }),
+          await graphQLClientS.request(ADD_FEATURED_3, { _id: query.id, input: data }),
           replace(`/${url}`)
         )
         :
-      query.item2 && section.id
+      query.featured2 && section.id
         ?
         (     
           data = {
@@ -205,21 +205,21 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             imageAlt: form.imageAlt,
             section_level_0: query.section0,
             section_level_1: query.section1,
-            section_level_2: query.item2,
+            section_level_2: query.featured2,
           },
           // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Featured Update',
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(UPDATE_ITEM_2, { _id: query.id, input: data }),
+          await graphQLClientS.request(UPDATE_FEATURED_2, { _id: query.id, input: data }),
           replace(`/${url}`)
         )
         :
-        query.item2
+        query.featured2
         ?
         (     
           data = {
@@ -234,15 +234,15 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Featured Created',
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(ADD_ITEM_2, { _id: query.id, input: data }),
+          await graphQLClientS.request(ADD_FEATURED_2, { _id: query.id, input: data }),
           replace(`/${url}`)
         )
         :
-      query.item1 && section.id
+      query.featured1 && section.id
         ?
         (     
           data = {
@@ -251,21 +251,20 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
             section_level_0: query.section0,
-            section_level_1: query.item1,
+            section_level_1: query.featured1,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Featured Update',
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(UPDATE_ITEM_1, { _id: query.id, input: data }),
+          await graphQLClientS.request(UPDATE_FEATURED_1, { _id: query.id, input: data }),
           replace(`/${url}`)
         )
         :
-        query.item1
+        query.featured1
         ?
         (     
           data = {
@@ -275,79 +274,23 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             imageAlt: form.imageAlt,
             section_level_0: query.section0,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Featured Created',
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(ADD_ITEM_1, { _id: query.id, input: data }),
+          await graphQLClientS.request(ADD_FEATURED_1, { _id: query.id, input: data }),
           replace(`/${url}`)
         )
         :
-        query.section0 && section.id
-          ?
-          (
-            data = {
-              name: form.name,
-              description: form.description,
-              imageSrc: form.imageSrc,
-              imageAlt: form.imageAlt,
-              section_level_0: section.id,
-            },
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Section Update',
-              showConfirmButton: false,
-              timer: 1500
-            }),
-            await graphQLClientS.request(UPDATE_SECTION_0, { _id: query.id, input: data }),
-            replace(`/${url}`)
-          )
-          :
-          query.section0
-            ?
-            (
-              data = {
-                name: form.name,
-                description: form.description,
-                imageSrc: form.imageSrc,
-                imageAlt: form.imageAlt,
-              },
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Section Created',
-                showConfirmButton: false,
-                timer: 1500
-              }),
-              await graphQLClientS.request(ADD_SECTION_0, { _id: query.id, input: data }),
-              replace(`/${url}`)
-            )
-            :
-            null
+        null
     }
   }
 
   const onFileSelected = async ({ target }: ChangeEvent<HTMLInputElement>) => {
-    // console.log('hola');
 
-    // if (!target.files || target.files.length === 0) {
-    //   return;
-    // }
-    // try {
-    //   for (const file of target.files) {
-    //     const formData = new FormData();
-    //     formData.append('file', file);
-    //     const { data } = await axios.post(`${process.env.APIUP_URL}/api/upload/image`, formData)
-    //     setValue('logo', (getValues('logo'), data.url), { shouldValidate: true })
-    //   }
-    // } catch (error) {
-    //   console.log({ error })
-    // } 
   }
 
   return (

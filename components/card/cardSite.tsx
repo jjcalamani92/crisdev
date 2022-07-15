@@ -2,28 +2,31 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { DELETE_SECTION_0, DELETE_SECTION_1, DELETE_SECTION_2, DELETE_SECTION_3, DELETE_SECTION_4, DELETE_SECTION_5, REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
-import { Featured, Item, Section0 } from "../../src/interfacesV2/siteV2";
+import { REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
+import { Featured, ISite, Item, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
 import { Button } from "../component";
 
 interface CardSite {
-  data: any
-  // data: Category | Section | Featured | Item;
+  data: ISite
   url: string
 }
 
 export const CardSite: FC<CardSite> = ({ data, url }) => {
+  const { push } = useRouter()
+  
+
   const onDelete = async (id: string) => {
     await graphQLClientS.request(REMOVE_SITE, { _id: id })
+    push(`${url}`)
+
   }
   const {title, imageSrc, imageAlt} = data.data
-  // console.log(imageSrc);
-  // console.log(url);
-  
+  const {_id} = data
+
   return (
     <div className="shadow-lg p-2 ">
-      <Link href={`${url}/${data._id}`}>
+      <Link href={`${url}/${_id}`}>
         <a>
           <div className="w-full bg-white rounded-sm overflow-hidden leading-none">
             <Image
@@ -41,7 +44,7 @@ export const CardSite: FC<CardSite> = ({ data, url }) => {
           </div>
         </a>
       </Link>
-      <Button content='eliminar' click={() => onDelete(data._id)} />
+      <Button content='eliminar' click={() => onDelete(_id)} />
     </div>
   )
 }

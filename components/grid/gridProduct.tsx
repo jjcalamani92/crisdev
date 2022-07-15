@@ -1,18 +1,17 @@
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
 import { IResponsive } from "../../src/interfacesV2/crisdev";
-import { Section0, Featured, Item } from '../../src/interfacesV2/siteV2';
+import { Section0, Featured, Item, ISite } from '../../src/interfacesV2/siteV2';
 import { CardSection, CardSite } from "../card";
 import { Main } from "../component";
 
 interface Grid {
   responsive: IResponsive
-  data: any[]
+  data: ISite[]
   // data: Category[] | Section[] | Featured[] | Item[] | IMark[];
 }
 export const Grid:FC<Grid> = ({data, responsive}) => {
   const {sm, md, lg} = responsive
-  // console.log(responsive);
   const { pathname }  = useRouter();
   return (
     <Main>

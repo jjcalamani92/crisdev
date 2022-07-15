@@ -294,7 +294,7 @@ export const HeadingForm:FC<HeadingForm> = ({title}) => {
   const n =  query[Object.keys(query)[Object.keys(query).length - 1]]
   // console.log(query[Object.keys(query)[Object.keys(query).length - 1]])
   const orangeirect = () => {
-    console.log('hola');
+    // console.log('hola');
   }
   return (
     <Main>

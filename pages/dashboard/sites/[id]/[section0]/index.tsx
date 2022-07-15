@@ -15,18 +15,14 @@ interface Props {
 }
 
 const Section0: FC<Props> = ({ section }) => {
-  console.log('hola', section);
   
   const { query, pathname } = useRouter()
-  let p = pathname.substring(1).split('/')
-  p.length = p.length - 2
-  p.push(`${query.id}`, `${query.section0}`)
-  let url = p.join('/')
-
-  let u = pathname.substring(1).split('/')
-  u.length = u.length - 2
-  u.push(`${query.id}`)
-  let urlu = u.join('/')
+  let pp = pathname.substring(1).split('/')
+  pp.length = pp.length - 2
+  pp.push(`${query.id}`)
+  let urlForm = pp.join('/')
+  pp.push(`${query.section0}`)
+  let urlData = pp.join('/')
   
   return (
     <LayoutAdmin title="Sites">
@@ -37,40 +33,40 @@ const Section0: FC<Props> = ({ section }) => {
           :
           <>
             {
-              section.section_level_1.length === 0
+              section.section_level_1
                 ?
-                null
+                  <>
+                    <HeadingDashboard title='Sections' url={`${urlData}`} />
+                    <GridSection data={section.section_level_1} url={`${urlData}`}/>
+                  </>
                 :
-                <>
-                  <HeadingDashboard title='Sections' url={`${url}`} />
-                  <GridSection data={section.section_level_1} url={`${url}`}/>
-                </>
+                null
             }
             {
               section.items
                 ?
                 <>
-                  <HeadingDashboard title='Items' url={`${url}/i`} />
-                  <GridItem data={section.items}  url={`${url}`}/>
+                  <HeadingDashboard title='Items' url={`${urlData}/i`} />
+                  <GridItem data={section.items}  url={`${urlData}`}/>
                 </>
                 :
                 null
             }
             {
-              section.featured.length === 0
+              section.featured
                 ?
-                null
-                :
                 <>
-                  <HeadingDashboard title='Promociones' url={`${url}`} />
-                  <GridFeatured data={section.featured}  url={`${url}`}/>
+                  <HeadingDashboard title='Promociones' url={`${urlData}/f`} />
+                  <GridFeatured data={section.featured}  url={`${urlData}`}/>
                 </>
+                :
+                null
             }
             
           </>
       }
       <HeadingForm title="Sección" />
-      <FormSection section={section} url={urlu}/>
+      <FormSection section={section} url={urlForm}/>
     </LayoutAdmin>
   )
 }

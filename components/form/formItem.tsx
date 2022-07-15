@@ -27,14 +27,7 @@ interface Props {
 
 export const FormItem: FC<Props> = ({ section, url }) => {
   const { replace, pathname, query } = useRouter()
-  // console.log('query',query);
-  console.log(section);
-  
-  // let p = pathname.substring(1).split('/')
-  // p.splice(-1, 1)
-  // let url = p.join('/')
-  console.log(query);
-  console.log(url);
+
 
   const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<FormData>({
     defaultValues: { ...section }
@@ -57,11 +50,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
           section_level_4: query.section4,
           section_level_5: query.item5,
         },
-        // console.log(data)
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Section Update',
+          title: 'Item Update',
           showConfirmButton: false,
           timer: 1500
         }),
@@ -83,11 +75,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
           section_level_3: query.section3,
           section_level_4: query.section4,
         },
-        // console.log(data)
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Section Update',
+          title: 'Item Created',
           showConfirmButton: false,
           timer: 1500
         }),
@@ -109,11 +100,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             section_level_3: query.section3,
             section_level_4: query.item4,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Item Update',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -134,11 +124,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             section_level_2: query.section2,
             section_level_3: query.section3,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Item Created',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -159,11 +148,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             section_level_2: query.section2,
             section_level_3: query.item3,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Item Update',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -183,11 +171,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             section_level_1: query.section1,
             section_level_2: query.section2,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Item Created',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -207,11 +194,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             section_level_1: query.section1,
             section_level_2: query.item2,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Item Update',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -230,11 +216,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             section_level_0: query.section0,
             section_level_1: query.section1,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Item Created',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -253,11 +238,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             section_level_0: query.section0,
             section_level_1: query.item1,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Item Update',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -275,11 +259,10 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             imageAlt: form.imageAlt,
             section_level_0: query.section0,
           },
-          // console.log(data)
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Item Created',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -287,48 +270,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
           replace(`/${url}`)
         )
         :
-        query.section0 && section.id
-          ?
-          (
-            data = {
-              name: form.name,
-              description: form.description,
-              imageSrc: form.imageSrc,
-              imageAlt: form.imageAlt,
-              section_level_0: section.id,
-            },
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Section Update',
-              showConfirmButton: false,
-              timer: 1500
-            }),
-            await graphQLClientS.request(UPDATE_SECTION_0, { _id: query.id, input: data }),
-            replace(`/${url}`)
-          )
-          :
-          query.section0
-            ?
-            (
-              data = {
-                name: form.name,
-                description: form.description,
-                imageSrc: form.imageSrc,
-                imageAlt: form.imageAlt,
-              },
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Section Created',
-                showConfirmButton: false,
-                timer: 1500
-              }),
-              await graphQLClientS.request(ADD_SECTION_0, { _id: query.id, input: data }),
-              replace(`/${url}`)
-            )
-            :
-            null
+        null
     }
   }
 

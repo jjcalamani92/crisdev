@@ -86,7 +86,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Section Update',
+          title: 'Section Created',
           showConfirmButton: false,
           timer: 1500
         }),
@@ -137,7 +137,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Section Created',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -186,7 +186,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Section Created',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -233,7 +233,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Section Created',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -278,7 +278,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Section Update',
+            title: 'Section Created',
             showConfirmButton: false,
             timer: 1500
           }),
@@ -294,7 +294,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
               description: form.description,
               imageSrc: form.imageSrc,
               imageAlt: form.imageAlt,
-              section_level_0: section.id,
+              section_level_0: query.section0,
             },
             Swal.fire({
               position: 'center',

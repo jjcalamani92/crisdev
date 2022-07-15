@@ -15,7 +15,7 @@ interface Props {
 
 const Id:FC<Props> = ({site}) => {
   // console.log(site?.routes?.section_level_0);
-  console.log(site.routes)
+  // console.log(site.routes)
   const { query, pathname } = useRouter()
   let p = pathname.substring(1).split('/')
   p.splice(-1,1)
