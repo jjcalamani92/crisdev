@@ -1,10 +1,11 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { FC, Fragment, useContext } from 'react';
+import { FC, Fragment, useContext, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { AuthContext } from '../src/context';
 import { HeadingDashboard } from './component';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // const user = {
 //   name: 'Tom Cook',
@@ -13,10 +14,9 @@ import Link from 'next/link';
 //     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 // }
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', current: true },
-  { name: 'Sites', href: '/dashboard/sites', current: false },
-  { name: 'Clients', href: '/dashboard/clients', current: false },
-  { name: 'Products', href: '/dashboard/products', current: false },
+  { name: 'sites', href: '/dashboard/sites', current: false },
+  { name: 'clients', href: '/dashboard/clients', current: false },
+  { name: 'products', href: '/dashboard/products', current: false },
   // { name: 'Calendar', href: '#', current: false },
   // { name: 'Reports', href: '#', current: false },
 ]
@@ -34,7 +34,12 @@ interface Props {
   title: string
 }
 export const LayoutAdmin:FC<Props> = ({children, title}) => {
+  const [current, setCurrent] = useState(true)
   const { user, isLoggedIn, logout } = useContext(AuthContext);
+  const { query, pathname } = useRouter()
+  let p = pathname.substring(1).split('/')
+  p.shift()
+  
   return (
     <>
       {/*
@@ -64,10 +69,10 @@ export const LayoutAdmin:FC<Props> = ({children, title}) => {
                         {navigation.map((item) => (
                           <Link key={item.name} href={item.href}>
                           <a className={classNames(
-                              item.current
+                              p.includes(item.name)
                                 ? 'bg-gray-900 text-white'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-sm font-medium'
+                              'px-3 py-2 rounded-md text-sm font-medium capitalize'
                             )}
                             aria-current={item.current ? 'page' : undefined}
                           >
@@ -148,8 +153,8 @@ export const LayoutAdmin:FC<Props> = ({children, title}) => {
                     <Disclosure.Button
                       as="a"
                       className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block px-3 py-2 rounded-md text-base font-medium'
+                        p.includes(item.name) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'block px-3 py-2 rounded-md text-base font-medium capitalize'
                       )}
                       aria-current={item.current ? 'page' : undefined}
                     >
@@ -200,14 +205,8 @@ export const LayoutAdmin:FC<Props> = ({children, title}) => {
           </div>
         </header> */}
         <main>
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            {/* Replace with your content */}
-            {/* <div className="px-4 py-6 sm:px-0">
-              <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
-            </div> */}
+          
             {children}
-            {/* /End replace */}
-          </div>
         </main>
       </div>
     </>

@@ -12,7 +12,7 @@ interface Main {
 
 export const Main: FC<Main> = ({ children }) => {
   return (
-    <div className="bg-white mt-6">
+    <div className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto lg:max-w-none">
           {children}
@@ -30,7 +30,7 @@ export const Button: FC<Button> = ({ content, click, bg }) => {
 
   return (
     <button className={`w-full px-4 py-2 font-medium tracking-wide  text-xs md:text-sm capitalize transition-colors duration-200 transform  rounded-md  focus:outline-none  
-    ${bg === "none" ? 'border-2 border-orange-500 focus:bg-orange-500 hover:bg-orange-500 bg-white    text-orange-600 hover:text-white' : 'focus:bg-orange-600 hover:bg-orange-600 bg-orange-500 text-white'}
+    ${bg === "none" ? 'border border-orange-500 focus:bg-orange-500 hover:bg-orange-500 bg-white    text-orange-600 hover:text-white' : 'focus:bg-orange-600 hover:bg-orange-600 bg-orange-500 text-white'}
     `} onClick={() => click()}>
       {content}
     </button>
@@ -220,7 +220,7 @@ export const HeadingDashboard: FC<HeadingDashboard> = ({ title, url }) => {
       </Transition.Root>
 
       <Main>
-        <div className="relative z-10 flex items-baseline justify-between pb-6 border-b border-gray-200">
+        <div className="relative z-10 flex items-baseline justify-between py-6">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{title}</h1>
 
           <div className="grid grid-cols-1">
@@ -316,8 +316,32 @@ export const HeadingForm: FC<HeadingForm> = ({ title }) => {
   }
   return (
     <Main>
-      <div className=" z-10 flex items-baseline justify-between pb-6 border-b border-gray-200">
-        <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{n === 'new' ? `Crear ${title}` : `Actualizar ${title}`}</h1>
+      <div className=" z-10 flex items-baseline justify-between py-6 border-b border-gray-200">
+        <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{n === 'new' ? `Created ${title}` : `Updated ${title}`}</h1>
+        {/* <div>
+            <Button  content='nuevo' click={() => orangeirect()} />
+          </div> */}
+      </div>
+    </Main>
+  )
+}
+interface Heading {
+  title: string;
+}
+export const Heading: FC<Heading> = ({ title }) => {
+  const { pathname, query } = useRouter()
+  Object.keys(query)
+
+  // query[Object.keys(query)[Object.keys(query).length - 1]]
+  const n = query[Object.keys(query)[Object.keys(query).length - 1]]
+  // console.log(query[Object.keys(query)[Object.keys(query).length - 1]])
+  const orangeirect = () => {
+    // console.log('hola');
+  }
+  return (
+    <Main>
+      <div className=" z-10 flex items-baseline justify-between py-6 ">
+        <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{title}</h1>
         {/* <div>
             <Button  content='nuevo' click={() => orangeirect()} />
           </div> */}

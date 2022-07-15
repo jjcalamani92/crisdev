@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { CREATE_SITE, UPDATE_SITE, ADD_SECTION_0, UPDATE_SECTION_0, UPDATE_SECTION_1, ADD_SECTION_1, UPDATE_SECTION_2, ADD_SECTION_2, UPDATE_SECTION_3, ADD_SECTION_3, UPDATE_SECTION_4, ADD_SECTION_4, UPDATE_SECTION_5, ADD_SECTION_5 } from '../../src/graphql/mutation/site.mutation';
 import { ISite, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
+import { slug } from "../../src/utils/function";
 
 interface FormData {
   id?: string;
@@ -26,7 +27,7 @@ interface Props {
 }
 
 export const FormSection: FC<Props> = ({ section, url }) => {
-  const { replace, pathname, query } = useRouter()
+  const { replace, pathname, query, push } = useRouter()
   // console.log('query',query);
   // console.log(section);
   
@@ -65,7 +66,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           timer: 1500
         }),
         await graphQLClientS.request(UPDATE_SECTION_5, { _id: query.id, input: data }),
-        replace(`/${url}`)
+        replace(`/${url}/${slug(form.name)}`)
       )
       :
       query.section5
@@ -91,7 +92,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           timer: 1500
         }),
         await graphQLClientS.request(ADD_SECTION_5, { _id: query.id, input: data }),
-        replace(`/${url}`)
+        push(`/${url}`)
+
       )
       :
       query.section4 && section.id
@@ -117,7 +119,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_SECTION_4, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`/${url}/${slug(form.name)}`)
+
         )
         :
         query.section4
@@ -142,7 +145,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_SECTION_4, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          push(`/${url}`)
+
         )
         :
       query.section3 && section.id
@@ -167,7 +171,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_SECTION_3, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`/${url}/${slug(form.name)}`)
+
         )
         :
         query.section3
@@ -191,7 +196,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_SECTION_3, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          push(`/${url}`)
+
         )
         :
       query.section2 && section.id
@@ -215,7 +221,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_SECTION_2, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`/${url}/${slug(form.name)}`)
+
         )
         :
         query.section2
@@ -238,7 +245,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_SECTION_2, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          push(`/${url}`)
+
         )
         :
       query.section1 && section.id
@@ -261,7 +269,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_SECTION_1, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`/${url}/${slug(form.name)}`)
+
         )
         :
         query.section1
@@ -283,7 +292,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_SECTION_1, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          push(`/${url}`)
+
         )
         :
         query.section0 && section.id
@@ -304,7 +314,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
               timer: 1500
             }),
             await graphQLClientS.request(UPDATE_SECTION_0, { _id: query.id, input: data }),
-            replace(`/${url}`)
+            replace(`/${url}/${slug(form.name)}`)
+
           )
           :
           query.section0
@@ -324,7 +335,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
                 timer: 1500
               }),
               await graphQLClientS.request(ADD_SECTION_0, { _id: query.id, input: data }),
-              replace(`/${url}`)
+              push(`/${url}`)
+
             )
             :
             null
@@ -468,7 +480,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xs md:text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                     >
                       {
-                        section.id ? `Actualizar` : `Crear`
+                        section.id ? `Updated` : `Created`
                       }
                     </button>
                   </div>

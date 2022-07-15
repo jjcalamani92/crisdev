@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
-import { Login } from '../../components/login'
+import { Login } from '../../components'
 const LoginLayout: NextPage = () => {
   return (
     <Login/>

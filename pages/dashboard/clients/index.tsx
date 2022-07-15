@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { LayoutAdmin } from '../../../components/LayoutAdmin'
+import { LayoutAdmin } from '../../../components'
 
 const Clients: NextPage = () => {
   return (

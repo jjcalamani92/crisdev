@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Layout } from "../../components";
-import { HeadingPrimary } from "../../components/component";
-import { FAQComponent } from "../../components/faq";
+import { Layout, FAQComponent, HeadingPrimary} from "../../components";
 
 const FAQs = () => {
     return (

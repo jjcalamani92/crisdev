@@ -5,20 +5,17 @@ import { FC } from "react";
 import { DELETE_ITEM_1, DELETE_ITEM_2, DELETE_ITEM_3, DELETE_ITEM_4, DELETE_ITEM_5, DELETE_SECTION_0, DELETE_SECTION_1, DELETE_SECTION_2, DELETE_SECTION_3, DELETE_SECTION_4, DELETE_SECTION_5, REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
 import { Featured, Item, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
+import { getURL } from "../../src/utils/function";
 import { Button } from "../component";
 
 interface CardItem {
   data: Section0 | Featured | Item
-  // data: Category | Section | Featured | Item;
-  url: string
 }
 
-export const CardItem: FC<CardItem> = ({ data, url }) => {
-  const {name, href, imageSrc, imageAlt, id} = data
-  // console.log('data', data);
-  
+export const CardItem: FC<CardItem> = ({ data }) => {
   const {replace, pathname, query, push} = useRouter()
-  // console.log(query);
+  const {name, href, imageSrc, imageAlt, id} = data
+  const url = getURL(pathname, query)
   
   const onDelete = async (id: string) => {
     {
@@ -50,7 +47,6 @@ export const CardItem: FC<CardItem> = ({ data, url }) => {
   return (
     <div className="shadow-lg p-2 ">
       <Link href={`/${url}/i/${href}`}>
-      {/* <Link href={`/${path}/${query.id}/${href}`}> */}
         <a>
           <div className="w-full bg-white rounded-sm overflow-hidden leading-none">
             <Image
@@ -68,7 +64,7 @@ export const CardItem: FC<CardItem> = ({ data, url }) => {
           </div>
         </a>
       </Link>
-      <Button content='eliminar' click={() => onDelete(id)} />
+      <Button bg="none" content='eliminar' click={() => onDelete(id)} />
     </div>
   )
 }

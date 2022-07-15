@@ -5,17 +5,17 @@ import { FC } from "react";
 import { REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
 import { Featured, ISite, Item, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
+import { getURL } from "../../src/utils/function";
 import { Button } from "../component";
 
 interface CardSite {
   data: ISite
-  url: string
 }
 
-export const CardSite: FC<CardSite> = ({ data, url }) => {
-  const { push } = useRouter()
+export const CardSite: FC<CardSite> = ({ data }) => {
+  const { push, pathname, query } = useRouter()
+  const url = getURL(pathname, query)
   
-
   const onDelete = async (id: string) => {
     await graphQLClientS.request(REMOVE_SITE, { _id: id })
     push(`${url}`)
@@ -26,7 +26,7 @@ export const CardSite: FC<CardSite> = ({ data, url }) => {
 
   return (
     <div className="shadow-lg p-2 ">
-      <Link href={`${url}/${_id}`}>
+      <Link href={`/${url}/${_id}`}>
         <a>
           <div className="w-full bg-white rounded-sm overflow-hidden leading-none">
             <Image

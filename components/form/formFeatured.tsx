@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { ADD_FEATURED_1, UPDATE_FEATURED_1, UPDATE_FEATURED_2, ADD_FEATURED_2, UPDATE_FEATURED_3, ADD_FEATURED_3, ADD_FEATURED_4, UPDATE_FEATURED_4, UPDATE_FEATURED_5, ADD_FEATURED_5 } from '../../src/graphql/mutation/site.mutation';
 import { Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
+import { slug } from "../../src/utils/function";
 
 interface FormData {
   id?: string;
@@ -26,7 +27,8 @@ interface Props {
 }
 
 export const FormFeatured: FC<Props> = ({ section, url }) => {
-  const { replace, pathname, query } = useRouter()
+  const { replace, pathname, query, push } = useRouter()
+  
   // console.log('query',query);
   // console.log(section);
   
@@ -92,7 +94,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           timer: 1500
         }),
         await graphQLClientS.request(ADD_FEATURED_5, { _id: query.id, input: data }),
-        replace(`/${url}`)
+        push(`/${url}`)
       )
       :
       query.featured4 && section.id
@@ -119,6 +121,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           }),
           await graphQLClientS.request(UPDATE_FEATURED_4, { _id: query.id, input: data }),
           replace(`/${url}`)
+
         )
         :
         query.featured4
@@ -143,7 +146,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_FEATURED_4, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          push(`/${url}`)
         )
         :
       query.featured3 && section.id
@@ -169,6 +172,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           }),
           await graphQLClientS.request(UPDATE_FEATURED_3, { _id: query.id, input: data }),
           replace(`/${url}`)
+
         )
         :
         query.featured3
@@ -217,6 +221,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           }),
           await graphQLClientS.request(UPDATE_FEATURED_2, { _id: query.id, input: data }),
           replace(`/${url}`)
+
         )
         :
         query.featured2
@@ -262,6 +267,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           }),
           await graphQLClientS.request(UPDATE_FEATURED_1, { _id: query.id, input: data }),
           replace(`/${url}`)
+
         )
         :
         query.featured1
@@ -412,7 +418,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xs md:text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                     >
                       {
-                        section.id ? `Actualizar` : `Crear`
+                        section.id ? `Updated` : `Created`
                       }
                     </button>
                   </div>

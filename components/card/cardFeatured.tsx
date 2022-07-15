@@ -5,17 +5,17 @@ import { FC } from "react";
 import { DELETE_FEATURED_1, DELETE_FEATURED_2, DELETE_FEATURED_3, DELETE_FEATURED_4, DELETE_FEATURED_5} from "../../src/graphql/mutation/site.mutation";
 import { Featured, Item, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
+import { getURL } from "../../src/utils/function";
 import { Button } from "../component";
 
 interface CardFeatured {
   data: Section0 | Featured | Item
-  url: string
 }
 
-export const CardFeatured: FC<CardFeatured> = ({ data, url }) => {
+export const CardFeatured: FC<CardFeatured> = ({ data }) => {
   const {name, href, imageSrc, imageAlt, id} = data
-  
   const {replace, pathname, query, push} = useRouter()
+  const url = getURL(pathname, query)
   
   const onDelete = async (id: string) => {
     {
@@ -65,7 +65,7 @@ export const CardFeatured: FC<CardFeatured> = ({ data, url }) => {
           </div>
         </a>
       </Link>
-      <Button content='eliminar' click={() => onDelete(id)} />
+      <Button bg="none" content='eliminar' click={() => onDelete(id)} />
     </div>
   )
 }

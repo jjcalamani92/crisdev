@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { CREATE_SITE, UPDATE_SITE, ADD_SECTION_0, UPDATE_SECTION_0, UPDATE_SECTION_1, ADD_SECTION_1, UPDATE_SECTION_2, ADD_SECTION_2, UPDATE_SECTION_3, ADD_SECTION_3, UPDATE_SECTION_4, ADD_SECTION_4, UPDATE_SECTION_5, ADD_SECTION_5, ADD_ITEM_1, UPDATE_ITEM_1, UPDATE_ITEM_2, ADD_ITEM_2, UPDATE_ITEM_3, ADD_ITEM_3, ADD_ITEM_4, UPDATE_ITEM_4, UPDATE_ITEM_5, ADD_ITEM_5 } from '../../src/graphql/mutation/site.mutation';
 import { ISite, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
+import { slug } from "../../src/utils/function";
 
 interface FormData {
   id?: string;
@@ -26,8 +27,9 @@ interface Props {
 }
 
 export const FormItem: FC<Props> = ({ section, url }) => {
-  const { replace, pathname, query } = useRouter()
-
+  const { replace, pathname, query, push } = useRouter()
+  
+  
 
   const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<FormData>({
     defaultValues: { ...section }
@@ -59,6 +61,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
         }),
         await graphQLClientS.request(UPDATE_ITEM_5, { _id: query.id, input: data }),
         replace(`/${url}`)
+
       )
       :
       query.item5
@@ -83,7 +86,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
           timer: 1500
         }),
         await graphQLClientS.request(ADD_ITEM_5, { _id: query.id, input: data }),
-        replace(`/${url}`)
+        push(`/${url}`)
       )
       :
       query.item4 && section.id
@@ -109,6 +112,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
           }),
           await graphQLClientS.request(UPDATE_ITEM_4, { _id: query.id, input: data }),
           replace(`/${url}`)
+
         )
         :
         query.item4
@@ -132,7 +136,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_ITEM_4, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          push(`/${url}`)
         )
         :
       query.item3 && section.id
@@ -157,6 +161,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
           }),
           await graphQLClientS.request(UPDATE_ITEM_3, { _id: query.id, input: data }),
           replace(`/${url}`)
+
         )
         :
         query.item3
@@ -179,7 +184,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_ITEM_3, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          push(`/${url}`)
         )
         :
       query.item2 && section.id
@@ -203,6 +208,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
           }),
           await graphQLClientS.request(UPDATE_ITEM_2, { _id: query.id, input: data }),
           replace(`/${url}`)
+
         )
         :
         query.item2
@@ -224,7 +230,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_ITEM_2, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          push(`/${url}`)
         )
         :
       query.item1 && section.id
@@ -247,6 +253,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
           }),
           await graphQLClientS.request(UPDATE_ITEM_1, { _id: query.id, input: data }),
           replace(`/${url}`)
+
         )
         :
         query.item1
@@ -267,7 +274,7 @@ export const FormItem: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_ITEM_1, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          push(`/${url}`)
         )
         :
         null

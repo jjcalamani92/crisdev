@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { CREATE_SITE, UPDATE_SITE } from "../../src/graphql/mutation/site.mutation";
 import { ISite } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
+import { slug } from "../../src/utils/function";
 
 interface FormData {
   title: string;
@@ -25,15 +26,14 @@ interface FormData {
 
 interface Props {
   site: ISite
+  url: string
 }
 
-export const FormSite: FC<Props> = ({ site }) => {
+export const FormSite: FC<Props> = ({ site, url }) => {
   // console.log(site);
   
-  const {replace, pathname} = useRouter()
-  let p = pathname.substring(1).split('/')
-  p.splice(-1,1)
-  let url = p.join('/')
+  const {replace, push} = useRouter()
+
 
   const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<FormData>({
     defaultValues: { ...site.data, type:site.type, client: site.client}
@@ -52,7 +52,8 @@ export const FormSite: FC<Props> = ({ site }) => {
         timer: 1500
       })
       await graphQLClientS.request(UPDATE_SITE, {_id: site._id, input: form })
-      replace(`/${url}`)
+      replace(`/${url}/${site._id}`)
+
     } else {
       Swal.fire({
         position: 'center',
@@ -62,7 +63,7 @@ export const FormSite: FC<Props> = ({ site }) => {
         timer: 1500
       })
       await graphQLClientS.request(CREATE_SITE, { input: form })
-      replace(`/${url}`)
+      push(`/${url}`)
     }
   }
 

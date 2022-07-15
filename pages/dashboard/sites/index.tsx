@@ -1,10 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { FC } from 'react'
-import { HeadingDashboard } from '../../../components/component'
-import { Grid } from '../../../components/grid'
-import { LayoutAdmin } from '../../../components/LayoutAdmin'
+import { HeadingDashboard, LayoutAdmin, GridSite } from '../../../components'
 import { SITES } from '../../../src/graphql/site.query'
-import { Site } from '../../../src/interfaces'
 import { ISite } from '../../../src/interfacesV2/siteV2'
 import { graphQLClientS } from '../../../src/swr/graphQLClient'
 import { request, RequestDocument } from 'graphql-request'
@@ -13,32 +10,27 @@ import { useRouter } from 'next/router'
 
 interface Props {
   sitesAll: ISite[]
-  site: Site
 }
 
 const fetcher = (query: RequestDocument) => request(`${process.env.APIS_URL}/graphql`, query)
 
-const Sites: FC<Props> = ({ site, sitesAll }) => {
+const Sites: FC<Props> = ({ sitesAll }) => {
   const { data, error, isValidating } = useSWR(SITES, fetcher)
   if (isValidating) {
     console.log('cargando');
   }
   const { query, pathname } = useRouter()
-  let p = pathname.substring(1).split('/')
-  p.length = p.length-1
-  p.push(`${query.id}`, `${query.section0}` )
-  let url = p.join('/')
   
   const responsive = {
     sm: "2",
     md: "3",
-    lg: 6
+    lg: "6"
   }
 
   return (
     <LayoutAdmin title="Sites">
       <HeadingDashboard title='Sitio' url={pathname} />
-      <Grid data={sitesAll} responsive={responsive} />
+      <GridSite data={sitesAll} responsive={responsive} />
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async () => {

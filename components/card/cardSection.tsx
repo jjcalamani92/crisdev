@@ -5,16 +5,17 @@ import { FC } from "react";
 import { DELETE_SECTION_0, DELETE_SECTION_1, DELETE_SECTION_2, DELETE_SECTION_3, DELETE_SECTION_4, DELETE_SECTION_5, REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
 import { Featured, Item, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
+import { getURL } from "../../src/utils/function";
 import { Button } from "../component";
 
 interface CardSection {
   data: Section0 | Featured | Item
   // data: Category | Section | Featured | Item;
-  url: string
 }
 
-export const CardSection: FC<CardSection> = ({ data, url }) => {
+export const CardSection: FC<CardSection> = ({ data }) => {
   const {replace, pathname, query, push} = useRouter()
+  const url = getURL(pathname, query)
   const onDelete = async (id: string) => {
     {
       query.section4
@@ -68,7 +69,7 @@ export const CardSection: FC<CardSection> = ({ data, url }) => {
           </div>
         </a>
       </Link>
-      <Button content='eliminar' click={() => onDelete(id)} />
+      <Button bg="none" content='eliminar' click={() => onDelete(id)} />
     </div>
   )
 }
