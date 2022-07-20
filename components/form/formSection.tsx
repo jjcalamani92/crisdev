@@ -121,7 +121,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_CHILDREN_4, { _id: query.id, input: data }),
-          replace(`${url}/${slug(form.name)}`)
+          replace(`${url}`)
+          // replace(`${url}/${slug(form.name)}`)
 
         )
         :
@@ -173,7 +174,9 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_CHILDREN_3, { _id: query.id, input: data }),
-          replace(`${url}/${slug(form.name)}`)
+          replace(`${url}`)
+
+          // replace(`${url}/${slug(form.name)}`)
 
         )
         :
@@ -223,7 +226,9 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_CHILDREN_2, { _id: query.id, input: data }),
-          replace(`${url}/${slug(form.name)}`)
+          replace(`${url}`)
+
+          // replace(`${url}/${slug(form.name)}`)
 
         )
         :
@@ -271,7 +276,9 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_CHILDREN_1, { _id: query.id, input: data }),
-          replace(`${url}/${slug(form.name)}`)
+          replace(`${url}`)
+
+          // replace(`${url}/${slug(form.name)}`)
 
         )
         :
@@ -317,7 +324,9 @@ export const FormSection: FC<Props> = ({ section, url }) => {
               timer: 1500
             }),
             await graphQLClientS.request(UPDATE_CHILDREN_0, { _id: query.id, input: data }),
-            replace(`${url}/${slug(form.name)}`)
+          replace(`${url}`)
+
+            // replace(`${url}/${slug(form.name)}`)
 
           )
           :

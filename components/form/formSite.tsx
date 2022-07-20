@@ -30,7 +30,6 @@ interface Props {
 }
 
 export const FormSite: FC<Props> = ({ site, url }) => {
-  // console.log(site);
   
   const {replace, push} = useRouter()
 
@@ -52,7 +51,7 @@ export const FormSite: FC<Props> = ({ site, url }) => {
         timer: 1500
       })
       await graphQLClientS.request(UPDATE_SITE, {_id: site._id, input: form })
-      replace(`/${url}/${site._id}`)
+      replace(`/${url}`)
 
     } else {
       Swal.fire({

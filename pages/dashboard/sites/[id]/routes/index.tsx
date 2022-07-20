@@ -15,7 +15,6 @@ interface Props {
 
 const Routes: FC<Props> = ({ site }) => {
   const { query, pathname, asPath } = useRouter()
-  // console.log(site.route);
 
   return (
     <LayoutAdmin title="Sites">

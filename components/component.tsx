@@ -30,7 +30,7 @@ export const Button: FC<Button> = ({ content, click, bg }) => {
 
   return (
     <button className={`w-full px-4 py-2 font-medium tracking-wide  text-xs md:text-sm capitalize transition-colors duration-200 transform  rounded-md  focus:outline-none  
-    ${bg === "none" ? 'border border-orange-500 focus:bg-orange-500 hover:bg-orange-500 bg-white    text-orange-600 hover:text-white' : 'focus:bg-orange-600 hover:bg-orange-600 bg-orange-500 text-white'}
+    ${bg === "none" ? 'border border-orange-500  hover:bg-orange-500 bg-white    text-orange-600 hover:text-white' : 'hover:bg-orange-600 bg-orange-500 text-white'}
     `} onClick={() => click()}>
       {content}
     </button>
