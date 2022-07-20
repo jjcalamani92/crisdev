@@ -5,7 +5,7 @@ import { HeadingDashboard, HeadingForm, FormSection, GridFeatured, GridItem, Gri
 import { FormProductAnt } from '../../../../../components/form/formProductAnt'
 import { SITE, SITES, SITE_ROUTE, SITE_ROUTE_PRODUCT } from '../../../../../src/graphql/query/site.query'
 import { PRODUCT_BY_SLUG } from '../../../../../src/graphql/query/wear.query'
-import { CreateProductInput } from '../../../../../src/interfacesV2'
+import { CreateProductInput } from '../../../../../src/interfacesV2/wear'
 import { ISite, Routes, Section0 } from '../../../../../src/interfacesV2/siteV2'
 import { graphQLClientP, graphQLClientS, graphQLClientSS } from '../../../../../src/swr/graphQLClient'
 import { getURL,  } from '../../../../../src/utils/function'
