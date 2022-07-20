@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
-import { Article } from "../../src/interfacesV2/Wear";
+import { Article } from "../../src/interfacesV2/wear";
 import { Featured, ISite, Item, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
 import { getURL } from "../../src/utils/function";
