@@ -6,7 +6,7 @@ import { ISite } from '../../../../../src/interfacesV2/siteV2'
 import { graphQLClientP, graphQLClientS } from '../../../../../src/swr/graphQLClient'
 import { useRouter } from 'next/router'
 import { PRODUCTS_PAGINATION } from '../../../../../src/graphql/query/wear.query';
-import { listWearsWithCursor } from '../../../../../src/interfacesV2';
+import { listWearsWithCursor } from '../../../../../src/interfacesV2/wear';
 import { GridProduct } from '../../../../../components/grid/gridProduct';
 
 interface Props {
