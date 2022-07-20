@@ -39,8 +39,7 @@ const KeyCodes = {
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 export const FormProduct: FC<Props> = ({ product, routes }) => {
-  // console.log('routes', product);
-  
+
   const { asPath, query } = useRouter()
 	let url = asPath.split('/')
   const dataID = url[url.length-1]
