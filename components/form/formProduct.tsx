@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { ChangeEvent, FC, useEffect, useState } from 'react';
@@ -15,7 +14,7 @@ import { Cascader } from "antd";
 import { routes } from "./formAnt";
 import axios from "axios";
 import Input from "antd/lib/input/Input";
-import { CreateProductInput } from "../../src/interfacesV2/Wear";
+import { CreateProductInput } from "../../src/interfacesV2/wear";
 import { getURL } from "../../src/utils/function";
 
 
