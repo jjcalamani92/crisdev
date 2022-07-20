@@ -2,51 +2,50 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { DELETE_ITEM_1, DELETE_ITEM_2, DELETE_ITEM_3, DELETE_ITEM_4, DELETE_ITEM_5, DELETE_SECTION_0, DELETE_SECTION_1, DELETE_SECTION_2, DELETE_SECTION_3, DELETE_SECTION_4, DELETE_SECTION_5, REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
-import { Featured, Item, Section0 } from "../../src/interfacesV2/siteV2";
+import { DELETE_ITEM_1, DELETE_ITEM_2, DELETE_ITEM_3, DELETE_ITEM_4, DELETE_ITEM_5, DELETE_SECTION_1, DELETE_SECTION_2, DELETE_SECTION_3, DELETE_SECTION_4, DELETE_SECTION_5, REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
+import { Featured, Item, Routes, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
 import { getURL } from "../../src/utils/function";
 import { Button } from "../component";
 
 interface CardItem {
-  data: Section0 | Featured | Item
+  data: Routes | Featured | Item
 }
 
 export const CardItem: FC<CardItem> = ({ data }) => {
-  const {replace, pathname, query, push} = useRouter()
-  const {name, href, imageSrc, imageAlt, id} = data
-  const url = getURL(pathname, query)
+  const {replace, pathname, query, push, asPath} = useRouter()
+  const {name, href, imageSrc, imageAlt, uid} = data
   
-  const onDelete = async (id: string) => {
+  const onDelete = async (uid: string) => {
     {
       query.section4
       ?
-      await graphQLClientS.request(DELETE_ITEM_5, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': query.section3, 'section_level_4': query.section4, 'section_level_5': id}})
+      await graphQLClientS.request(DELETE_ITEM_5, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': query.section1, 'children_uid_2': query.section2, 'children_uid_3': query.section3, 'children_uid_4': query.section4, 'children_uid_5': uid}})
       :
       query.section3
       ?
-      await graphQLClientS.request(DELETE_ITEM_4, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': query.section3, 'section_level_4': id}})
+      await graphQLClientS.request(DELETE_ITEM_4, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': query.section1, 'children_uid_2': query.section2, 'children_uid_3': query.section3, 'children_uid_4': uid}})
       :
       query.section2
       ?
-      await graphQLClientS.request(DELETE_ITEM_3, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': id}})
+      await graphQLClientS.request(DELETE_ITEM_3, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': query.section1, 'children_uid_2': query.section2, 'children_uid_3': uid}})
       :
       query.section1
       ?
-      await graphQLClientS.request(DELETE_ITEM_2, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': id}})
+      await graphQLClientS.request(DELETE_ITEM_2, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': query.section1, 'children_uid_2': uid}})
       :
       query.section0
       ?
-      await graphQLClientS.request(DELETE_ITEM_1, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': id}})
+      await graphQLClientS.request(DELETE_ITEM_1, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': uid}})
       :
       null
     }
-    push(`/${url}`)
+    push(`${asPath}`)
   }
 
   return (
     <div className="shadow-lg p-2 ">
-      <Link href={`/${url}/i/${href}`}>
+      <Link href={`${asPath}/i/${href}`}>
         <a>
           <div className="w-full bg-white rounded-sm overflow-hidden leading-none">
             <Image
@@ -64,7 +63,7 @@ export const CardItem: FC<CardItem> = ({ data }) => {
           </div>
         </a>
       </Link>
-      <Button bg="none" content='eliminar' click={() => onDelete(id)} />
+      <Button bg="none" content='eliminar' click={() => onDelete(uid)} />
     </div>
   )
 }

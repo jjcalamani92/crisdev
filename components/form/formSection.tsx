@@ -4,25 +4,25 @@ import { useRouter } from "next/router";
 import { ChangeEvent, FC } from 'react';
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { CREATE_SITE, UPDATE_SITE, ADD_SECTION_0, UPDATE_SECTION_0, UPDATE_SECTION_1, ADD_SECTION_1, UPDATE_SECTION_2, ADD_SECTION_2, UPDATE_SECTION_3, ADD_SECTION_3, UPDATE_SECTION_4, ADD_SECTION_4, UPDATE_SECTION_5, ADD_SECTION_5 } from '../../src/graphql/mutation/site.mutation';
-import { ISite, Section0 } from "../../src/interfacesV2/siteV2";
+import { CREATE_SITE, UPDATE_SITE, UPDATE_CHILDREN_0, UPDATE_CHILDREN_2, ADD_CHILDREN_2, UPDATE_CHILDREN_3, ADD_CHILDREN_3, UPDATE_CHILDREN_4, ADD_CHILDREN_4, UPDATE_CHILDREN_5, ADD_CHILDREN_5, ADD_CHILDREN_0, UPDATE_CHILDREN_1, ADD_CHILDREN_1 } from '../../src/graphql/mutation/site.mutation';
+import { ISite, Routes, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
 import { slug } from "../../src/utils/function";
 
 interface FormData {
-  id?: string;
+  uid?: string;
   name: string;
   href?: string;
   description: string;
   imageSrc: string;
   imageAlt: string;
-  section_level_1?: string;
+  children_uid_1?: string;
   featured?: any;
   items?: any;
 }
 
 interface Props {
-  section: Section0
+  section: Routes
   url: string
 }
 
@@ -30,19 +30,21 @@ export const FormSection: FC<Props> = ({ section, url }) => {
   const { replace, pathname, query, push } = useRouter()
   // console.log('query',query);
   // console.log(section);
-  
   // let p = pathname.substring(1).split('/')
   // p.splice(-1, 1)
   // let url = p.join('/')
   // console.log(query);
+  // console.log(section);
+  // console.log(url);
+  
 
   const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<FormData>({
     defaultValues: { ...section }
   })
 
   const onSubmit = async (form: FormData) => {
-    let data: Section0 | null | any
-    {query.section5 && section.id
+    let data: Routes | null | any
+    {query.section5 && section.uid
       ?
       (     
         data = {
@@ -50,12 +52,12 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           description: form.description,
           imageSrc: form.imageSrc,
           imageAlt: form.imageAlt,
-          section_level_0: query.section0,
-          section_level_1: query.section1,
-          section_level_2: query.section2,
-          section_level_3: query.section3,
-          section_level_4: query.section4,
-          section_level_5: query.section5,
+          children_uid_0: query.section0,
+          children_uid_1: query.section1,
+          children_uid_2: query.section2,
+          children_uid_3: query.section3,
+          children_uid_4: query.section4,
+          children_uid_5: query.section5,
         },
         // console.log(data)
         Swal.fire({
@@ -65,8 +67,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           showConfirmButton: false,
           timer: 1500
         }),
-        await graphQLClientS.request(UPDATE_SECTION_5, { _id: query.id, input: data }),
-        replace(`/${url}/${slug(form.name)}`)
+        await graphQLClientS.request(UPDATE_CHILDREN_5, { _id: query.id, input: data }),
+        replace(`${url}/${slug(form.name)}`)
       )
       :
       query.section5
@@ -77,11 +79,11 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           description: form.description,
           imageSrc: form.imageSrc,
           imageAlt: form.imageAlt,
-          section_level_0: query.section0,
-          section_level_1: query.section1,
-          section_level_2: query.section2,
-          section_level_3: query.section3,
-          section_level_4: query.section4,
+          children_uid_0: query.section0,
+          children_uid_1: query.section1,
+          children_uid_2: query.section2,
+          children_uid_3: query.section3,
+          children_uid_4: query.section4,
         },
         // console.log(data)
         Swal.fire({
@@ -91,12 +93,12 @@ export const FormSection: FC<Props> = ({ section, url }) => {
           showConfirmButton: false,
           timer: 1500
         }),
-        await graphQLClientS.request(ADD_SECTION_5, { _id: query.id, input: data }),
-        push(`/${url}`)
+        await graphQLClientS.request(ADD_CHILDREN_5, { _id: query.id, input: data }),
+        push(`${url}`)
 
       )
       :
-      query.section4 && section.id
+      query.section4 && section.uid
         ?
         (     
           data = {
@@ -104,11 +106,11 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.section2,
-            section_level_3: query.section3,
-            section_level_4: query.section4,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.section2,
+            children_uid_3: query.section3,
+            children_uid_4: query.section4,
           },
           // console.log(data)
           Swal.fire({
@@ -118,8 +120,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(UPDATE_SECTION_4, { _id: query.id, input: data }),
-          replace(`/${url}/${slug(form.name)}`)
+          await graphQLClientS.request(UPDATE_CHILDREN_4, { _id: query.id, input: data }),
+          replace(`${url}/${slug(form.name)}`)
 
         )
         :
@@ -131,10 +133,10 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.section2,
-            section_level_3: query.section3,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.section2,
+            children_uid_3: query.section3,
           },
           // console.log(data)
           Swal.fire({
@@ -144,12 +146,12 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(ADD_SECTION_4, { _id: query.id, input: data }),
-          push(`/${url}`)
+          await graphQLClientS.request(ADD_CHILDREN_4, { _id: query.id, input: data }),
+          push(`${url}`)
 
         )
         :
-      query.section3 && section.id
+      query.section3 && section.uid
         ?
         (     
           data = {
@@ -157,10 +159,10 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.section2,
-            section_level_3: query.section3,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.section2,
+            children_uid_3: query.section3,
           },
           // console.log(data)
           Swal.fire({
@@ -170,8 +172,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(UPDATE_SECTION_3, { _id: query.id, input: data }),
-          replace(`/${url}/${slug(form.name)}`)
+          await graphQLClientS.request(UPDATE_CHILDREN_3, { _id: query.id, input: data }),
+          replace(`${url}/${slug(form.name)}`)
 
         )
         :
@@ -183,9 +185,9 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.section2,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.section2,
           },
           // console.log(data)
           Swal.fire({
@@ -195,12 +197,12 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(ADD_SECTION_3, { _id: query.id, input: data }),
-          push(`/${url}`)
+          await graphQLClientS.request(ADD_CHILDREN_3, { _id: query.id, input: data }),
+          push(`${url}`)
 
         )
         :
-      query.section2 && section.id
+      query.section2 && section.uid
         ?
         (     
           data = {
@@ -208,9 +210,9 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.section2,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.section2,
           },
           // console.log(data)
           Swal.fire({
@@ -220,8 +222,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(UPDATE_SECTION_2, { _id: query.id, input: data }),
-          replace(`/${url}/${slug(form.name)}`)
+          await graphQLClientS.request(UPDATE_CHILDREN_2, { _id: query.id, input: data }),
+          replace(`${url}/${slug(form.name)}`)
 
         )
         :
@@ -233,8 +235,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
           },
           // console.log(data)
           Swal.fire({
@@ -244,12 +246,12 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(ADD_SECTION_2, { _id: query.id, input: data }),
-          push(`/${url}`)
+          await graphQLClientS.request(ADD_CHILDREN_2, { _id: query.id, input: data }),
+          push(`${url}`)
 
         )
         :
-      query.section1 && section.id
+      query.section1 && section.uid
         ?
         (     
           data = {
@@ -257,8 +259,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
           },
           // console.log(data)
           Swal.fire({
@@ -268,8 +270,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(UPDATE_SECTION_1, { _id: query.id, input: data }),
-          replace(`/${url}/${slug(form.name)}`)
+          await graphQLClientS.request(UPDATE_CHILDREN_1, { _id: query.id, input: data }),
+          replace(`${url}/${slug(form.name)}`)
 
         )
         :
@@ -281,7 +283,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
+            children_uid_0: query.section0,
           },
           // console.log(data)
           Swal.fire({
@@ -291,12 +293,11 @@ export const FormSection: FC<Props> = ({ section, url }) => {
             showConfirmButton: false,
             timer: 1500
           }),
-          await graphQLClientS.request(ADD_SECTION_1, { _id: query.id, input: data }),
-          push(`/${url}`)
-
+          await graphQLClientS.request(ADD_CHILDREN_1, { _id: query.id, input: data }),
+          push(`${url}`)
         )
         :
-        query.section0 && section.id
+        query.section0 && section.uid
           ?
           (
             data = {
@@ -304,8 +305,10 @@ export const FormSection: FC<Props> = ({ section, url }) => {
               description: form.description,
               imageSrc: form.imageSrc,
               imageAlt: form.imageAlt,
-              section_level_0: query.section0,
+              children_uid_0: query.section0,
             },
+            // console.log(data)
+            
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -313,8 +316,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
               showConfirmButton: false,
               timer: 1500
             }),
-            await graphQLClientS.request(UPDATE_SECTION_0, { _id: query.id, input: data }),
-            replace(`/${url}/${slug(form.name)}`)
+            await graphQLClientS.request(UPDATE_CHILDREN_0, { _id: query.id, input: data }),
+            replace(`${url}/${slug(form.name)}`)
 
           )
           :
@@ -334,8 +337,8 @@ export const FormSection: FC<Props> = ({ section, url }) => {
                 showConfirmButton: false,
                 timer: 1500
               }),
-              await graphQLClientS.request(ADD_SECTION_0, { _id: query.id, input: data }),
-              push(`/${url}`)
+              await graphQLClientS.request(ADD_CHILDREN_0, { _id: query.id, input: data }),
+              push(`${url}`)
 
             )
             :
@@ -480,7 +483,7 @@ export const FormSection: FC<Props> = ({ section, url }) => {
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xs md:text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                     >
                       {
-                        section.id ? `Updated` : `Created`
+                        section.uid ? `Updated` : `Created`
                       }
                     </button>
                   </div>

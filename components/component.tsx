@@ -116,7 +116,7 @@ export const HeadingDashboard: FC<HeadingDashboard> = ({ title, url }) => {
   const { push, pathname, query } = useRouter();
 
   const redirect = () => {
-    push(`/${url}/new`)
+    push(`${url}/new`)
   }
   return (
     <>
@@ -316,7 +316,7 @@ export const HeadingForm: FC<HeadingForm> = ({ title }) => {
   }
   return (
     <Main>
-      <div className=" z-10 flex items-baseline justify-between py-6 border-b border-gray-200">
+      <div className=" z-10 flex items-baseline justify-between py-6 ">
         <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{n === 'new' ? `Created ${title}` : `Updated ${title}`}</h1>
         {/* <div>
             <Button  content='nuevo' click={() => orangeirect()} />

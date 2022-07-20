@@ -27,7 +27,7 @@ export interface IMark {
 	imageSrc: string;
 	imageAlt?: string;
 	description: string;
-	}
+}
 export interface Wear {
   _id: string;
   article: Article;
@@ -110,7 +110,7 @@ export interface listWearsWithCursor {
   pageData:PageData;
 }
 export interface Page {
-  edges: Edges;
+  edges: Edges[];
   pageInfo: PageInfo;
 }
 export interface Edges {
@@ -146,4 +146,5 @@ export interface CreateProductInput {
   specs:string[];
   imageSrc:string[];
   tags:string[];
+  route:string[];
 }

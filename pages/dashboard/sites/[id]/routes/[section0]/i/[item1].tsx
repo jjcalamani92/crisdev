@@ -2,25 +2,26 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { HeadingForm, FormItem, LayoutAdmin } from '../../../../../../../components'
-import { SITE } from '../../../../../../../src/graphql/site.query'
-import {  Section0,  } from '../../../../../../../src/interfacesV2/siteV2'
+import { SITE, SITE_ROUTE } from '../../../../../../../src/graphql/query/site.query'
+import {  Routes, Section0,  } from '../../../../../../../src/interfacesV2/siteV2'
 import { graphQLClientS, graphQLClientSS } from '../../../../../../../src/swr/graphQLClient'
 import { getURL } from '../../../../../../../src/utils/function'
 
 interface Props {
-  item: Section0
+  item: Routes
 }
 
 const Item1: FC<Props> = ({ item }) => {
-  const { query, pathname } = useRouter()
-
+  const { query, pathname, asPath } = useRouter()
+  // console.log(getURL(getURL(asPath)));
+  
 
   
   return (
     <LayoutAdmin title="Sites">
       
       <HeadingForm title="Item" />
-      <FormItem section={item} url={getURL(pathname, query)}/>
+      <FormItem section={item} url={getURL(getURL(asPath))}/>
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
@@ -34,8 +35,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       imageAlt: "",
     }
   } else {
-    const data = await graphQLClientS.request(SITE, { _id: id })
-    const section00 = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${section0}`)
+    const data = await graphQLClientS.request(SITE_ROUTE, { _id: id })
+    const section00 = data.site.route.find((data: { href: string; }) => data.href === `${section0}`)
     item = section00.items.find((data: { href: string; }) => data.href === `${item1}`)
     // item = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${item1}`)
     

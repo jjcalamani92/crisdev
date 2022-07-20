@@ -1,7 +1,7 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import { FC } from 'react'
 import { HeadingDashboard, LayoutAdmin, GridSite } from '../../../components'
-import { SITES } from '../../../src/graphql/site.query'
+import { SITES } from '../../../src/graphql/query/site.query'
 import { ISite } from '../../../src/interfacesV2/siteV2'
 import { graphQLClientS } from '../../../src/swr/graphQLClient'
 import { request, RequestDocument } from 'graphql-request'
@@ -15,10 +15,10 @@ interface Props {
 const fetcher = (query: RequestDocument) => request(`${process.env.APIS_URL}/graphql`, query)
 
 const Sites: FC<Props> = ({ sitesAll }) => {
-  const { data, error, isValidating } = useSWR(SITES, fetcher)
-  if (isValidating) {
-    console.log('cargando');
-  }
+  // const { data, error, isValidating } = useSWR(SITES, fetcher)
+  // if (isValidating) {
+  //   console.log('cargando');
+  // }
   const { query, pathname } = useRouter()
   
   const responsive = {
@@ -30,10 +30,11 @@ const Sites: FC<Props> = ({ sitesAll }) => {
   return (
     <LayoutAdmin title="Sites">
       <HeadingDashboard title='Sitio' url={pathname} />
-      <GridSite data={sitesAll} responsive={responsive} />
+      <GridSite data={sitesAll} />
     </LayoutAdmin>)
 }
-export const getServerSideProps: GetServerSideProps = async () => {
+
+export const getStaticProps: GetStaticProps = async ({params}) => {
   const { sitesAll } = await graphQLClientS.request(SITES)
   return {
     props: {

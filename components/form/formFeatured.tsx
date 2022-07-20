@@ -5,7 +5,7 @@ import { ChangeEvent, FC } from 'react';
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { ADD_FEATURED_1, UPDATE_FEATURED_1, UPDATE_FEATURED_2, ADD_FEATURED_2, UPDATE_FEATURED_3, ADD_FEATURED_3, ADD_FEATURED_4, UPDATE_FEATURED_4, UPDATE_FEATURED_5, ADD_FEATURED_5 } from '../../src/graphql/mutation/site.mutation';
-import { Section0 } from "../../src/interfacesV2/siteV2";
+import { Routes, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
 import { slug } from "../../src/utils/function";
 
@@ -16,13 +16,13 @@ interface FormData {
   description: string;
   imageSrc: string;
   imageAlt: string;
-  section_level_1?: string;
+  children_uid_1?: string;
   featured?: any;
   items?: any;
 }
 
 interface Props {
-  section: Section0
+  section: Routes
   url: string
 }
 
@@ -44,7 +44,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
 
   const onSubmit = async (form: FormData) => {
     let data: Section0 | null | any
-    {query.featured5 && section.id
+    {query.featured5 && section.uid
       ?
       (     
         data = {
@@ -52,12 +52,12 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           description: form.description,
           imageSrc: form.imageSrc,
           imageAlt: form.imageAlt,
-          section_level_0: query.section0,
-          section_level_1: query.section1,
-          section_level_2: query.section2,
-          section_level_3: query.section3,
-          section_level_4: query.section4,
-          section_level_5: query.featured5,
+          children_uid_0: query.section0,
+          children_uid_1: query.section1,
+          children_uid_2: query.section2,
+          children_uid_3: query.section3,
+          children_uid_4: query.section4,
+          children_uid_5: query.featured5,
         },
         // console.log(data)
         Swal.fire({
@@ -68,7 +68,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           timer: 1500
         }),
         await graphQLClientS.request(UPDATE_FEATURED_5, { _id: query.id, input: data }),
-        replace(`/${url}`)
+        replace(`${url}`)
       )
       :
       query.featured5
@@ -79,11 +79,11 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           description: form.description,
           imageSrc: form.imageSrc,
           imageAlt: form.imageAlt,
-          section_level_0: query.section0,
-          section_level_1: query.section1,
-          section_level_2: query.section2,
-          section_level_3: query.section3,
-          section_level_4: query.section4,
+          children_uid_0: query.section0,
+          children_uid_1: query.section1,
+          children_uid_2: query.section2,
+          children_uid_3: query.section3,
+          children_uid_4: query.section4,
         },
         // console.log(data)
         Swal.fire({
@@ -94,10 +94,10 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
           timer: 1500
         }),
         await graphQLClientS.request(ADD_FEATURED_5, { _id: query.id, input: data }),
-        push(`/${url}`)
+        push(`${url}`)
       )
       :
-      query.featured4 && section.id
+      query.featured4 && section.uid
         ?
         (     
           data = {
@@ -105,11 +105,11 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.section2,
-            section_level_3: query.section3,
-            section_level_4: query.featured4,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.section2,
+            children_uid_3: query.section3,
+            children_uid_4: query.featured4,
           },
           // console.log(data)
           Swal.fire({
@@ -120,7 +120,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_FEATURED_4, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`${url}`)
 
         )
         :
@@ -132,10 +132,10 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.section2,
-            section_level_3: query.section3,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.section2,
+            children_uid_3: query.section3,
           },
           // console.log(data)
           Swal.fire({
@@ -146,10 +146,10 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_FEATURED_4, { _id: query.id, input: data }),
-          push(`/${url}`)
+          push(`${url}`)
         )
         :
-      query.featured3 && section.id
+      query.featured3 && section.uid
         ?
         (     
           data = {
@@ -157,10 +157,10 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.section2,
-            section_level_3: query.featured3,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.section2,
+            children_uid_3: query.featured3,
           },
           // console.log(data)
           Swal.fire({
@@ -171,7 +171,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_FEATURED_3, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`${url}`)
 
         )
         :
@@ -183,9 +183,9 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.section2,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.section2,
           },
           // console.log(data)
           Swal.fire({
@@ -196,10 +196,10 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_FEATURED_3, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`${url}`)
         )
         :
-      query.featured2 && section.id
+      query.featured2 && section.uid
         ?
         (     
           data = {
@@ -207,9 +207,9 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
-            section_level_2: query.featured2,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
+            children_uid_2: query.featured2,
           },
           // console.log(data)
           Swal.fire({
@@ -220,7 +220,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_FEATURED_2, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`${url}`)
 
         )
         :
@@ -232,8 +232,8 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.section1,
+            children_uid_0: query.section0,
+            children_uid_1: query.section1,
           },
           // console.log(data)
           Swal.fire({
@@ -244,10 +244,10 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_FEATURED_2, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`${url}`)
         )
         :
-      query.featured1 && section.id
+      query.featured1 && section.uid
         ?
         (     
           data = {
@@ -255,8 +255,8 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
-            section_level_1: query.featured1,
+            children_uid_0: query.section0,
+            children_uid_1: query.featured1,
           },
           Swal.fire({
             position: 'center',
@@ -266,7 +266,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(UPDATE_FEATURED_1, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`${url}`)
 
         )
         :
@@ -278,7 +278,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             description: form.description,
             imageSrc: form.imageSrc,
             imageAlt: form.imageAlt,
-            section_level_0: query.section0,
+            children_uid_0: query.section0,
           },
           Swal.fire({
             position: 'center',
@@ -288,7 +288,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
             timer: 1500
           }),
           await graphQLClientS.request(ADD_FEATURED_1, { _id: query.id, input: data }),
-          replace(`/${url}`)
+          replace(`${url}`)
         )
         :
         null
@@ -418,7 +418,7 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xs md:text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                     >
                       {
-                        section.id ? `Updated` : `Created`
+                        section.uid ? `Updated` : `Created`
                       }
                     </button>
                   </div>

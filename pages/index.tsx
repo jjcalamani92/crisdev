@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
-import { Hero, Layout } from '../components'
+import { Layout } from '../components'
 import { Featured } from '../components/feature'
+import { Hero } from '../components/hero'
 import Newsletter from '../components/newsletter'
 
 const Home: NextPage = () => {
@@ -10,7 +11,6 @@ const Home: NextPage = () => {
 			pageDescription='StartUp de Tecnologia'
 			// imageFullUrl={site.logo}
 		>
-			
 			<Hero />
 			{/* <Featured /> */}
 			{/* <Newsletter /> */}

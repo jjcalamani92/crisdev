@@ -5,18 +5,18 @@ import { HeadingDashboard, HeadingForm } from '../../../../../../../../component
 import { FormSection } from '../../../../../../../../components/form/formSection'
 import { GridFeatured, GridItem, GridSection } from '../../../../../../../../components/grid'
 import { LayoutAdmin } from '../../../../../../../../components/LayoutAdmin'
-import { SITE, SITES } from '../../../../../../../../src/graphql/site.query'
-import { ISite, Section0, Section2 } from '../../../../../../../../src/interfacesV2/siteV2'
+import { SITE, SITES, SITE_ROUTE } from '../../../../../../../../src/graphql/query/site.query'
+import { ISite, Routes, Section0 } from '../../../../../../../../src/interfacesV2/siteV2'
 import { graphQLClientS, graphQLClientSS } from '../../../../../../../../src/swr/graphQLClient'
-import { getURL, getURLMutation } from '../../../../../../../../src/utils/function'
+import { getURL } from '../../../../../../../../src/utils/function'
 
 interface Props {
-  section: Section2
+  section: Routes
 }
 
 const Section2: FC<Props> = ({ section }) => {
-  const { query, pathname } = useRouter()
-  const url = getURL(pathname, query)
+  const { query, pathname, asPath } = useRouter()
+  // console.log(getURL(asPath));
   
   return (
     <LayoutAdmin title="Sites">
@@ -27,11 +27,11 @@ const Section2: FC<Props> = ({ section }) => {
           :
           <>
             {
-              section.section_level_3 
+              section.children
                 ?
                 <>
-                  <HeadingDashboard title='Sections' url={url} />
-                  <GridSection data={section.section_level_3}/>
+                  <HeadingDashboard title='Sections' url={asPath} />
+                  <GridSection data={section.children}/>
                 </>
                 :
                 null
@@ -40,7 +40,7 @@ const Section2: FC<Props> = ({ section }) => {
               section.items 
                 ?
                   <>
-                    <HeadingDashboard title='Items' url={`${url}/i`} />
+                    <HeadingDashboard title='Items' url={`${asPath}/i`} />
                     <GridItem data={section.items}/>
                   </>
                 :
@@ -50,7 +50,7 @@ const Section2: FC<Props> = ({ section }) => {
               section.featured 
                 ?
                   <>
-                    <HeadingDashboard title='Promociones' url={`${url}/f`} />
+                    <HeadingDashboard title='Promociones' url={`${asPath}/f`} />
                     <GridFeatured data={section.featured}/>
                   </>
                 :
@@ -59,12 +59,12 @@ const Section2: FC<Props> = ({ section }) => {
           </>
       }
       <HeadingForm title="Section" />
-      <FormSection section={section} url={getURLMutation(pathname, query)}/>
+      <FormSection section={section} url={getURL(asPath)}/>
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { section2 = '', section1 = '', section0 = '', id = '' } = query
-  let section: Section2 | null | any
+  let section: Routes | null | any
   if (section2 === 'new') {
     section = {
       name: "",
@@ -73,10 +73,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       imageAlt: "",
     }
   } else {
-    const data = await graphQLClientS.request(SITE, { _id: id })
-    const section00 = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${section0}`)
-    const section11 = section00.section_level_1.find((data: { href: string; }) => data.href === `${section1}`)
-    section = section11.section_level_2.find((data: { href: string; }) => data.href === `${section2}`)
+    const data = await graphQLClientS.request(SITE_ROUTE, { _id: id })
+    const section00 = data.site.route.find((data: { href: string; }) => data.href === `${section0}`)
+    const section11 = section00.children.find((data: { href: string; }) => data.href === `${section1}`)
+    section = section11.children.find((data: { href: string; }) => data.href === `${section2}`)
   }
   return {
     props: {

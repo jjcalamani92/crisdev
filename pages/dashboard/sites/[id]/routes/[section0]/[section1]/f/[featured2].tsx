@@ -7,27 +7,28 @@ import { FormItem } from '../../../../../../../../components/form/formItem'
 import { FormSection } from '../../../../../../../../components/form/formSection'
 import { GridFeatured, GridItem, GridSection } from '../../../../../../../../components/grid'
 import { LayoutAdmin } from '../../../../../../../../components/LayoutAdmin'
-import { SITE, SITES } from '../../../../../../../../src/graphql/site.query'
-import { ISite, Section0, Item } from '../../../../../../../../src/interfacesV2/siteV2'
+import { SITE, SITES, SITE_ROUTE } from '../../../../../../../../src/graphql/query/site.query'
+import { ISite, Section0, Item, Routes } from '../../../../../../../../src/interfacesV2/siteV2'
 import { graphQLClientS, graphQLClientSS } from '../../../../../../../../src/swr/graphQLClient'
 import { getURL } from '../../../../../../../../src/utils/function'
 
+
 interface Props {
-  featured: Section0
+  featured: Routes
 }
 
 const Featured2: FC<Props> = ({ featured }) => {
-  const { query, pathname } = useRouter()
+  const { query, pathname, asPath } = useRouter()
 
   return (
     <LayoutAdmin title="Sites">
       <HeadingForm title="Featured" />
-      <FormFeatured section={featured} url={getURL(pathname, query)}/>
+      <FormFeatured section={featured}url={getURL(getURL(asPath))}/>
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { featured2 = '', section1 = '', section0 = '', id = '' } = query
-  let featured: Section0 | null | any
+  let featured: Routes | null | any
   if (featured2 === 'new') {
     featured = {
       name: "",
@@ -36,9 +37,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       imageAlt: "",
     }
   } else {
-    const data = await graphQLClientS.request(SITE, { _id: id })
-    const section00 = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${section0}`)
-    const section11 = section00.section_level_1.find((data: { href: string; }) => data.href === `${section1}`)
+    const data = await graphQLClientS.request(SITE_ROUTE, { _id: id })
+    const section00 = data.site.route.find((data: { href: string; }) => data.href === `${section0}`)
+    const section11 = section00.children.find((data: { href: string; }) => data.href === `${section1}`)
     featured = section11.featured.find((data: { href: string; }) => data.href === `${featured2}`)
   }
   return {

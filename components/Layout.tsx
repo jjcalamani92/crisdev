@@ -27,7 +27,6 @@ export const Layout: FC<Props> = ({
 				<title>{title}</title>
 				<meta name="keywords" />
 				<meta name="description" content={pageDescription} />
-
 				<meta property="og:title" content={title} />
 				<meta property="og:description" content={pageDescription} />
 				<meta property="og:type" content="og:product" />

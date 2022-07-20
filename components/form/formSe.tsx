@@ -73,7 +73,7 @@ export const FormCategory: FC<Props> = ({ category }) => {
     // } catch (error) {
     //   console.log({ error })
     // }
-    console.log('file')
+    // console.log('file')
   }
 
 

@@ -5,19 +5,18 @@ import { HeadingDashboard, HeadingForm } from '../../../../../../../components/c
 import { FormSection } from '../../../../../../../components/form/formSection'
 import { GridFeatured, GridItem, GridSection } from '../../../../../../../components/grid'
 import { LayoutAdmin } from '../../../../../../../components/LayoutAdmin'
-import { SITE, SITES } from '../../../../../../../src/graphql/site.query'
-import { ISite, Section0, Section1 } from '../../../../../../../src/interfacesV2/siteV2'
+import { SITE, SITES, SITE_ROUTE } from '../../../../../../../src/graphql/query/site.query'
+import { ISite, Routes, Section0, Section1 } from '../../../../../../../src/interfacesV2/siteV2'
 import { graphQLClientS, graphQLClientSS } from '../../../../../../../src/swr/graphQLClient'
-import { getURL, getURLMutation } from '../../../../../../../src/utils/function'
+import { getURL } from '../../../../../../../src/utils/function'
 
 interface Props {
-  section: Section1
+  section: Routes
 }
 
 const Section1: FC<Props> = ({ section }) => {
-  const { query, pathname } = useRouter()
+  const { query, pathname, asPath } = useRouter()
 
-const url = getURL(pathname, query)
   return (
     <LayoutAdmin title="Sites">
       {
@@ -27,11 +26,11 @@ const url = getURL(pathname, query)
           :
           <>
             {
-              section.section_level_2 
+              section.children
                 ?
                 <>
-                  <HeadingDashboard title='Sections' url={url} />
-                  <GridSection data={section.section_level_2}/>
+                  <HeadingDashboard title='Sections' url={asPath} />
+                  <GridSection data={section.children}/>
                 </>
                 :
                 null
@@ -40,7 +39,7 @@ const url = getURL(pathname, query)
               section.items 
                 ?
                   <>
-                    <HeadingDashboard title='Items' url={`${url}/i`} />
+                    <HeadingDashboard title='Items' url={`${asPath}/i`} />
                     <GridItem data={section.items}/>
                   </>
                 :
@@ -50,7 +49,7 @@ const url = getURL(pathname, query)
               section.featured 
                 ?
                   <>
-                    <HeadingDashboard title='Promociones' url={`${url}/f`} />
+                    <HeadingDashboard title='Promociones' url={`${asPath}/f`} />
                     <GridFeatured data={section.featured} />
                   </>
                 :
@@ -59,7 +58,7 @@ const url = getURL(pathname, query)
           </>
       }
       <HeadingForm title="Section" />
-      <FormSection section={section} url={getURLMutation(pathname, query)}/>
+      <FormSection section={section} url={getURL(asPath)}/>
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
@@ -73,10 +72,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       imageAlt: "",
     }
   } else {
-    const data = await graphQLClientS.request(SITE, { _id: id })
-    const sectino00 = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${section0}`)
-    section = sectino00.section_level_1.find((data: { href: string; }) => data.href === `${section1}`)
-
+    const data = await graphQLClientS.request(SITE_ROUTE, { _id: id })
+    const sectino00 = data.site.route.find((data: { href: string; }) => data.href === `${section0}`)
+    section = sectino00.children.find((data: { href: string; }) => data.href === `${section1}`)
   }
   return {
     props: {

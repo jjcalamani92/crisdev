@@ -1,13 +1,12 @@
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
-import { IResponsive } from "../../src/interfacesV2/crisdev";
-import { Section0, Featured, Item } from '../../src/interfacesV2/siteV2';
+import { Section0, Featured, Item, Routes } from '../../src/interfacesV2/siteV2';
 import { CardFeatured } from "../card/cardFeatured";
 
 import { Main } from "../component";
 
 interface GridFeatured {
-  data: Section0[] | Featured[] | Item[] | undefined
+  data: Routes[] | Featured[] | Item[] | undefined
   // data: Category[] | Section[] | Featured[] | Item[] | IMark[];
 }
 function classNames(...classes: string[]) {

@@ -2,6 +2,7 @@ export interface ISite {
   _id: string
   data: Data
   routes: Route
+  route: Routes[]
   client: string
   type: string
 }
@@ -52,7 +53,7 @@ export interface Section5 extends Section4 {
   section_level_6: any
 }
 export interface Featured {
-  id: string;
+  uid: string;
   name: string;
   href: string;
   description: string;
@@ -60,10 +61,21 @@ export interface Featured {
   imageAlt: string;
 }
 export interface Item {
-  id: string;
+  uid: string;
   name: string;
   href: string;
   description: string;
   imageSrc: string;
   imageAlt: string;
+}
+export interface Routes {
+  uid: string;
+  name: string;
+  href: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  items?: Item[];
+  featured?:Featured[];
+  children?:Routes[];
 }

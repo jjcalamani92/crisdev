@@ -17,7 +17,7 @@ export const slug = (str: string) => {
 		.replace(/ /g, "-");
 }
 
-export const getURL = (pathname: string, query: ParsedUrlQuery) => {
+export const getURLV = (pathname: string, query: ParsedUrlQuery) => {
 	let url = pathname.substring(1).split('/')
 	
 	
@@ -218,8 +218,8 @@ export const getURL = (pathname: string, query: ParsedUrlQuery) => {
 	return url.join('/')
 }
 
-export const getURLMutation = (pathname: string, query: ParsedUrlQuery) => {
-	let url = getURL(pathname, query).substring(0).split('/')
+export const getURL= (pathname: string) => {
+	let url = pathname.split('/')
 	url.length = url.length - 1
 	return url.join('/')
 }

@@ -6,27 +6,27 @@ import { FormItem } from '../../../../../../../../../../../components/form/formI
 import { FormSection } from '../../../../../../../../../../../components/form/formSection'
 import { GridFeatured, GridItem, GridSection } from '../../../../../../../../../../../components/grid'
 import { LayoutAdmin } from '../../../../../../../../../../../components/LayoutAdmin'
-import { SITE, SITES } from '../../../../../../../../../../../src/graphql/site.query'
-import { ISite, Section0, Item } from '../../../../../../../../../../../src/interfacesV2/siteV2'
+import { SITE, SITES } from '../../../../../../../../../../../src/graphql/query/site.query'
+import { ISite, Section0, Item, Routes } from '../../../../../../../../../../../src/interfacesV2/siteV2'
 import { graphQLClientS, graphQLClientSS } from '../../../../../../../../../../../src/swr/graphQLClient'
 import { getURL } from '../../../../../../../../../../../src/utils/function'
 
 interface Props {
-  item: Section0
+  item: Routes
 }
 
 const Item5: FC<Props> = ({ item }) => {
-  const { query, pathname } = useRouter()
+  const { query, pathname, asPath } = useRouter()
 
   return (
     <LayoutAdmin title="Sites">
       <HeadingForm title="Item" />
-      <FormItem section={item} url={getURL(pathname, query)}/>
+      <FormItem section={item} url={getURL(getURL(asPath))}/>
     </LayoutAdmin>)
 }
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { item5 = '',section4 = '',section3 = '',section2 = '', section1 = '', section0 = '', id = '' } = query
-  let item: Section0 | null | any
+  let item: Routes | null | any
   if (item5 === 'new') {
     item = {
       name: "",
@@ -36,11 +36,11 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     }
   } else {
     const data = await graphQLClientS.request(SITE, { _id: id })
-    const section00 = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${section0}`)
-    const section11 = section00.section_level_1.find((data: { href: string; }) => data.href === `${section1}`)
-    const section22 = section11.section_level_2.find((data: { href: string; }) => data.href === `${section2}`)
-    const section33 = section22.section_level_3.find((data: { href: string; }) => data.href === `${section3}`)
-    const section44 = section33.section_level_4.find((data: { href: string; }) => data.href === `${section4}`)
+    const section00 = data.site.route.find((data: { href: string; }) => data.href === `${section0}`)
+    const section11 = section00.children.find((data: { href: string; }) => data.href === `${section1}`)
+    const section22 = section11.children.find((data: { href: string; }) => data.href === `${section2}`)
+    const section33 = section22.children.find((data: { href: string; }) => data.href === `${section3}`)
+    const section44 = section33.children.find((data: { href: string; }) => data.href === `${section4}`)
     item = section44.items.find((data: { href: string; }) => data.href === `${item5}`)
     // item = data.site.routes.section_level_0.find((data: { href: string; }) => data.href === `${item1}`)
     

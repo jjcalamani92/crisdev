@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
-import { IResponsive } from "../../src/interfacesV2/crisdev";
-import { Section0, Featured, Item, ISite } from '../../src/interfacesV2/siteV2';
+
 import { Card, CardSection, CardSite } from "../card";
 import { Main } from "../component";
 

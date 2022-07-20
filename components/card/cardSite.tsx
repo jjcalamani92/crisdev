@@ -13,12 +13,11 @@ interface CardSite {
 }
 
 export const CardSite: FC<CardSite> = ({ data }) => {
-  const { push, pathname, query } = useRouter()
-  const url = getURL(pathname, query)
+  const { push, pathname, query, asPath } = useRouter()
   
   const onDelete = async (id: string) => {
     await graphQLClientS.request(REMOVE_SITE, { _id: id })
-    push(`${url}`)
+    push(`${asPath}`)
 
   }
   const {title, imageSrc, imageAlt} = data.data
@@ -26,7 +25,7 @@ export const CardSite: FC<CardSite> = ({ data }) => {
 
   return (
     <div className="shadow-lg p-2 ">
-      <Link href={`/${url}/${_id}`}>
+      <Link href={`${asPath}/${_id}`}>
         <a>
           <div className="w-full bg-white rounded-sm overflow-hidden leading-none">
             <Image

@@ -63,12 +63,11 @@ export const FormSite: FC<Props> = ({ site, url }) => {
         timer: 1500
       })
       await graphQLClientS.request(CREATE_SITE, { input: form })
-      push(`/${url}`)
+      push(`${url}`)
     }
   }
 
   const onFileSelected = async ({ target }: ChangeEvent<HTMLInputElement>) => {
-    console.log('hola');
     
     // if (!target.files || target.files.length === 0) {
     //   return;

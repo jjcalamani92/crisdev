@@ -26,27 +26,162 @@ export const REMOVE_SITE = gql`
   }
 `;
 
-export const ADD_SECTION_0 = gql`
-  mutation AddSection0($_id:ID!, $input: AddSectionInput0!) {
-    addSection0(_id:$_id, input: $input) {
+export const ADD_CHILDREN_0 = gql`
+  mutation AddChildren0($_id:ID!, $input: AddChildren0!) {
+    addChildren0(_id:$_id, input: $input) {
 			data{
       title
       }
     }
   }
 `;
-export const UPDATE_SECTION_0 = gql`
-  mutation UpdateSection0($_id:ID!, $input: UpdateSectionInput0!) {
-    updateSection0(_id:$_id, input: $input) {
+export const ADD_CHILDREN_1 = gql`
+  mutation AddChildren1($_id:ID!, $input: AddChildren1!) {
+    addChildren1(_id:$_id, input: $input) {
 			data{
       title
       }
     }
   }
 `;
-export const DELETE_SECTION_0 = gql`
-  mutation DeleteSection0($_id: ID!, $input: DeleteSectionInput0!) {
-    deleteSection0(_id: $_id, input: $input) {
+export const ADD_CHILDREN_2 = gql`
+  mutation AddChildren2($_id:ID!, $input: AddChildren2!) {
+    addChildren2(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const ADD_CHILDREN_3 = gql`
+  mutation AddChildren3($_id:ID!, $input: AddChildren3!) {
+    addChildren3(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const ADD_CHILDREN_4 = gql`
+  mutation AddChildren4($_id:ID!, $input: AddChildren4!) {
+    addChildren4(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const ADD_CHILDREN_5 = gql`
+  mutation AddChildren5($_id:ID!, $input: AddChildren5!) {
+    addChildren5(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const UPDATE_CHILDREN_0 = gql`
+  mutation UpdateChildren0($_id:ID!, $input: AddChildren0!) {
+    updateChildren0(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const UPDATE_CHILDREN_1 = gql`
+  mutation UpdateChildren1($_id:ID!, $input: AddChildren1!) {
+    updateChildren1(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const UPDATE_CHILDREN_2 = gql`
+  mutation UpdateChildren2($_id:ID!, $input: AddChildren2!) {
+    updateChildren2(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const UPDATE_CHILDREN_3 = gql`
+  mutation UpdateChildren3($_id:ID!, $input: AddChildren3!) {
+    updateChildren3(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const UPDATE_CHILDREN_4 = gql`
+  mutation UpdateChildren4($_id:ID!, $input: AddChildren4!) {
+    updateChildren4(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const UPDATE_CHILDREN_5 = gql`
+  mutation UpdateChildren5($_id:ID!, $input: AddChildren5!) {
+    updateChildren5(_id:$_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_CHILDREN_0 = gql`
+  mutation DeleteChildren0($_id: ID!, $input: DeleteChildrenInput0!) {
+    deleteChildren0(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_CHILDREN_1 = gql`
+  mutation DeleteChildren1($_id: ID!, $input: DeleteChildrenInput1!) {
+    deleteChildren1(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_CHILDREN_2 = gql`
+  mutation DeleteChildren2($_id: ID!, $input: DeleteChildrenInput2!) {
+    deleteChildren2(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_CHILDREN_3 = gql`
+  mutation DeleteChildren3($_id: ID!, $input: DeleteChildrenInput3!) {
+    deleteChildren3(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_CHILDREN_4 = gql`
+  mutation DeleteChildren4($_id: ID!, $input: DeleteChildrenInput4!) {
+    deleteChildren4(_id: $_id, input: $input) {
+			data{
+      title
+      }
+    }
+  }
+`;
+export const DELETE_CHILDREN_5 = gql`
+  mutation DeleteChildren5($_id: ID!, $input: DeleteChildrenInput5!) {
+    deleteChildren5(_id: $_id, input: $input) {
 			data{
       title
       }
@@ -201,8 +336,8 @@ export const DELETE_SECTION_5 = gql`
 
 
 export const ADD_ITEM_1 = gql`
-mutation AddItem1($_id:ID!, $input: AddSectionInput1!) {
-  addItem1(_id:$_id, input: $input) {
+mutation AddItems1($_id:ID!, $input: AddChildren1!) {
+  addItems1(_id:$_id, input: $input) {
     data{
     title
     }
@@ -210,8 +345,8 @@ mutation AddItem1($_id:ID!, $input: AddSectionInput1!) {
 }
 `;
 export const ADD_ITEM_2 = gql`
-mutation AddItem2($_id:ID!, $input: AddSectionInput2!) {
-  addItem2(_id:$_id, input: $input) {
+mutation AddItems2($_id:ID!, $input: AddChildren2!) {
+  addItems2(_id:$_id, input: $input) {
     data{
     title
     }
@@ -219,8 +354,8 @@ mutation AddItem2($_id:ID!, $input: AddSectionInput2!) {
 }
 `;
 export const ADD_ITEM_3 = gql`
-mutation AddItem3($_id:ID!, $input: AddSectionInput3!) {
-  addItem3(_id:$_id, input: $input) {
+mutation AddItems3($_id:ID!, $input: AddChildren3!) {
+  addItems3(_id:$_id, input: $input) {
     data{
     title
     }
@@ -228,8 +363,8 @@ mutation AddItem3($_id:ID!, $input: AddSectionInput3!) {
 }
 `;
 export const ADD_ITEM_4 = gql`
-mutation AddItem4($_id:ID!, $input: AddSectionInput4!) {
-  addItem4(_id:$_id, input: $input) {
+mutation AddItems4($_id:ID!, $input: AddChildren4!) {
+  addItems4(_id:$_id, input: $input) {
     data{
     title
     }
@@ -237,8 +372,8 @@ mutation AddItem4($_id:ID!, $input: AddSectionInput4!) {
 }
 `;
 export const ADD_ITEM_5 = gql`
-mutation AddItem5($_id:ID!, $input: AddSectionInput5!) {
-  addItem5(_id:$_id, input: $input) {
+mutation AddItems5($_id:ID!, $input: AddChildren5!) {
+  addItems5(_id:$_id, input: $input) {
     data{
     title
     }
@@ -247,8 +382,8 @@ mutation AddItem5($_id:ID!, $input: AddSectionInput5!) {
 `;
 
 export const UPDATE_ITEM_1 = gql`
-mutation UpdateItem1($_id:ID!, $input: UpdateSectionInput1!) {
-  updateItem1(_id:$_id, input: $input) {
+mutation UpdateItems1($_id:ID!, $input: AddChildren1!) {
+  updateItems1(_id:$_id, input: $input) {
     data{
     title
     }
@@ -257,8 +392,8 @@ mutation UpdateItem1($_id:ID!, $input: UpdateSectionInput1!) {
 `;
 
 export const UPDATE_ITEM_2 = gql`
-mutation UpdateItem2($_id:ID!, $input: UpdateSectionInput2!) {
-  updateItem2(_id:$_id, input: $input) {
+mutation UpdateItems2($_id:ID!, $input: AddChildren2!) {
+  updateItems2(_id:$_id, input: $input) {
     data{
     title
     }
@@ -267,8 +402,8 @@ mutation UpdateItem2($_id:ID!, $input: UpdateSectionInput2!) {
 `;
 
 export const UPDATE_ITEM_3 = gql`
-mutation UpdateItem3($_id:ID!, $input: UpdateSectionInput3!) {
-  updateItem3(_id:$_id, input: $input) {
+mutation UpdateItems3($_id:ID!, $input: AddChildren3!) {
+  updateItems3(_id:$_id, input: $input) {
     data{
     title
     }
@@ -276,8 +411,8 @@ mutation UpdateItem3($_id:ID!, $input: UpdateSectionInput3!) {
 }
 `;
 export const UPDATE_ITEM_4 = gql`
-mutation UpdateItem4($_id:ID!, $input: UpdateSectionInput4!) {
-  updateItem4(_id:$_id, input: $input) {
+mutation UpdateItems4($_id:ID!, $input: AddChildren4!) {
+  updateItems4(_id:$_id, input: $input) {
     data{
     title
     }
@@ -285,8 +420,8 @@ mutation UpdateItem4($_id:ID!, $input: UpdateSectionInput4!) {
 }
 `;
 export const UPDATE_ITEM_5 = gql`
-mutation UpdateItem5($_id:ID!, $input: UpdateSectionInput5!) {
-  updateItem5(_id:$_id, input: $input) {
+mutation UpdateItems5($_id:ID!, $input: AddChildren5!) {
+  updateItems5(_id:$_id, input: $input) {
     data{
     title
     }
@@ -295,8 +430,8 @@ mutation UpdateItem5($_id:ID!, $input: UpdateSectionInput5!) {
 `;
 
 export const DELETE_ITEM_1 = gql`
-  mutation DeleteItem1($_id: ID!, $input: DeleteSectionInput1!) {
-    deleteItem1(_id: $_id, input: $input) {
+  mutation DeleteItems1($_id: ID!, $input: DeleteChildrenInput1!) {
+    deleteItems1(_id: $_id, input: $input) {
 			data{
       title
       }
@@ -304,8 +439,8 @@ export const DELETE_ITEM_1 = gql`
   }
 `;
 export const DELETE_ITEM_2 = gql`
-  mutation DeleteItem2($_id: ID!, $input: DeleteSectionInput2!) {
-    deleteItem2(_id: $_id, input: $input) {
+  mutation DeleteItems2($_id: ID!, $input: DeleteChildrenInput2!) {
+    deleteItems2(_id: $_id, input: $input) {
 			data{
       title
       }
@@ -313,8 +448,8 @@ export const DELETE_ITEM_2 = gql`
   }
 `;
 export const DELETE_ITEM_3 = gql`
-  mutation DeleteItem3($_id: ID!, $input: DeleteSectionInput3!) {
-    deleteItem3(_id: $_id, input: $input) {
+  mutation DeleteItems3($_id: ID!, $input: DeleteChildrenInput3!) {
+    deleteItems3(_id: $_id, input: $input) {
 			data{
       title
       }
@@ -322,8 +457,8 @@ export const DELETE_ITEM_3 = gql`
   }
 `;
 export const DELETE_ITEM_4 = gql`
-  mutation DeleteItem4($_id: ID!, $input: DeleteSectionInput4!) {
-    deleteItem4(_id: $_id, input: $input) {
+  mutation DeleteItems4($_id: ID!, $input: DeleteChildrenInput4!) {
+    deleteItems4(_id: $_id, input: $input) {
 			data{
       title
       }
@@ -331,17 +466,16 @@ export const DELETE_ITEM_4 = gql`
   }
 `;
 export const DELETE_ITEM_5 = gql`
-  mutation DeleteItem5($_id: ID!, $input: DeleteSectionInput5!) {
-    deleteItem5(_id: $_id, input: $input) {
+  mutation DeleteItems5($_id: ID!, $input: DeleteChildrenInput5!) {
+    deleteItems5(_id: $_id, input: $input) {
 			data{
       title
       }
     }
   }
 `;
-
 export const ADD_FEATURED_1 = gql`
-mutation AddFeatured1($_id:ID!, $input: AddSectionInput1!) {
+mutation AddFeatured1($_id:ID!, $input: AddChildren1!) {
   addFeatured1(_id:$_id, input: $input) {
     data{
     title
@@ -350,7 +484,7 @@ mutation AddFeatured1($_id:ID!, $input: AddSectionInput1!) {
 }
 `;
 export const ADD_FEATURED_2 = gql`
-mutation AddFeatured2($_id:ID!, $input: AddSectionInput2!) {
+mutation AddFeatured2($_id:ID!, $input: AddChildren2!) {
   addFeatured2(_id:$_id, input: $input) {
     data{
     title
@@ -359,7 +493,7 @@ mutation AddFeatured2($_id:ID!, $input: AddSectionInput2!) {
 }
 `;
 export const ADD_FEATURED_3 = gql`
-mutation AddFeatured3($_id:ID!, $input: AddSectionInput3!) {
+mutation AddFeatured3($_id:ID!, $input: AddChildren3!) {
   addFeatured3(_id:$_id, input: $input) {
     data{
     title
@@ -368,7 +502,7 @@ mutation AddFeatured3($_id:ID!, $input: AddSectionInput3!) {
 }
 `;
 export const ADD_FEATURED_4 = gql`
-mutation AddFeatured4($_id:ID!, $input: AddSectionInput4!) {
+mutation AddFeatured4($_id:ID!, $input: AddChildren4!) {
   addFeatured4(_id:$_id, input: $input) {
     data{
     title
@@ -377,7 +511,7 @@ mutation AddFeatured4($_id:ID!, $input: AddSectionInput4!) {
 }
 `;
 export const ADD_FEATURED_5 = gql`
-mutation AddFeatured5($_id:ID!, $input: AddSectionInput5!) {
+mutation AddFeatured5($_id:ID!, $input: AddChildren5!) {
   addFeatured5(_id:$_id, input: $input) {
     data{
     title
@@ -387,7 +521,7 @@ mutation AddFeatured5($_id:ID!, $input: AddSectionInput5!) {
 `;
 
 export const UPDATE_FEATURED_1 = gql`
-mutation UpdateFeatured1($_id:ID!, $input: UpdateSectionInput1!) {
+mutation UpdateFeatured1($_id:ID!, $input: AddChildren1!) {
   updateFeatured1(_id:$_id, input: $input) {
     data{
     title
@@ -397,7 +531,7 @@ mutation UpdateFeatured1($_id:ID!, $input: UpdateSectionInput1!) {
 `;
 
 export const UPDATE_FEATURED_2 = gql`
-mutation UpdateFeatured2($_id:ID!, $input: UpdateSectionInput2!) {
+mutation UpdateFeatured2($_id:ID!, $input: AddChildren2!) {
   updateFeatured2(_id:$_id, input: $input) {
     data{
     title
@@ -407,7 +541,7 @@ mutation UpdateFeatured2($_id:ID!, $input: UpdateSectionInput2!) {
 `;
 
 export const UPDATE_FEATURED_3 = gql`
-mutation UpdateFeatured3($_id:ID!, $input: UpdateSectionInput3!) {
+mutation UpdateFeatured3($_id:ID!, $input: AddChildren3!) {
   updateFeatured3(_id:$_id, input: $input) {
     data{
     title
@@ -416,7 +550,7 @@ mutation UpdateFeatured3($_id:ID!, $input: UpdateSectionInput3!) {
 }
 `;
 export const UPDATE_FEATURED_4 = gql`
-mutation UpdateFeatured4($_id:ID!, $input: UpdateSectionInput4!) {
+mutation UpdateFeatured4($_id:ID!, $input: AddChildren4!) {
   updateFeatured4(_id:$_id, input: $input) {
     data{
     title
@@ -425,7 +559,7 @@ mutation UpdateFeatured4($_id:ID!, $input: UpdateSectionInput4!) {
 }
 `;
 export const UPDATE_FEATURED_5 = gql`
-mutation UpdateFeatured5($_id:ID!, $input: UpdateSectionInput5!) {
+mutation UpdateFeatured5($_id:ID!, $input: AddChildren5!) {
   updateFeatured5(_id:$_id, input: $input) {
     data{
     title
@@ -435,7 +569,7 @@ mutation UpdateFeatured5($_id:ID!, $input: UpdateSectionInput5!) {
 `;
 
 export const DELETE_FEATURED_1 = gql`
-  mutation DeleteFeatured1($_id: ID!, $input: DeleteSectionInput1!) {
+  mutation DeleteFeatured1($_id: ID!, $input: DeleteChildrenInput1!) {
     deleteFeatured1(_id: $_id, input: $input) {
 			data{
       title
@@ -444,7 +578,7 @@ export const DELETE_FEATURED_1 = gql`
   }
 `;
 export const DELETE_FEATURED_2 = gql`
-  mutation DeleteFeatured2($_id: ID!, $input: DeleteSectionInput2!) {
+  mutation DeleteFeatured2($_id: ID!, $input: DeleteChildrenInput2!) {
     deleteFeatured2(_id: $_id, input: $input) {
 			data{
       title
@@ -453,7 +587,7 @@ export const DELETE_FEATURED_2 = gql`
   }
 `;
 export const DELETE_FEATURED_3 = gql`
-  mutation DeleteFeatured3($_id: ID!, $input: DeleteSectionInput3!) {
+  mutation DeleteFeatured3($_id: ID!, $input: DeleteChildrenInput3!) {
     deleteFeatured3(_id: $_id, input: $input) {
 			data{
       title
@@ -462,7 +596,7 @@ export const DELETE_FEATURED_3 = gql`
   }
 `;
 export const DELETE_FEATURED_4 = gql`
-  mutation DeleteFeatured4($_id: ID!, $input: DeleteSectionInput4!) {
+  mutation DeleteFeatured4($_id: ID!, $input: DeleteChildrenInput4!) {
     deleteFeatured4(_id: $_id, input: $input) {
 			data{
       title
@@ -471,7 +605,7 @@ export const DELETE_FEATURED_4 = gql`
   }
 `;
 export const DELETE_FEATURED_5 = gql`
-  mutation DeleteFeatured5($_id: ID!, $input: DeleteSectionInput5!) {
+  mutation DeleteFeatured5($_id: ID!, $input: DeleteChildrenInput5!) {
     deleteFeatured5(_id: $_id, input: $input) {
 			data{
       title

@@ -3,50 +3,49 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { DELETE_FEATURED_1, DELETE_FEATURED_2, DELETE_FEATURED_3, DELETE_FEATURED_4, DELETE_FEATURED_5} from "../../src/graphql/mutation/site.mutation";
-import { Featured, Item, Section0 } from "../../src/interfacesV2/siteV2";
+import { Featured, Item, Section0, Routes } from '../../src/interfacesV2/siteV2';
 import { graphQLClientS } from "../../src/swr/graphQLClient";
 import { getURL } from "../../src/utils/function";
 import { Button } from "../component";
 
 interface CardFeatured {
-  data: Section0 | Featured | Item
+  data: Routes | Featured | Item
 }
 
 export const CardFeatured: FC<CardFeatured> = ({ data }) => {
-  const {name, href, imageSrc, imageAlt, id} = data
-  const {replace, pathname, query, push} = useRouter()
-  const url = getURL(pathname, query)
+  const {name, href, imageSrc, imageAlt, uid} = data
+  const {replace, pathname, query, push, asPath} = useRouter()
   
-  const onDelete = async (id: string) => {
+  const onDelete = async (uid: string) => {
     {
       query.section4
       ?
-      await graphQLClientS.request(DELETE_FEATURED_5, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': query.section3, 'section_level_4': query.section4, 'section_level_5': id}})
+      await graphQLClientS.request(DELETE_FEATURED_5, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': query.section1, 'children_uid_2': query.section2, 'children_uid_3': query.section3, 'children_uid_4': query.section4, 'children_uid_5': uid}})
       :
       query.section3
       ?
-      await graphQLClientS.request(DELETE_FEATURED_4, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': query.section3, 'section_level_4': id}})
+      await graphQLClientS.request(DELETE_FEATURED_4, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': query.section1, 'children_uid_2': query.section2, 'children_uid_3': query.section3, 'children_uid_4': uid}})
       :
       query.section2
       ?
-      await graphQLClientS.request(DELETE_FEATURED_3, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': query.section2, 'section_level_3': id}})
+      await graphQLClientS.request(DELETE_FEATURED_3, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': query.section1, 'children_uid_2': query.section2, 'children_uid_3': uid}})
       :
       query.section1
       ?
-      await graphQLClientS.request(DELETE_FEATURED_2, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': query.section1, 'section_level_2': id}})
+      await graphQLClientS.request(DELETE_FEATURED_2, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': query.section1, 'children_uid_2': uid}})
       :
       query.section0
       ?
-      await graphQLClientS.request(DELETE_FEATURED_1, { _id: query.id, input: {'section_level_0': query.section0, 'section_level_1': id}})
+      await graphQLClientS.request(DELETE_FEATURED_1, { _id: query.id, input: {'children_uid_0': query.section0, 'children_uid_1': uid}})
       :
       null
     }
-    push(`/${url}`)
+    push(`${asPath}`)
   }
 
   return (
     <div className="shadow-lg p-2 ">
-      <Link href={`/${url}/f/${href}`}>
+      <Link href={`${asPath}/f/${href}`}>
       {/* <Link href={`/${path}/${query.id}/${href}`}> */}
         <a>
           <div className="w-full bg-white rounded-sm overflow-hidden leading-none">
@@ -65,7 +64,7 @@ export const CardFeatured: FC<CardFeatured> = ({ data }) => {
           </div>
         </a>
       </Link>
-      <Button bg="none" content='eliminar' click={() => onDelete(id)} />
+      <Button bg="none" content='eliminar' click={() => onDelete(uid)} />
     </div>
   )
 }
