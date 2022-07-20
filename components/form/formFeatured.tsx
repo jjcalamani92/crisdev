@@ -44,255 +44,394 @@ export const FormFeatured: FC<Props> = ({ section, url }) => {
 
   const onSubmit = async (form: FormData) => {
     let data: Section0 | null | any
-    {query.featured5 && section.uid
-      ?
-      (     
-        data = {
-          name: form.name,
-          description: form.description,
-          imageSrc: form.imageSrc,
-          imageAlt: form.imageAlt,
-          children_uid_0: query.section0,
-          children_uid_1: query.section1,
-          children_uid_2: query.section2,
-          children_uid_3: query.section3,
-          children_uid_4: query.section4,
-          children_uid_5: query.featured5,
-        },
-        // console.log(data)
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Featured Update',
-          showConfirmButton: false,
-          timer: 1500
-        }),
-        await graphQLClientS.request(UPDATE_FEATURED_5, { _id: query.id, input: data }),
-        replace(`${url}`)
-      )
-      :
-      query.featured5
-      ?
-      (     
-        data = {
-          name: form.name,
-          description: form.description,
-          imageSrc: form.imageSrc,
-          imageAlt: form.imageAlt,
-          children_uid_0: query.section0,
-          children_uid_1: query.section1,
-          children_uid_2: query.section2,
-          children_uid_3: query.section3,
-          children_uid_4: query.section4,
-        },
-        // console.log(data)
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Featured Created',
-          showConfirmButton: false,
-          timer: 1500
-        }),
-        await graphQLClientS.request(ADD_FEATURED_5, { _id: query.id, input: data }),
-        push(`${url}`)
-      )
-      :
-      query.featured4 && section.uid
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.section2,
-            children_uid_3: query.section3,
-            children_uid_4: query.featured4,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Featured Update',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(UPDATE_FEATURED_4, { _id: query.id, input: data }),
-          replace(`${url}`)
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: section.uid ? "update Featured" :  "created Featured",
+      showConfirmButton: false,
+      timer: 1500
+    })
+    if (query.featured5 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+        children_uid_4: query.section4,
+        children_uid_5: query.featured5,
+      },
+      await graphQLClientS.request(UPDATE_FEATURED_5, { _id: query.id, input: data }),
+      replace(url)
+      // replace(`${url}/${slug(form.name)}`)
+    } else if (query.featured5) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+        children_uid_4: query.section4,
+      },
+      await graphQLClientS.request(ADD_FEATURED_5, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.featured4 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+        children_uid_4: query.featured4,
+      },
+      await graphQLClientS.request(UPDATE_FEATURED_4, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.featured4) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+      },
+      await graphQLClientS.request(ADD_FEATURED_4, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.featured3 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.featured3,
+      },
+      await graphQLClientS.request(UPDATE_FEATURED_3, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.featured3) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+      },
+      await graphQLClientS.request(ADD_FEATURED_3, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.featured2 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.featured2,
+      },
+      await graphQLClientS.request(UPDATE_FEATURED_2, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.featured2) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+      },
+      await graphQLClientS.request(ADD_FEATURED_2, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.featured1 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.featured1,
+      },
+      await graphQLClientS.request(UPDATE_FEATURED_1, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.featured1) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+      },
+      await graphQLClientS.request(ADD_FEATURED_1, { _id: query.id, input: data }),
+      push(url)
+    } 
 
-        )
-        :
-        query.featured4
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.section2,
-            children_uid_3: query.section3,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Featured Created',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(ADD_FEATURED_4, { _id: query.id, input: data }),
-          push(`${url}`)
-        )
-        :
-      query.featured3 && section.uid
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.section2,
-            children_uid_3: query.featured3,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Featured Update',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(UPDATE_FEATURED_3, { _id: query.id, input: data }),
-          replace(`${url}`)
+    // {query.featured5 && section.uid
+    //   ?
+    //   (     
+    //     data = {
+    //       name: form.name,
+    //       description: form.description,
+    //       imageSrc: form.imageSrc,
+    //       imageAlt: form.imageAlt,
+    //       children_uid_0: query.section0,
+    //       children_uid_1: query.section1,
+    //       children_uid_2: query.section2,
+    //       children_uid_3: query.section3,
+    //       children_uid_4: query.section4,
+    //       children_uid_5: query.featured5,
+    //     },
+    //     // console.log(data)
+    //     Swal.fire({
+    //       position: 'center',
+    //       icon: 'success',
+    //       title: 'Featured Update',
+    //       showConfirmButton: false,
+    //       timer: 1500
+    //     }),
+    //     await graphQLClientS.request(UPDATE_FEATURED_5, { _id: query.id, input: data }),
+    //     replace(`${url}`)
+    //   )
+    //   :
+    //   query.featured5
+    //   ?
+    //   (     
+    //     data = {
+    //       name: form.name,
+    //       description: form.description,
+    //       imageSrc: form.imageSrc,
+    //       imageAlt: form.imageAlt,
+    //       children_uid_0: query.section0,
+    //       children_uid_1: query.section1,
+    //       children_uid_2: query.section2,
+    //       children_uid_3: query.section3,
+    //       children_uid_4: query.section4,
+    //     },
+    //     // console.log(data)
+    //     Swal.fire({
+    //       position: 'center',
+    //       icon: 'success',
+    //       title: 'Featured Created',
+    //       showConfirmButton: false,
+    //       timer: 1500
+    //     }),
+    //     await graphQLClientS.request(ADD_FEATURED_5, { _id: query.id, input: data }),
+    //     push(`${url}`)
+    //   )
+    //   :
+    //   query.featured4 && section.uid
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.section2,
+    //         children_uid_3: query.section3,
+    //         children_uid_4: query.featured4,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Featured Update',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(UPDATE_FEATURED_4, { _id: query.id, input: data }),
+    //       replace(`${url}`)
 
-        )
-        :
-        query.featured3
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.section2,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Featured Created',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(ADD_FEATURED_3, { _id: query.id, input: data }),
-          replace(`${url}`)
-        )
-        :
-      query.featured2 && section.uid
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.featured2,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Featured Update',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(UPDATE_FEATURED_2, { _id: query.id, input: data }),
-          replace(`${url}`)
+    //     )
+    //     :
+    //     query.featured4
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.section2,
+    //         children_uid_3: query.section3,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Featured Created',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(ADD_FEATURED_4, { _id: query.id, input: data }),
+    //       push(`${url}`)
+    //     )
+    //     :
+    //   query.featured3 && section.uid
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.section2,
+    //         children_uid_3: query.featured3,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Featured Update',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(UPDATE_FEATURED_3, { _id: query.id, input: data }),
+    //       replace(`${url}`)
 
-        )
-        :
-        query.featured2
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Featured Created',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(ADD_FEATURED_2, { _id: query.id, input: data }),
-          replace(`${url}`)
-        )
-        :
-      query.featured1 && section.uid
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.featured1,
-          },
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Featured Update',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(UPDATE_FEATURED_1, { _id: query.id, input: data }),
-          replace(`${url}`)
+    //     )
+    //     :
+    //     query.featured3
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.section2,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Featured Created',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(ADD_FEATURED_3, { _id: query.id, input: data }),
+    //       replace(`${url}`)
+    //     )
+    //     :
+    //   query.featured2 && section.uid
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.featured2,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Featured Update',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(UPDATE_FEATURED_2, { _id: query.id, input: data }),
+    //       replace(`${url}`)
 
-        )
-        :
-        query.featured1
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-          },
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Featured Created',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(ADD_FEATURED_1, { _id: query.id, input: data }),
-          replace(`${url}`)
-        )
-        :
-        null
-    }
+    //     )
+    //     :
+    //     query.featured2
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Featured Created',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(ADD_FEATURED_2, { _id: query.id, input: data }),
+    //       replace(`${url}`)
+    //     )
+    //     :
+    //   query.featured1 && section.uid
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.featured1,
+    //       },
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Featured Update',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(UPDATE_FEATURED_1, { _id: query.id, input: data }),
+    //       replace(`${url}`)
+
+    //     )
+    //     :
+    //     query.featured1
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //       },
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Featured Created',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(ADD_FEATURED_1, { _id: query.id, input: data }),
+    //       replace(`${url}`)
+    //     )
+    //     :
+    //     null
+    // }
   }
 
   const onFileSelected = async ({ target }: ChangeEvent<HTMLInputElement>) => {

@@ -140,28 +140,38 @@ export const FormProduct: FC<Props> = ({ product, routes }) => {
     const data = { ...form, price: Number(form.price), discountPrice: Number(form.discountPrice), inStock: Number(form.inStock), site: query.id, route: route }
     // console.log(data);
     const { _id, ...dat } = data
-    
-    if (product._id) {
+    try {
+      if (product._id) {
+        await graphQLClient.request(UPDATE_PRODUCT, {_id: product._id, input: dat })
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Producto Actualizado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        router.replace(getURL(asPath))
+        
+      } else {
+        await graphQLClient.request(CREATE_PRODUCT, { input: data })
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Producto Creado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        router.push(getURL(asPath))
+      }
+    } catch (error: any) {
       Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Producto Actualizado',
-        showConfirmButton: false,
-        timer: 1500
+        icon: 'error',
+        title: 'Oops...',
+        text: error?.response.errors[0].message,
+        footer: '<a href="#">¿Por qué tengo este problema?</a>'
       })
-      await graphQLClient.request(UPDATE_PRODUCT, {_id: product._id, input: dat })
-      router.replace(getURL(asPath))
+      // console.log(error?.response.errors[0].message);
       
-    } else {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Producto Creado',
-        showConfirmButton: false,
-        timer: 1500
-      })
-      await graphQLClient.request(CREATE_PRODUCT, { input: data })
-      router.push(getURL(asPath))
     }
 
   }

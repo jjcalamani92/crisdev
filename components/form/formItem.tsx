@@ -37,6 +37,145 @@ export const FormItem: FC<Props> = ({ section, url }) => {
 
   const onSubmit = async (form: FormData) => {
     let data: Section0 | null | any
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: section.uid ? "update Item" :  "created Item",
+      showConfirmButton: false,
+      timer: 1500
+    })
+    if (query.item5 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+        children_uid_4: query.section4,
+        children_uid_5: query.item5,
+      },
+      await graphQLClientS.request(UPDATE_ITEM_5, { _id: query.id, input: data }),
+      replace(url)
+      // replace(`${url}/${slug(form.name)}`)
+    } else if (query.item5) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+        children_uid_4: query.section4,
+      },
+      await graphQLClientS.request(ADD_ITEM_5, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.item4 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+        children_uid_4: query.item4,
+      },
+      await graphQLClientS.request(UPDATE_ITEM_4, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.item4) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+      },
+      await graphQLClientS.request(ADD_ITEM_4, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.item3 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.item3,
+      },
+      await graphQLClientS.request(UPDATE_ITEM_3, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.item3) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+      },
+      await graphQLClientS.request(ADD_ITEM_3, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.item2 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.item2,
+      },
+      await graphQLClientS.request(UPDATE_ITEM_2, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.item2) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+      },
+      await graphQLClientS.request(ADD_ITEM_2, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.item1 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.item1,
+      },
+      await graphQLClientS.request(UPDATE_ITEM_1, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.item1) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+      },
+      await graphQLClientS.request(ADD_ITEM_1, { _id: query.id, input: data }),
+      push(url)
+    } 
+
     {query.item5 && section.uid
       ?
       (     

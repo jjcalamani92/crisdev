@@ -14,7 +14,7 @@ export const GridProduct: FC<GridProduct> = ({ edges }) => {
     <Main>
       <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 col-span-5 gap-3 md:gap-6`}>
         {edges.map((edge, i) => (
-          <CardProduct article={edge.node.article} key={i} />
+          <CardProduct article={edge.node.article} id={edge.node._id} key={i} />
         ))}
       </div>
     </Main>

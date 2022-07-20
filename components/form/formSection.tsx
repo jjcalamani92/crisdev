@@ -44,315 +44,474 @@ export const FormSection: FC<Props> = ({ section, url }) => {
 
   const onSubmit = async (form: FormData) => {
     let data: Routes | null | any
-    {query.section5 && section.uid
-      ?
-      (     
-        data = {
-          name: form.name,
-          description: form.description,
-          imageSrc: form.imageSrc,
-          imageAlt: form.imageAlt,
-          children_uid_0: query.section0,
-          children_uid_1: query.section1,
-          children_uid_2: query.section2,
-          children_uid_3: query.section3,
-          children_uid_4: query.section4,
-          children_uid_5: query.section5,
-        },
-        // console.log(data)
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Section Update',
-          showConfirmButton: false,
-          timer: 1500
-        }),
-        await graphQLClientS.request(UPDATE_CHILDREN_5, { _id: query.id, input: data }),
-        replace(`${url}/${slug(form.name)}`)
-      )
-      :
-      query.section5
-      ?
-      (     
-        data = {
-          name: form.name,
-          description: form.description,
-          imageSrc: form.imageSrc,
-          imageAlt: form.imageAlt,
-          children_uid_0: query.section0,
-          children_uid_1: query.section1,
-          children_uid_2: query.section2,
-          children_uid_3: query.section3,
-          children_uid_4: query.section4,
-        },
-        // console.log(data)
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Section Created',
-          showConfirmButton: false,
-          timer: 1500
-        }),
-        await graphQLClientS.request(ADD_CHILDREN_5, { _id: query.id, input: data }),
-        push(`${url}`)
-
-      )
-      :
-      query.section4 && section.uid
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.section2,
-            children_uid_3: query.section3,
-            children_uid_4: query.section4,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Section Update',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(UPDATE_CHILDREN_4, { _id: query.id, input: data }),
-          replace(`${url}`)
-          // replace(`${url}/${slug(form.name)}`)
-
-        )
-        :
-        query.section4
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.section2,
-            children_uid_3: query.section3,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Section Created',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(ADD_CHILDREN_4, { _id: query.id, input: data }),
-          push(`${url}`)
-
-        )
-        :
-      query.section3 && section.uid
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.section2,
-            children_uid_3: query.section3,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Section Update',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(UPDATE_CHILDREN_3, { _id: query.id, input: data }),
-          replace(`${url}`)
-
-          // replace(`${url}/${slug(form.name)}`)
-
-        )
-        :
-        query.section3
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.section2,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Section Created',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(ADD_CHILDREN_3, { _id: query.id, input: data }),
-          push(`${url}`)
-
-        )
-        :
-      query.section2 && section.uid
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-            children_uid_2: query.section2,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Section Update',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(UPDATE_CHILDREN_2, { _id: query.id, input: data }),
-          replace(`${url}`)
-
-          // replace(`${url}/${slug(form.name)}`)
-
-        )
-        :
-        query.section2
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Section Created',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(ADD_CHILDREN_2, { _id: query.id, input: data }),
-          push(`${url}`)
-
-        )
-        :
-      query.section1 && section.uid
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-            children_uid_1: query.section1,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Section Update',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(UPDATE_CHILDREN_1, { _id: query.id, input: data }),
-          replace(`${url}`)
-
-          // replace(`${url}/${slug(form.name)}`)
-
-        )
-        :
-        query.section1
-        ?
-        (     
-          data = {
-            name: form.name,
-            description: form.description,
-            imageSrc: form.imageSrc,
-            imageAlt: form.imageAlt,
-            children_uid_0: query.section0,
-          },
-          // console.log(data)
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Section Created',
-            showConfirmButton: false,
-            timer: 1500
-          }),
-          await graphQLClientS.request(ADD_CHILDREN_1, { _id: query.id, input: data }),
-          push(`${url}`)
-        )
-        :
-        query.section0 && section.uid
-          ?
-          (
-            data = {
-              name: form.name,
-              description: form.description,
-              imageSrc: form.imageSrc,
-              imageAlt: form.imageAlt,
-              children_uid_0: query.section0,
-            },
-            // console.log(data)
-            
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Section Update',
-              showConfirmButton: false,
-              timer: 1500
-            }),
-            await graphQLClientS.request(UPDATE_CHILDREN_0, { _id: query.id, input: data }),
-          replace(`${url}`)
-
-            // replace(`${url}/${slug(form.name)}`)
-
-          )
-          :
-          query.section0
-            ?
-            (
-              data = {
-                name: form.name,
-                description: form.description,
-                imageSrc: form.imageSrc,
-                imageAlt: form.imageAlt,
-              },
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Section Created',
-                showConfirmButton: false,
-                timer: 1500
-              }),
-              await graphQLClientS.request(ADD_CHILDREN_0, { _id: query.id, input: data }),
-              push(`${url}`)
-
-            )
-            :
-            null
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: section.uid ? "update Section" :  "created Section",
+      showConfirmButton: false,
+      timer: 1500
+    })
+    if (query.section5 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+        children_uid_4: query.section4,
+        children_uid_5: query.section5,
+      },
+      await graphQLClientS.request(UPDATE_CHILDREN_5, { _id: query.id, input: data }),
+      replace(`${url}/${slug(form.name)}`)
+    } else if (query.section5) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+        children_uid_4: query.section4,
+      },
+      await graphQLClientS.request(ADD_CHILDREN_5, { _id: query.id, input: data }),
+      push(`${url}`)
+    } else if (query.section4 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+        children_uid_4: query.section4,
+      },
+      await graphQLClientS.request(UPDATE_CHILDREN_4, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.section4) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+      },
+      await graphQLClientS.request(ADD_CHILDREN_4, { _id: query.id, input: data }),
+      push(`${url}`)
+    } else if (query.section3 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+        children_uid_3: query.section3,
+      },
+      await graphQLClientS.request(UPDATE_CHILDREN_3, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.section3) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+      },
+      await graphQLClientS.request(ADD_CHILDREN_3, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.section2 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+        children_uid_2: query.section2,
+      },
+      await graphQLClientS.request(UPDATE_CHILDREN_2, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.section2) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+      },
+      await graphQLClientS.request(ADD_CHILDREN_2, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.section1 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+        children_uid_1: query.section1,
+      },
+      await graphQLClientS.request(UPDATE_CHILDREN_1, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.section1) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+      },
+      await graphQLClientS.request(ADD_CHILDREN_1, { _id: query.id, input: data }),
+      push(url)
+    } else if (query.section0 && section.uid) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+        children_uid_0: query.section0,
+      },
+      await graphQLClientS.request(UPDATE_CHILDREN_0, { _id: query.id, input: data }),
+      // replace(`${url}/${slug(form.name)}`)
+      replace(url)
+    } else if (query.section0) {
+      data = {
+        name: form.name,
+        description: form.description,
+        imageSrc: form.imageSrc,
+        imageAlt: form.imageAlt,
+      },
+      await graphQLClientS.request(ADD_CHILDREN_0, { _id: query.id, input: data }),
+      push(url)
     }
+
+
+    // {query.section5 && section.uid
+    //   ?
+    //   (     
+    //     data = {
+    //       name: form.name,
+    //       description: form.description,
+    //       imageSrc: form.imageSrc,
+    //       imageAlt: form.imageAlt,
+    //       children_uid_0: query.section0,
+    //       children_uid_1: query.section1,
+    //       children_uid_2: query.section2,
+    //       children_uid_3: query.section3,
+    //       children_uid_4: query.section4,
+    //       children_uid_5: query.section5,
+    //     },
+    //     // console.log(data)
+    //     Swal.fire({
+    //       position: 'center',
+    //       icon: 'success',
+    //       title: 'Section Update',
+    //       showConfirmButton: false,
+    //       timer: 1500
+    //     }),
+    //     await graphQLClientS.request(UPDATE_CHILDREN_5, { _id: query.id, input: data }),
+    //     replace(`${url}/${slug(form.name)}`)
+    //   )
+    //   :
+    //   query.section5
+    //   ?
+    //   (     
+    //     data = {
+    //       name: form.name,
+    //       description: form.description,
+    //       imageSrc: form.imageSrc,
+    //       imageAlt: form.imageAlt,
+    //       children_uid_0: query.section0,
+    //       children_uid_1: query.section1,
+    //       children_uid_2: query.section2,
+    //       children_uid_3: query.section3,
+    //       children_uid_4: query.section4,
+    //     },
+    //     // console.log(data)
+    //     Swal.fire({
+    //       position: 'center',
+    //       icon: 'success',
+    //       title: 'Section Created',
+    //       showConfirmButton: false,
+    //       timer: 1500
+    //     }),
+    //     await graphQLClientS.request(ADD_CHILDREN_5, { _id: query.id, input: data }),
+    //     push(`${url}`)
+
+    //   )
+    //   :
+    //   query.section4 && section.uid
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.section2,
+    //         children_uid_3: query.section3,
+    //         children_uid_4: query.section4,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Section Update',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(UPDATE_CHILDREN_4, { _id: query.id, input: data }),
+    //       replace(`${url}`)
+    //       // replace(`${url}/${slug(form.name)}`)
+
+    //     )
+    //     :
+    //     query.section4
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.section2,
+    //         children_uid_3: query.section3,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Section Created',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(ADD_CHILDREN_4, { _id: query.id, input: data }),
+    //       push(`${url}`)
+
+    //     )
+    //     :
+    //   query.section3 && section.uid
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.section2,
+    //         children_uid_3: query.section3,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Section Update',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(UPDATE_CHILDREN_3, { _id: query.id, input: data }),
+    //       replace(`${url}`)
+
+    //       // replace(`${url}/${slug(form.name)}`)
+
+    //     )
+    //     :
+    //     query.section3
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.section2,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Section Created',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(ADD_CHILDREN_3, { _id: query.id, input: data }),
+    //       push(`${url}`)
+
+    //     )
+    //     :
+    //   query.section2 && section.uid
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //         children_uid_2: query.section2,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Section Update',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(UPDATE_CHILDREN_2, { _id: query.id, input: data }),
+    //       replace(`${url}`)
+
+    //       // replace(`${url}/${slug(form.name)}`)
+
+    //     )
+    //     :
+    //     query.section2
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Section Created',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(ADD_CHILDREN_2, { _id: query.id, input: data }),
+    //       push(`${url}`)
+
+    //     )
+    //     :
+    //   query.section1 && section.uid
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //         children_uid_1: query.section1,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Section Update',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(UPDATE_CHILDREN_1, { _id: query.id, input: data }),
+    //       replace(`${url}`)
+
+    //       // replace(`${url}/${slug(form.name)}`)
+
+    //     )
+    //     :
+    //     query.section1
+    //     ?
+    //     (     
+    //       data = {
+    //         name: form.name,
+    //         description: form.description,
+    //         imageSrc: form.imageSrc,
+    //         imageAlt: form.imageAlt,
+    //         children_uid_0: query.section0,
+    //       },
+    //       // console.log(data)
+    //       Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: 'Section Created',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       }),
+    //       await graphQLClientS.request(ADD_CHILDREN_1, { _id: query.id, input: data }),
+    //       push(`${url}`)
+    //     )
+    //     :
+    //     query.section0 && section.uid
+    //       ?
+    //       (
+    //         data = {
+    //           name: form.name,
+    //           description: form.description,
+    //           imageSrc: form.imageSrc,
+    //           imageAlt: form.imageAlt,
+    //           children_uid_0: query.section0,
+    //         },
+    //         // console.log(data)
+            
+    //         Swal.fire({
+    //           position: 'center',
+    //           icon: 'success',
+    //           title: 'Section Update',
+    //           showConfirmButton: false,
+    //           timer: 1500
+    //         }),
+    //         await graphQLClientS.request(UPDATE_CHILDREN_0, { _id: query.id, input: data }),
+    //       replace(`${url}`)
+
+    //         // replace(`${url}/${slug(form.name)}`)
+
+    //       )
+    //       :
+    //       query.section0
+    //         ?
+    //         (
+    //           data = {
+    //             name: form.name,
+    //             description: form.description,
+    //             imageSrc: form.imageSrc,
+    //             imageAlt: form.imageAlt,
+    //           },
+    //           Swal.fire({
+    //             position: 'center',
+    //             icon: 'success',
+    //             title: 'Section Created',
+    //             showConfirmButton: false,
+    //             timer: 1500
+    //           }),
+    //           await graphQLClientS.request(ADD_CHILDREN_0, { _id: query.id, input: data }),
+    //           push(`${url}`)
+
+    //         )
+    //         :
+    //         null
+    // }
   }
 
   const onFileSelected = async ({ target }: ChangeEvent<HTMLInputElement>) => {

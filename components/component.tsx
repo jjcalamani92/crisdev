@@ -29,7 +29,7 @@ interface Button {
 export const Button: FC<Button> = ({ content, click, bg }) => {
 
   return (
-    <button className={`w-full px-4 py-2 font-medium tracking-wide  text-xs md:text-sm capitalize transition-colors duration-200 transform  rounded-md  focus:outline-none  
+    <button className={`w-full px-4 py-2 font-medium tracking-wide  text-xs md:text-sm capitalize transition-colors duration-200  rounded-md  focus:outline-none  
     ${bg === "none" ? 'border border-orange-500  hover:bg-orange-500 bg-white    text-orange-600 hover:text-white' : 'hover:bg-orange-600 bg-orange-500 text-white'}
     `} onClick={() => click()}>
       {content}
@@ -220,7 +220,7 @@ export const HeadingDashboard: FC<HeadingDashboard> = ({ title, url }) => {
       </Transition.Root>
 
       <Main>
-        <div className="relative z-10 flex items-baseline justify-between py-6">
+        <div className="z-10 flex items-baseline justify-between py-6">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">{title}</h1>
 
           <div className="grid grid-cols-1">
@@ -281,7 +281,7 @@ export const HeadingDashboard: FC<HeadingDashboard> = ({ title, url }) => {
             </button> */}
             <button className="transition duration-150 ease-in-out hover:bg-orange-600 focus:outline-none border bg-orange-500 rounded text-white px-8 
             py-2 text-md sm:text-sm"
-            onClick={() => redirect()}
+              onClick={() => redirect()}
             >
               <div className="hidden sm:flex">
                 Crear

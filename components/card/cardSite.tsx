@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
+import Swal from "sweetalert2";
 import { REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
 import { Featured, ISite, Item, Section0 } from "../../src/interfacesV2/siteV2";
 import { graphQLClientS } from "../../src/swr/graphQLClient";
@@ -16,9 +17,20 @@ export const CardSite: FC<CardSite> = ({ data }) => {
   const { push, pathname, query, asPath } = useRouter()
   
   const onDelete = async (id: string) => {
-    await graphQLClientS.request(REMOVE_SITE, { _id: id })
-    push(`${asPath}`)
-
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await graphQLClientS.request(REMOVE_SITE, { _id: id })
+        push(`${asPath}`)
+      }
+    })
   }
   const {title, imageSrc, imageAlt} = data.data
   const {_id} = data

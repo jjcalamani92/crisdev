@@ -2,27 +2,39 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { REMOVE_SITE } from "../../src/graphql/mutation/site.mutation";
 import { Article } from "../../src/interfacesV2/wear";
-import { Featured, ISite, Item, Section0 } from "../../src/interfacesV2/siteV2";
-import { graphQLClientS } from "../../src/swr/graphQLClient";
-import { getURL } from "../../src/utils/function";
+import { graphQLClient, graphQLClientP, graphQLClientS } from "../../src/swr/graphQLClient";
 import { Button } from "../component";
+import Swal from "sweetalert2";
+import { REMOVE_PRODUCT } from '../../src/graphql/mutation/wear.mutation';
 
 interface CardProduct {
   article: Article;
+  id: string
 }
 
-export const CardProduct: FC<CardProduct> = ({ article }) => {
+export const CardProduct: FC<CardProduct> = ({ article, id }) => {
 
   
   const { push, pathname, query, asPath } = useRouter()
-
-  
+    
   const { title, slug, image } = article
   const onDelete = async (id: string) => {
-    await graphQLClientS.request(REMOVE_SITE, { _id: id })
-    push(`${asPath}`)
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await graphQLClient.request(REMOVE_PRODUCT, { _id: id })
+        push(asPath)
+      }
+    })
+    
 
   }
   return (
@@ -45,7 +57,7 @@ export const CardProduct: FC<CardProduct> = ({ article }) => {
           </div>
         </a>
       </Link>
-      <Button bg="none" content='eliminar' click={() => onDelete('s')} />
+      <Button bg="none" content='eliminar' click={() => onDelete(id)} />
     </div>
   )
 }
