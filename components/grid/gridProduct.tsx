@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
-import { Edges } from "../../src/interfacesV2/Wear";
+import { Edges } from "../../src/interfacesV2/wear";
 
 import { CardProduct } from "../card/cardProducts";
 import { Main } from "../component";
