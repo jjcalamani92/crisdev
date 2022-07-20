@@ -33,13 +33,20 @@ const Sites: FC<Props> = ({ sitesAll }) => {
       <GridSite data={sitesAll} />
     </LayoutAdmin>)
 }
-
-export const getStaticProps: GetStaticProps = async ({params}) => {
-  const { sitesAll } = await graphQLClientS.request(SITES)
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { sitesAll }  = await graphQLClientS.request(SITES)
   return {
     props: {
       sitesAll
     },
   };
 }
+// export const getStaticProps: GetStaticProps = async ({params}) => {
+//   const { sitesAll } = await graphQLClientS.request(SITES)
+//   return {
+//     props: {
+//       sitesAll
+//     },
+//   };
+// }
 export default Sites
