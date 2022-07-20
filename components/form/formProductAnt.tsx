@@ -22,7 +22,7 @@ import { ImageUploader } from '../ant/image';
 // import { CreateProductInput } from '../../src/interfacesV2/wear';
 import { UploadImage } from '../ant/upload';
 import { UploadFile } from 'antd/es/upload';
-import { CreateProductInput } from '../../src/interfacesV2';
+import { CreateProductInput } from '../../src/interfacesV2/wear';
 const { Option } = Select;
 // export const routes = [
 //   {

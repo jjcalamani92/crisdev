@@ -4,7 +4,7 @@ import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { CREATE_PRODUCT, UPDATE_PRODUCT } from "../../src/graphql/mutation/wear.mutation";
-import { Category, Featured, IMark, Item, Section } from "../../src/interfaces";
+
 
 import SortableList, { SortableItem } from "react-easy-sort";
 import { Button } from "../component";
@@ -14,7 +14,7 @@ import { Cascader } from "antd";
 import { routes } from "./formAnt";
 import axios from "axios";
 import Input from "antd/lib/input/Input";
-import { CreateProductInput } from "../../src/interfacesV2/wear";
+import { CreateProductInput, IMark } from "../../src/interfacesV2/wear";
 import { getURL } from "../../src/utils/function";
 
 
