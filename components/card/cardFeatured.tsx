@@ -19,13 +19,13 @@ export const CardFeatured: FC<CardFeatured> = ({ data }) => {
 
   const onDelete = async (uid: string) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Está seguro?',
+      text: "¡No podrás revertir esto!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: '¡Sí, bórralo!'
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire(

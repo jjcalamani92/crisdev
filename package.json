@@ -17,6 +17,7 @@
     "@headlessui/react": "1.6.1",
     "@heroicons/react": "^1.0.6",
     "antd": "^4.21.7",
+    "antd-img-crop": "^4.2.3",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",

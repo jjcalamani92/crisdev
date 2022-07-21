@@ -21,8 +21,16 @@ import { Main } from '../component';
 import { ImageUploader } from '../ant/image';
 // import { CreateProductInput } from '../../src/interfacesV2/wear';
 import { UploadImage } from '../ant/upload';
-import { UploadFile } from 'antd/es/upload';
+import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
+
 import { CreateProductInput } from '../../src/interfacesV2/wear';
+import { ImageUploads } from '../ant/imageUpload';
+import { ImageU } from '../ant/imageU';
+import { useRouter } from 'next/router';
+import { graphQLClient } from '../../src/swr/graphQLClient';
+import { CREATE_PRODUCT, UPDATE_PRODUCT } from '../../src/graphql/mutation/wear.mutation';
+import Swal from 'sweetalert2';
+import { getURL } from '../../src/utils/function';
 const { Option } = Select;
 // export const routes = [
 //   {
@@ -120,35 +128,61 @@ interface Props {
 }
 
 export const FormProductAnt: FC<Props> = ({ product, routes }) => {
-
-
   const [form] = Form.useForm();
-  // console.log(product.imageSrc);
-  const images: UploadFile[] = [
-    {
-      uid: "2",
-      name: "fisdfo",
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: "3",
-      name: "fisdfo",
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-  ]
-
-  const [image, setImage] = useState<UploadFile[]>(images)
+  const { asPath, query, replace, push } = useRouter()
+  const [image, setImage] = useState<UploadFile[]>(product.imageSrc)
   const [route, setRoute] = useState()
-  useEffect(() => {
-  }, [])
+
 
   const onChangeRoute = (value: any, selectedOptions: any) => {
     setRoute(selectedOptions.map((data: { label: string; }) => ({ name: data.label })));
   };
 
 
-  const onFinish = (values: any) => {
-    console.log('Received values of form: ', { ...values, image });
+  const onFinish = async (values: any) => {
+    // console.log('Received values of form: ', { ...values, image });
+    let data = {
+      ...values, site: query.id, imageSrc: image.map(news => (
+        news.response
+          ?
+          news.response.url
+          :
+          news.url
+      )), specs: ["hola mundo", "w"], tags: ["a", "b", "c"]
+    }
+
+    try {
+      if (product._id) {
+        await graphQLClient.request(UPDATE_PRODUCT, { _id: product._id, input: data })
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Producto Actualizado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        replace(getURL(asPath))
+
+      } else {
+        await graphQLClient.request(CREATE_PRODUCT, { input: data })
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Producto Creado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        push(getURL(asPath))
+      }
+    } catch (error: any) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error?.response.errors[0].message,
+        footer: '<a href="#">¿Por qué tengo este problema?</a>'
+      })
+    }
+
   };
 
   const [autoCompleteResult, setAutoCompleteResult] = useState(['']);
@@ -179,7 +213,7 @@ export const FormProductAnt: FC<Props> = ({ product, routes }) => {
         className='p-6'
       >
 
-        <div className="p-6 sm:shadow sm:rounded-md sm:overflow-hidden">
+        <div className=" sm:p-6 sm:shadow sm:rounded-md sm:overflow-hidden">
           <div className="grid grid-cols-12 gap-3 sm:gap-4 col-span-2">
 
             <Form.Item
@@ -238,21 +272,21 @@ export const FormProductAnt: FC<Props> = ({ product, routes }) => {
                 style={{ width: "100%" }}
               />
             </Form.Item>
-            <Form.Item label="Precio" className='col-span-4'>
+            <Form.Item label="Precio" className='col-span-6 lg:col-span-4'>
               <Form.Item name="price" noStyle >
                 <InputNumber min={1} max={10} />
               </Form.Item>
               <span className="ant-form-text"> Bs</span>
             </Form.Item>
 
-            <Form.Item label="Precio de Descuento" className='col-span-4'>
+            <Form.Item label="Precio de Descuento" className='col-span-6 lg:col-span-4'>
               <Form.Item name="discountPrice" noStyle >
                 <InputNumber min={1} max={10} />
               </Form.Item>
               <span className="ant-form-text"> Bs</span>
             </Form.Item>
 
-            <Form.Item label="Inventario" className='col-span-4'>
+            <Form.Item label="Inventario" className='col-span-6 lg:col-span-4'>
               <Form.Item name="inStock" noStyle >
                 <InputNumber min={1} max={10} />
               </Form.Item>
@@ -272,10 +306,10 @@ export const FormProductAnt: FC<Props> = ({ product, routes }) => {
               <Input.TextArea showCount maxLength={100} />
             </Form.Item>
 
-            
 
-            <Form.Item name="featured" label="Promociones" className='col-span-4'>
-              <Radio.Group>
+
+            <Form.Item name="featured" label="Promociones" className='col-span-12 flex' >
+              <Radio.Group className=''>
                 <Radio value="a">descuentos marzo</Radio>
                 <Radio value="b">descuentos abril</Radio>
                 <Radio value="c">descuentos mayo</Radio>
@@ -283,13 +317,16 @@ export const FormProductAnt: FC<Props> = ({ product, routes }) => {
             </Form.Item>
 
             <Form.Item
-              name="image"
               label="Upload"
               className='col-span-12'
               valuePropName="fileList"
               getValueFromEvent={normFile}
+              style={{ width: "auto" }}
             >
-              <ImageUploader image={image} setImage={setImage} />
+              {/* <ImageUploader image={image} setImage={setImage} /> */}
+              {/* <ImageUploads image={images} setImage={setImage} />
+               */}
+              <ImageU image={image} setImage={setImage} />
             </Form.Item>
 
             {/* <Form.List
@@ -370,32 +407,14 @@ export const FormProductAnt: FC<Props> = ({ product, routes }) => {
               </Button>
             </Form.Item> */}
           </div>
+          <Form.Item >
+            <Button type="primary" htmlType="submit">
+              {
+                product._id ? `Actualizar` : `Crear`
+              }
+            </Button>
+          </Form.Item>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <Form.Item >
-          <Button type="primary" htmlType="submit">
-            Create
-          </Button>
-        </Form.Item>
       </Form>
     </Main>
   );

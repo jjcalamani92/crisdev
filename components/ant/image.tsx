@@ -18,11 +18,14 @@ const getBase64 = (file: RcFile): Promise<string> =>
   }
 
 
+  
 export const ImageUploader:FC<Props> = ({setImage, image}) => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
-  const [fileList, setFileList] = useState<UploadFile[]>(image);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  // console.log(fileList);
+  
   // useEffect(() => {
   //   setFileList(image)
   // }, [])
@@ -51,11 +54,11 @@ export const ImageUploader:FC<Props> = ({setImage, image}) => {
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
 
     setFileList(newFileList);
-    image.push({
-      name: "dfg",
-      uid:"123",
-      url: newFileList[newFileList.length-1].response?.url
-    })
+    // image.push({
+    //   name: "dfg",
+    //   uid:"123",
+    //   url: newFileList[newFileList.length-1].response?.url
+    // })
     // setImage(newFileList.map(news => ({
     //   name: "dfg",
     //   uid:"123",
@@ -79,6 +82,7 @@ export const ImageUploader:FC<Props> = ({setImage, image}) => {
         fileList={fileList}
         onPreview={handlePreview}
         onChange={handleChange}
+        multiple={true}
       >
         {fileList.length >= 8 ? null : uploadButton}
       </Upload>

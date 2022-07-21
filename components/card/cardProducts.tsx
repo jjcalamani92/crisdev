@@ -21,13 +21,13 @@ export const CardProduct: FC<CardProduct> = ({ article, id }) => {
   const { title, slug, image } = article
   const onDelete = async (id: string) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Está seguro?',
+      text: "¡No podrás revertir esto!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: '¡Sí, bórralo!'
     }).then(async (result) => {
       if (result.isConfirmed) {
         await graphQLClient.request(REMOVE_PRODUCT, { _id: id })

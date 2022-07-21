@@ -144,7 +144,7 @@ export interface CreateProductInput {
   site: string;
 
   specs:string[];
-  imageSrc:string[];
+  imageSrc:any[];
   tags:string[];
   route:string[];
 }

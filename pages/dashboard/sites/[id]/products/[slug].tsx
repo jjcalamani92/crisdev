@@ -9,6 +9,7 @@ import { CreateProductInput } from '../../../../../src/interfacesV2/wear'
 import { ISite, Routes, Section0 } from '../../../../../src/interfacesV2/siteV2'
 import { graphQLClientP, graphQLClientS, graphQLClientSS } from '../../../../../src/swr/graphQLClient'
 import { getURL,  } from '../../../../../src/utils/function'
+import { uuidv4 } from '../../../../../src/utils/uuid';
 
 interface Props {
   product: CreateProductInput
@@ -23,7 +24,7 @@ const Slug:FC<Props> = ({ product, route }) => {
     <LayoutAdmin title="Sites">
 
       <HeadingForm title="Product" />
-      <FormProduct product={product} routes={route}/>
+      {/* <FormProduct product={product} routes={route}/> */}
       <FormProductAnt product={product} routes={route}/>
     </LayoutAdmin>
   )
@@ -60,7 +61,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       inStock: data.wearBySlug.article.inStock,
       featured: data.wearBySlug.article.featured.name,
       specs: data.wearBySlug.article.specs.map((data: {text: string}) => data.text),
-      imageSrc: data.wearBySlug.article.image.map((data: {imageSrc: string}) => data.imageSrc),
+      imageSrc: data.wearBySlug.article.image.map((data: {imageSrc: string}, i:number) =>({ 
+        uid: `img${i}`, name:`img${i}.png`, url: data.imageSrc})),
       tags: data.wearBySlug.article.tags.map((data: {text: string}) => data.text),
       route: data.wearBySlug.article.route.map((data: {name: string}) => data.name),
     }

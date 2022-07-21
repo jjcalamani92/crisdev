@@ -2,27 +2,11 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload } from 'antd';
 import type { RcFile, UploadProps } from 'antd/es/upload';
 import type { UploadFile } from 'antd/es/upload/interface';
-import React, { FC, SetStateAction, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
+import SortableList, { SortableItem } from 'react-easy-sort';
+import arrayMove from "array-move";
+import Image from 'next/image';
 
-export interface UploadFileI<T = any> {
-  uid: string;
-  size?: number;
-  name: string;
-  fileName?: string;
-  lastModified?: number;
-  lastModifiedDate?: Date;
-  url?: string;
-  percent?: number;
-  thumbUrl?: string;
-  crossOrigin?: React.ImgHTMLAttributes<HTMLImageElement>['crossOrigin'];
-  originFileObj?: RcFile;
-  response?: T;
-  error?: any;
-  linkProps?: any;
-  type?: string;
-  xhr?: T;
-  preview?: string;
-}
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -32,27 +16,18 @@ const getBase64 = (file: RcFile): Promise<string> =>
     reader.onerror = error => reject(error);
   });
 
-  interface Props {
-    image: UploadFile[]
-    setImage: any
-  }
+interface Props {
+  image: UploadFile[]
+  setImage: any
+}
 
-
-export const ImageUploader:FC<Props> = ({setImage, image}) => {
+export const ImageUploads: FC<Props> = ({ setImage, image }) => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
   const [fileList, setFileList] = useState<UploadFile[]>(image);
-  // useEffect(() => {
-  //   setFileList(image)
-  // }, [])
-  console.log(previewTitle);
-  console.log(fileList);
-  
-  // const url = fileList.map(news => ({url: news.response?.url}));
-  // console.log(url);
+  console.log('fileList', fileList);
 
-  
   const handleCancel = () => setPreviewVisible(false);
 
   const handlePreview = async (file: UploadFile) => {
@@ -64,44 +39,46 @@ export const ImageUploader:FC<Props> = ({setImage, image}) => {
     setPreviewVisible(true);
     setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf('/') + 1));
   };
+  console.log('image', image);
   
-  function generarResponse({ response }:any) {
-    return response;
-  }
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
-
-    setFileList(newFileList);
-    setImage(newFileList.map(news => ({
-      name: "dfg",
-      uid:"123",
-      url: news.response?.url
-    })))
-    // console.log();
+    setFileList(newFileList)
+    
+    setImage(newFileList.map(news => (
+      news.response
+        ?
+        {
+          url: news.response.url
+        }
+        : 
+        {
+          url: news.url 
+        }
+    )))
   }
-
-
   const uploadButton = (
     <div>
       <PlusOutlined />
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+
   return (
     <>
-      <Upload
-        action={`${process.env.APIUP_URL}/api/upload/image`}
-        listType="picture-card"
-        fileList={fileList}
-        onPreview={handlePreview}
-        onChange={handleChange}
-      >
-        {fileList.length >= 8 ? null : uploadButton}
-      </Upload>
-      {/* <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
-        <img alt="example" style={{ width: '100%' }} src={previewImage} />
-      </Modal> */}
+      
+            <Upload
+              action={`${process.env.APIUP_URL}/api/upload/image`}
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChange}
+              beforeUpload={() => false}
+            >
+              {fileList.length >= 8 ? null : uploadButton}
+            </Upload>
+            <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
+              <img alt="example" style={{ width: '100%' }} src={previewImage} />
+            </Modal>
     </>
   );
 };
-
-

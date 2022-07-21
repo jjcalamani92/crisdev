@@ -170,10 +170,7 @@ export const FormProduct: FC<Props> = ({ product, routes }) => {
         text: error?.response.errors[0].message,
         footer: '<a href="#">¿Por qué tengo este problema?</a>'
       })
-      // console.log(error?.response.errors[0].message);
-      
     }
-
   }
 
   const onFileSelected = async ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -646,7 +643,7 @@ export const FormProduct: FC<Props> = ({ product, routes }) => {
                                 <SortableItem key={i}>
                                   <div className="grid grid-cols-1 gap-2"
                                   >
-                                    <Image
+                                    {/* <Image
                                       src={item}
                                       alt="image"
                                       height={250}
@@ -654,7 +651,7 @@ export const FormProduct: FC<Props> = ({ product, routes }) => {
                                       layout="responsive"
                                       objectFit="contain"
                                       className="mb-10"
-                                    />
+                                    /> */}
                                     <Button content="eliminar" click={() => onDeleteImage(item)} />
                                   </div>
                                 </SortableItem>
