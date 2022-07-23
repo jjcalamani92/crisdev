@@ -15,17 +15,8 @@ interface Props {
 const fetcher = (query: RequestDocument) => request(`${process.env.APIS_URL}/graphql`, query)
 
 const Sites: FC<Props> = ({ sitesAll }) => {
-  // const { data, error, isValidating } = useSWR(SITES, fetcher)
-  // if (isValidating) {
-  //   console.log('cargando');
-  // }
   const { query, pathname } = useRouter()
-  
-  const responsive = {
-    sm: "2",
-    md: "3",
-    lg: "6"
-  }
+
 
   return (
     <LayoutAdmin title="Sites">
@@ -33,6 +24,7 @@ const Sites: FC<Props> = ({ sitesAll }) => {
       <GridSite data={sitesAll} />
     </LayoutAdmin>)
 }
+
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { sitesAll }  = await graphQLClientS.request(SITES)
   return {

@@ -27,7 +27,7 @@ export const REMOVE_SITE = gql`
 `;
 
 export const ADD_CHILDREN_0 = gql`
-  mutation AddChildren0($_id:ID!, $input: AddChildren0!) {
+  mutation AddChildren0($_id:ID!, $input: AddChildren!) {
     addChildren0(_id:$_id, input: $input) {
 			data{
       title
@@ -36,7 +36,7 @@ export const ADD_CHILDREN_0 = gql`
   }
 `;
 export const ADD_CHILDREN_1 = gql`
-  mutation AddChildren1($_id:ID!, $input: AddChildren1!) {
+  mutation AddChildren1($_id:ID!, $input: AddChildren!) {
     addChildren1(_id:$_id, input: $input) {
 			data{
       title
@@ -45,7 +45,7 @@ export const ADD_CHILDREN_1 = gql`
   }
 `;
 export const ADD_CHILDREN_2 = gql`
-  mutation AddChildren2($_id:ID!, $input: AddChildren2!) {
+  mutation AddChildren2($_id:ID!, $input: AddChildren!) {
     addChildren2(_id:$_id, input: $input) {
 			data{
       title
@@ -54,7 +54,7 @@ export const ADD_CHILDREN_2 = gql`
   }
 `;
 export const ADD_CHILDREN_3 = gql`
-  mutation AddChildren3($_id:ID!, $input: AddChildren3!) {
+  mutation AddChildren3($_id:ID!, $input: AddChildren!) {
     addChildren3(_id:$_id, input: $input) {
 			data{
       title
@@ -63,7 +63,7 @@ export const ADD_CHILDREN_3 = gql`
   }
 `;
 export const ADD_CHILDREN_4 = gql`
-  mutation AddChildren4($_id:ID!, $input: AddChildren4!) {
+  mutation AddChildren4($_id:ID!, $input: AddChildren!) {
     addChildren4(_id:$_id, input: $input) {
 			data{
       title
@@ -72,7 +72,7 @@ export const ADD_CHILDREN_4 = gql`
   }
 `;
 export const ADD_CHILDREN_5 = gql`
-  mutation AddChildren5($_id:ID!, $input: AddChildren5!) {
+  mutation AddChildren5($_id:ID!, $input: AddChildren!) {
     addChildren5(_id:$_id, input: $input) {
 			data{
       title
@@ -81,7 +81,7 @@ export const ADD_CHILDREN_5 = gql`
   }
 `;
 export const UPDATE_CHILDREN_0 = gql`
-  mutation UpdateChildren0($_id:ID!, $input: AddChildren0!) {
+  mutation UpdateChildren0($_id:ID!, $input: UpdateChildren!) {
     updateChildren0(_id:$_id, input: $input) {
 			data{
       title
@@ -90,7 +90,7 @@ export const UPDATE_CHILDREN_0 = gql`
   }
 `;
 export const UPDATE_CHILDREN_1 = gql`
-  mutation UpdateChildren1($_id:ID!, $input: AddChildren1!) {
+  mutation UpdateChildren1($_id:ID!, $input: UpdateChildren!) {
     updateChildren1(_id:$_id, input: $input) {
 			data{
       title
@@ -99,7 +99,7 @@ export const UPDATE_CHILDREN_1 = gql`
   }
 `;
 export const UPDATE_CHILDREN_2 = gql`
-  mutation UpdateChildren2($_id:ID!, $input: AddChildren2!) {
+  mutation UpdateChildren2($_id:ID!, $input: UpdateChildren!) {
     updateChildren2(_id:$_id, input: $input) {
 			data{
       title
@@ -108,7 +108,7 @@ export const UPDATE_CHILDREN_2 = gql`
   }
 `;
 export const UPDATE_CHILDREN_3 = gql`
-  mutation UpdateChildren3($_id:ID!, $input: AddChildren3!) {
+  mutation UpdateChildren3($_id:ID!, $input: UpdateChildren!) {
     updateChildren3(_id:$_id, input: $input) {
 			data{
       title
@@ -117,7 +117,7 @@ export const UPDATE_CHILDREN_3 = gql`
   }
 `;
 export const UPDATE_CHILDREN_4 = gql`
-  mutation UpdateChildren4($_id:ID!, $input: AddChildren4!) {
+  mutation UpdateChildren4($_id:ID!, $input: UpdateChildren!) {
     updateChildren4(_id:$_id, input: $input) {
 			data{
       title
@@ -126,7 +126,7 @@ export const UPDATE_CHILDREN_4 = gql`
   }
 `;
 export const UPDATE_CHILDREN_5 = gql`
-  mutation UpdateChildren5($_id:ID!, $input: AddChildren5!) {
+  mutation UpdateChildren5($_id:ID!, $input: UpdateChildren!) {
     updateChildren5(_id:$_id, input: $input) {
 			data{
       title
@@ -135,7 +135,7 @@ export const UPDATE_CHILDREN_5 = gql`
   }
 `;
 export const DELETE_CHILDREN_0 = gql`
-  mutation DeleteChildren0($_id: ID!, $input: DeleteChildrenInput0!) {
+  mutation DeleteChildren0($_id: ID!, $input: DeleteChildren!) {
     deleteChildren0(_id: $_id, input: $input) {
 			data{
       title
@@ -144,7 +144,7 @@ export const DELETE_CHILDREN_0 = gql`
   }
 `;
 export const DELETE_CHILDREN_1 = gql`
-  mutation DeleteChildren1($_id: ID!, $input: DeleteChildrenInput1!) {
+  mutation DeleteChildren1($_id: ID!, $input: DeleteChildren!) {
     deleteChildren1(_id: $_id, input: $input) {
 			data{
       title
@@ -153,7 +153,7 @@ export const DELETE_CHILDREN_1 = gql`
   }
 `;
 export const DELETE_CHILDREN_2 = gql`
-  mutation DeleteChildren2($_id: ID!, $input: DeleteChildrenInput2!) {
+  mutation DeleteChildren2($_id: ID!, $input: DeleteChildren!) {
     deleteChildren2(_id: $_id, input: $input) {
 			data{
       title
@@ -162,7 +162,7 @@ export const DELETE_CHILDREN_2 = gql`
   }
 `;
 export const DELETE_CHILDREN_3 = gql`
-  mutation DeleteChildren3($_id: ID!, $input: DeleteChildrenInput3!) {
+  mutation DeleteChildren3($_id: ID!, $input: DeleteChildren!) {
     deleteChildren3(_id: $_id, input: $input) {
 			data{
       title
@@ -171,7 +171,7 @@ export const DELETE_CHILDREN_3 = gql`
   }
 `;
 export const DELETE_CHILDREN_4 = gql`
-  mutation DeleteChildren4($_id: ID!, $input: DeleteChildrenInput4!) {
+  mutation DeleteChildren4($_id: ID!, $input: DeleteChildren!) {
     deleteChildren4(_id: $_id, input: $input) {
 			data{
       title
@@ -180,7 +180,7 @@ export const DELETE_CHILDREN_4 = gql`
   }
 `;
 export const DELETE_CHILDREN_5 = gql`
-  mutation DeleteChildren5($_id: ID!, $input: DeleteChildrenInput5!) {
+  mutation DeleteChildren5($_id: ID!, $input: DeleteChildren!) {
     deleteChildren5(_id: $_id, input: $input) {
 			data{
       title

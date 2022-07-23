@@ -8,7 +8,6 @@ export const SITES = gql`
       type
       data {
         title
-        domain
         icon
         logo
         imageSrc
@@ -38,22 +37,7 @@ export const SITE_ROUTE = gql`
         href
         imageSrc
         imageAlt
-        items {
-          uid
-          name
-          description
-          href
-          imageSrc
-          imageAlt
-        }
-        featured {
-          uid
-          name
-          description
-          href
-          imageSrc
-          imageAlt
-        }
+        
 
         children {
           uid
@@ -62,22 +46,7 @@ export const SITE_ROUTE = gql`
           href
           imageSrc
           imageAlt
-          items {
-            uid
-            name
-            description
-            href
-            imageSrc
-            imageAlt
-          }
-          featured {
-            uid
-            name
-            description
-            href
-            imageSrc
-            imageAlt
-          }
+          
           children {
             uid
             name
@@ -85,22 +54,7 @@ export const SITE_ROUTE = gql`
             href
             imageSrc
             imageAlt
-            items {
-              uid
-              name
-              description
-              href
-              imageSrc
-              imageAlt
-            }
-            featured {
-              uid
-              name
-              description
-              href
-              imageSrc
-              imageAlt
-            }
+            
             children {
               uid
               name
@@ -108,22 +62,7 @@ export const SITE_ROUTE = gql`
               href
               imageSrc
               imageAlt
-              items {
-                uid
-                name
-                description
-                href
-                imageSrc
-                imageAlt
-              }
-              featured {
-                uid
-                name
-                description
-                href
-                imageSrc
-                imageAlt
-              }
+              
               children {
                 uid
                 name
@@ -131,22 +70,7 @@ export const SITE_ROUTE = gql`
                 href
                 imageSrc
                 imageAlt
-                items {
-                  uid
-                  name
-                  description
-                  href
-                  imageSrc
-                  imageAlt
-                }
-                featured {
-                  uid
-                  name
-                  description
-                  href
-                  imageSrc
-                  imageAlt
-                }
+                
                 children {
                   uid
                   name
@@ -154,22 +78,7 @@ export const SITE_ROUTE = gql`
                   href
                   imageSrc
                   imageAlt
-                  items {
-                    uid
-                    name
-                    description
-                    href
-                    imageSrc
-                    imageAlt
-                  }
-                  featured {
-                    uid
-                    name
-                    description
-                    href
-                    imageSrc
-                    imageAlt
-                  }
+                  
                 }
               }
             }
@@ -179,6 +88,29 @@ export const SITE_ROUTE = gql`
     }
   }
 `;
+export const SITE_PATHS_TREE = gql`
+  query Site($_id: ID!) {
+    site(_id: $_id) {
+      route {
+        name
+        href
+        children {
+          name
+          href
+          children {
+            name
+            href
+            children {
+              name
+              href
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const SITE_ROUTE_PRODUCT = gql`
   query Site($_id: ID!) {
     site(_id: $_id) {
@@ -217,7 +149,6 @@ export const SITE = gql`
       type
       data {
         title
-        domain
         logo
         icon
         imageSrc

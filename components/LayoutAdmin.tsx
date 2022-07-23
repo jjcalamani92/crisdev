@@ -3,9 +3,10 @@ import { FC, Fragment, useContext, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { AuthContext } from '../src/context';
-import { HeadingDashboard } from './component';
+import { Heading, HeadingDashboard, Main } from './component';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { TreeAnt } from './ant/tree';
 
 // const user = {
 //   name: 'Tom Cook',
@@ -32,8 +33,9 @@ function classNames(...classes: string[]) {
 interface Props {
   children: React.ReactNode
   title: string
+  tree?: any
 }
-export const LayoutAdmin:FC<Props> = ({children, title}) => {
+export const LayoutAdmin:FC<Props> = ({children, title, tree}) => {
   const [current, setCurrent] = useState(true)
   const { user, isLoggedIn, logout } = useContext(AuthContext);
   const { query, pathname } = useRouter()
@@ -203,11 +205,20 @@ export const LayoutAdmin:FC<Props> = ({children, title}) => {
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
           </div>
-        </header> */}
-        <main>
-          
-            {children}
-        </main>
+        </header> */} 
+        <Main>
+
+        <div className='grid grid-cols-5 gap-3'>
+          <div className='col-span-1'>
+          <Heading title='Rutas'/>
+          <TreeAnt tree={tree} />
+
+          </div>
+          <main className='col-span-4'>
+              {children}
+          </main>
+        </div>
+        </Main>
       </div>
     </>
   )
